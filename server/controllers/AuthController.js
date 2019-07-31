@@ -11,16 +11,18 @@ router.use(bodyParser.json());
 const User = require('../models/User');
 
 router.post('/register', function(req, res) {
+    debugger;
 
-const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-
+const hashedPassword = bcrypt.hashSync(req.body.user.password, 10);
+debugger;
     User.create({
-    name: req.body.name,
-    lastname: req.body.lastname,
-    birtdate: req.body.birthdate,
-    email: req.body.email,
+    name: req.body.user.firstName,
+    lastname: req.body.user.lastName,
+    birtdate: req.body.user.birthDate,
+    email: req.body.user.email,
     password: hashedPassword
     }, function (error, user){
+        debugger;
         if(error){
             return res.status(500).send("and error occured")
         } else {
@@ -32,3 +34,5 @@ const hashedPassword = bcrypt.hashSync(req.body.password, 10);
         }
     });
     });
+
+    module.exports = router;
