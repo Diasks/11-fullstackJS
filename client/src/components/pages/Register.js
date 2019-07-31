@@ -52,7 +52,7 @@ outline: none;
 border: 1px solid #519e8a;
 
 ::placeholder {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: lighter;
     color: #999
   }
@@ -122,6 +122,21 @@ border-radius: 5px;
   }
 `;
 
+const Error  = styled.span`
+color: red;
+font-size: 0.5em;
+`;
+
+const validEmailRegex = 
+  RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+  const formValidator = (errors) => {
+    let valid = true;
+    Object.values(errors).forEach(
+      (val) => val.length > 0 && (valid = false)
+    );
+    return valid;
+  }
 
 class Register extends Component {
 constructor(props) {
@@ -133,6 +148,12 @@ constructor(props) {
         birthDate: new Date(),
         email: null,
         password: null,
+        errors: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
+          }
     };
     this.handleDateChange = this.handleDateChange.bind(this);
 }
@@ -140,13 +161,12 @@ constructor(props) {
 
 handleSubmit = e => {
     e.preventDefault();
-    console.log(`
-    Firstname: ${this.state.firstName}
-    Lastname: ${this.state.lastName}
-    Birth: ${this.state.birthDate}
-    Email: ${this.state.email}
-    Password ${this.state.password}
-    `)
+
+    if(formValidator(this.state.errors)) {
+        console.info('Valid Form')
+      } else {
+        console.error('Invalid Form')
+      }
 
     const user = {
         firstName: this.state.firstName,
@@ -172,11 +192,44 @@ handleDateChange(date) {
 handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
-    this.setState({[name]: value})
+    let errors = this.state.errors;
+
+    switch (name) {
+        case 'firstName': 
+          errors.firstName = 
+            value.length < 3
+              ? 'firstname must be 3 characters long!'
+              : '';
+          break;
+          case 'lastName': 
+          errors.lastName = 
+            value.length < 5
+              ? 'lastname must be 5 characters long!'
+              : '';
+          break;
+        case 'email': 
+          errors.email = 
+            validEmailRegex.test(value)
+              ? ''
+              : 'Email is not valid!';
+          break;
+        case 'password': 
+          errors.password = 
+            value.length < 8
+              ? 'Password must be 8 characters long!'
+              : '';
+          break;
+        default:
+          break;
+      }
+     
+    this.setState({errors, [name]: value})
 };
 
 
 render() {
+    const {errors} = this.state;
+
     return (
 <Container>
 <FormContainer>
@@ -184,11 +237,15 @@ render() {
 <Form onSubmit={this.handleSubmit}>
     <Firstname> 
 <Label>Firstname</Label>
-<Input type="text" placeholder="Firstname" name="firstName" onChange={this.handleChange}/>
+<Input type="text" placeholder="Firstname" name="firstName" required onChange={this.handleChange}/>
+{errors.firstName.length > 0 && 
+    <Error>{errors.firstName}</Error>}
 </Firstname>
 <Lastname> 
 <Label>Lastname</Label>
-<Input type="text" placeholder="Lastname" name="lastName" onChange={this.handleChange}/>
+<Input type="text" placeholder="Lastname" name="lastName" required onChange={this.handleChange}/>
+{errors.lastName.length > 0 && 
+    <Error>{errors.lastName}</Error>}
 </Lastname>
 <Birthdate> 
 <Label>Birthdate</Label>
@@ -200,16 +257,20 @@ render() {
         dropdownMode="select"
         dateFormat="yyyy/MM/dd"
         isClearable={true}
-        placeholderText="I have been cleared!"
+        placeholderText="I have been cleared!" required
       />
 </Birthdate>
 <Email> 
 <Label>Email</Label>
-<Input type="email" placeholder="Email" name="email" onChange={this.handleChange}/>
+<Input type="email" placeholder="Email" name="email" required onChange={this.handleChange}/>
+{errors.email.length > 0 && 
+    <Error>{errors.email}</Error>}
 </Email>
 <Password> 
 <Label>Password</Label>
-<Input type="password" placeholder="password" name="password" onChange={this.handleChange}/>
+<Input type="password" placeholder="Password" name="password" required onChange={this.handleChange}/>
+{errors.password.length > 0 && 
+    <Error>{errors.password}</Error>}
 </Password>
 <ButtonWrap> 
 <RegisterButton type="submit">Register</RegisterButton>
@@ -217,7 +278,6 @@ render() {
 </Form>
 </FormContainer>
 </Container>
-
     );
 }
 }
