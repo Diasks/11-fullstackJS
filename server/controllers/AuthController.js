@@ -35,4 +35,36 @@ debugger;
     });
     });
 
+    router.get('/me', function(req, res) {
+        debugger;
+        let token = req.headers['x-access-token'];
+        if (!token) {
+            return res.status(401).send({
+                authenticated: false,
+                message: 'Unauthorized. No token provided.'
+            });
+        }
+        jwt.verify(token, process.env.SECRET, function(error, decodedToken) {
+            if(error) {
+                res.status(500).send({
+                    authenticated: false,
+                    message: 'An error occured when trying to authenticate token'
+                });
+            }
+
+            User.findById(decodedToken.id, function(error, user) {
+if(error) {
+    res.status(500).send('An error occured while trying to find the user')
+}
+if(!user) {
+    res.status(404).send('User not found');
+}
+
+            });
+            res.status(200).send({
+                authenticated: true,
+                user: user});
+        });
+    })
+
     module.exports = router;
