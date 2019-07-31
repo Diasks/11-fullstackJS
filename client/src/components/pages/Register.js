@@ -3,6 +3,7 @@ import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from 'styled-components';
+const axios = require('axios');
 
 const Container = styled.div`
 width: 100%;
@@ -146,6 +147,20 @@ handleSubmit = e => {
     Email: ${this.state.email}
     Password ${this.state.password}
     `)
+
+    const user = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        birthDate: this.state.birthDate,
+        email: this.state.email,
+        password: this.state.password,
+    };
+
+    axios.post(`http://localhost:4000/auth/register`, { user }).then(res => {
+        debugger;
+        console.log(res);
+        console.log(res.data);
+    })
 };
 
 handleDateChange(date) {
