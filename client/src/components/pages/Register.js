@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { Component } from "react";
 import "../../App.css";
 import DatePicker from "react-datepicker";
@@ -5,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import styled from 'styled-components';
 const axios = require('axios');
 
-const Container = styled.div`
+export const Container = styled.div`
 width: 100%;
 height: 100%;
 display: flex;
@@ -15,7 +16,7 @@ align-items: center;
 background-color: #519e8a;
 `;
 
-const FormContainer = styled.div`
+export const FormContainer = styled.div`
 width: 50%;
 display: flex;
 flex-direction: column;
@@ -25,27 +26,27 @@ box-shadow: 0px 10px 50px #555;
 background-color:#FFFAFA;
 `;
 
-const Form  = styled.form`
+export const Form  = styled.form`
 width: 100%;
 display: flex;
 flex-wrap: wrap;
 `;
 
-const Headline   = styled.h1`
+export const Headline   = styled.h1`
 text-align: center;
 width: 100%;
 color: #111;
 font-weight: lighter;
 `;
 
-const Label  = styled.label`
+export const Label  = styled.label`
 font-size: 0.8em;
 margin-bottom: 0.25em;
 color: #222;
 font-weight: lighter;
 `;
 
-const Input  = styled.input`
+export const Input  = styled.input`
 padding: 10px 10px;
 border-radius: 5px;
 outline: none;
@@ -81,28 +82,28 @@ margin-bottom: 15px;
 width: 100%;
 `;
 
-const Email  = styled.div`
+export const Email  = styled.div`
 display: flex;
 flex-direction: column;
 margin-bottom: 15px;
 width: 100%;
 `;
 
-const Password = styled.div`
+export const Password = styled.div`
 display: flex;
 flex-direction: column;
 margin-bottom: 15px;
 width: 100%;
 `;
 
-const ButtonWrap  = styled.div`
+export const ButtonWrap  = styled.div`
 width: 100%; 
 display: flex;
 flex-direction: column;
 align-items: center;
 `;
 
-const RegisterButton  = styled.button`
+export const RegisterButton  = styled.button`
 background-color: #519e8a;
 color: #fff;
 border: 2px solid #fff;
@@ -122,13 +123,12 @@ border-radius: 5px;
   }
 `;
 
-const Error  = styled.span`
+export const Error  = styled.span`
 color: red;
 font-size: 0.5em;
 `;
 
-const validEmailRegex = 
-  RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
   const formValidator = (errors) => {
     let valid = true;

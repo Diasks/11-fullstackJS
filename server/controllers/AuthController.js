@@ -9,62 +9,85 @@ router.use(bodyParser.urlencoded( { extended: false } ));
 router.use(bodyParser.json());
 
 const User = require('../models/User');
+const VerifyToken = require('../middleware/VerifyToken');
 
-router.post('/register', function(req, res) {
+//working with postman removing .user from all request and just have req.body, working with frontend just like written now.
+router.post('/login', function(req, res) {
     debugger;
+User.findOne( {email: req.body.user.email }, function(error, user) {
+if (error) {
+    debugger;
+    return res.status(500).send('An error occured while trying to process login')
+}
 
-const hashedPassword = bcrypt.hashSync(req.body.user.password, 10);
-debugger;
+if(!user){
+    debugger;
+    return res.status(404).send('No registered user found with that email');
+}
+
+//Compare passwords
+let isValidPassword = bcrypt.compareSync(req.body.user.password, user.password);
+if (!isValidPassword) {
+    debugger;
+    return res.status(401).send({
+        authenticated: false,
+        token: null
+    });
+}
+
+    let token = jwt.sign( {id: user._id}, process.env.SECRET, {
+        expiresIn: 86400
+    });
+    debugger;
+    return res.status(200).send({
+        authenticated: true,
+        token: token,
+        user: user
+    });
+ 
+})
+
+});
+
+//working with postman removing .user from all request and just have req.body, working with frontend just like written now.
+router.post('/register', function(req, res) {
     User.create({
     name: req.body.user.firstName,
     lastname: req.body.user.lastName,
     birtdate: req.body.user.birthDate,
     email: req.body.user.email,
-    password: hashedPassword
+    password: req.body.user.password
     }, function (error, user){
-        debugger;
         if(error){
-            return res.status(500).send("and error occured")
+            return res.status(500).send("an error occured")
         } else {
             //Create a jwt token
             let token = jwt.sign({id: user._id}, process.env.SECRET, {
                 expiresIn: 86400 //valid 24 hours
             });
-            res.status(200).send({authenticated: true, token: token});
+            return res.status(200).send({authenticated: true, token: token});
         }
     });
     });
 
-    router.get('/me', function(req, res) {
+    router.get('/me', VerifyToken, function(req, res) {
         debugger;
-        let token = req.headers['x-access-token'];
-        if (!token) {
-            return res.status(401).send({
-                authenticated: false,
-                message: 'Unauthorized. No token provided.'
-            });
-        }
-        jwt.verify(token, process.env.SECRET, function(error, decodedToken) {
-            if(error) {
-                res.status(500).send({
-                    authenticated: false,
-                    message: 'An error occured when trying to authenticate token'
-                });
-            }
-
-            User.findById(decodedToken.id, function(error, user) {
+            User.findById(req.userId, { password: 0 }, function(error, user) {
+                //user undefined at the moment ... debugging..
+                debugger;
 if(error) {
+    debugger;
     res.status(500).send('An error occured while trying to find the user')
 }
 if(!user) {
+    debugger;
     res.status(404).send('User not found');
 }
-
             });
             res.status(200).send({
                 authenticated: true,
-                user: user});
+                user: user
+            });
         });
-    })
 
     module.exports = router;
