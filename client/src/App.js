@@ -14,8 +14,8 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
     </Router>
+    <Footer />
     </div>
-       <Footer />
   );
 }
 
