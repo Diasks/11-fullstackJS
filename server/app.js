@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const config = require("dotenv").config();
 const mongoose = require("mongoose");
 const AuthController = require('./controllers/AuthController');
+const gamesRouter = require('./routes/games');
+const gameRouter = require('./routes/game');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -18,8 +20,9 @@ app.use(cors());
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@gameover-uogeo.mongodb.net/test?retryWrites=true&w=majority`);
 
 const db = mongoose.connection;
-db.on("error", function() {
-  console.error("Whoops, something went wrong!");
+console.log(db);
+db.on("error", function(error) {
+  console.error("Whoops, something went wrong!", error);
 });
 db.once("open", function() {
   console.log("DB connection is up and running");
@@ -38,10 +41,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', AuthController);
+app.use('/games', gamesRouter);
+app.use('/game', gameRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-
+app.get('/game', (req, res) => {
+  db.collection('games').find().toArray((err, results) =>{
+    if(err) throw err;
+    console.log(err);
+    console.log(results);
+    results.forEach((value)=>{
+      console.log(value);
+    })
+   return res.json(results);
+  })
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
