@@ -6,7 +6,7 @@ import Login from "./components/pages/Login";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Api from "./components/pages/Api";
-import Game from "./components/pages/Game";
+import Profile from "./components/pages/Profile";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/api" component={Api} />
+        <Route path="/profile" component={Profile} />
     </Router>
     <Footer />
     </div>
