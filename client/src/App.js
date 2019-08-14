@@ -17,6 +17,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/api" component={Api} />
         <Route path="/profile" component={Profile} />
+        <Route path="/dashboard" component={Dashboard} />
     </Router>
     <Footer />
     </div>
