@@ -59,6 +59,9 @@ import {
             debugger;
             console.log(res);
             console.log(res.data);
+            localStorage.setItem("jwt", res.data.token);
+          localStorage.setItem("user", res.data.user);
+          this.props.history.push("/profile");
         })
     };
     
