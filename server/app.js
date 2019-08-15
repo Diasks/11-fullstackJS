@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const config = require("dotenv").config();
 const mongoose = require("mongoose");
 const AuthController = require('./controllers/AuthController');
+const UserController = require('./controllers/UserController');
 const gamesRouter = require('./routes/games');
 const gameRouter = require('./routes/game');
 const indexRouter = require('./routes/index');
@@ -41,6 +42,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', AuthController);
+app.use('/user', UserController);
 app.use('/games', gamesRouter);
 app.use('/game', gameRouter);
 app.use('/', indexRouter);
