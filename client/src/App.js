@@ -15,7 +15,7 @@ function App() {
     <div> 
     <Header />
     <Router>
-    <Route path="/" component={Startpage} />
+    <Route exact path="/" component={Startpage} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/api" component={Api} />

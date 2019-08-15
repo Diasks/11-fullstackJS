@@ -16,7 +16,8 @@ class Dashboard extends Component {
   
 //hämta alla användare från min databas
     componentDidMount() {
-        var token = localStorage.getItem("jwt");
+
+debugger;        var token = localStorage.getItem("jwt");
         var config = {
             headers: {'x-access-token': token}
         }
