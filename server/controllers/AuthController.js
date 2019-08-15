@@ -51,6 +51,17 @@ if (!isValidPassword) {
 
 //working with postman removing .user from all request and just have req.body, working with frontend just like written now.
 router.post('/register', function(req, res) {
+const emailQuery = {email: req.body.user.email};
+
+User.findOne(emailQuery, function(err, user) {
+    debugger;
+    if (err) throw err;
+    if (user) {
+        debugger;
+        res.json({status: "email already exist"});
+    }
+else { 
+debugger;
     User.create({
     name: req.body.user.firstName,
     lastname: req.body.user.lastName,
@@ -68,7 +79,9 @@ router.post('/register', function(req, res) {
             return res.status(200).send({authenticated: true, token: token});
         }
     });
-    });
+    };
+})
+});
 
     router.get('/me', VerifyToken, function(req, res) {
         debugger;

@@ -7,6 +7,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Api from "./components/pages/Api";
 import Profile from "./components/pages/Profile";
+import Dashboard from "./components/pages/Dashboard";
 
 function App() {
   return (

@@ -161,6 +161,7 @@ constructor(props) {
 
 handleSubmit = e => {
     e.preventDefault();
+    let errors = this.state.errors;
 
     if(formValidator(this.state.errors)) {
         console.info('Valid Form')
@@ -180,8 +181,13 @@ handleSubmit = e => {
         debugger;
         console.log(res);
         console.log(res.data);
-     
+        if (res.data.status === "email already exist") {
+          errors.email = "email already exist!";
+          this.setState({ errors });
+        } else {
           this.props.history.push("/login");
+        }
+        
         
     })
 };
