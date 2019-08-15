@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
 
 const NavWrap = styled.div`
 width: 100%
@@ -38,16 +39,42 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            query: '',
+            results: []
               }
         };
         
+handleInputchange = () => {
+    debugger;
+    this.setState({
+        query: this.search.value
+    }, () => {
+        
+                this.getInfo()
+       
+    })
+}
+
+getInfo = () => {
+    debugger;
+    axios.get('http://localhost:4000/search')
+      .then(({ data }) => {
+        this.setState({
+          results: data.data
+        })
+      })
+  }
+
+
+
    
     render() 
     {
         return (
             <NavWrap> 
-            <Input></Input>
+            <Input placeholder="search for.." ref={input=> this.search = input} onChange={this.handleInputchange}></Input>
             <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" /></IconWrapSearch>
+            {this.state.query}
             <IconWrap><FontAwesomeIcon icon={faUser} size="lg" /></IconWrap>
             <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>
             </NavWrap>
