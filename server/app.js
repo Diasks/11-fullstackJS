@@ -54,7 +54,10 @@ app.get("/search/:query", function(req, res) {
     __v:  0
     }, function (err, data) {
       debugger;
-    res.json(data);
+      let result = data.toArray();
+      if (err) throw error;
+      console.log(result);
+    res.send(result);
     });
   });
 
