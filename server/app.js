@@ -49,16 +49,12 @@ app.get("/search/:query", function(req, res) {
     "$text": {
       "$search": req.params.query
     }
-  },{
-    _id: 0,
-    __v:  0
-    }, function (err, data) {
+  }).toArray( function (err, data) {
       debugger;
-      let result = data.toArray();
       if (err) throw error;
-      console.log(result);
-    res.send(result);
-    });
+      console.log(data);
+      res.send({data})
+  });
   });
 
 
