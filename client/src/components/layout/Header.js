@@ -42,6 +42,7 @@ class Header extends Component {
             query: '',
             results: []
               }
+              this.showValue = this.showValue.bind(this);
         };
         
 handleInputchange = () => {
@@ -66,19 +67,32 @@ getInfo = () => {
       })
   }
 
-
+  showValue(e){
+    debugger;
+    e.preventDefault();
+    console.log(this.nameValue.value)
+    let query = this.nameValue.value;
+    axios.get(`http://localhost:4000/search/${query}`)
+    .then((data) => {
+      debugger;
+      console.log(data.data);
+    })
+}
 
    
     render() 
     {
         return (
+        
             <NavWrap> 
-            <Input placeholder="search for.." ref={input=> this.search = input} onChange={this.handleInputchange}></Input>
-            <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" /></IconWrapSearch>
-            {this.state.query}
+            <Input placeholder="search for.." ref={el=> this.nameValue=el}></Input>
+            <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" onClick={this.showValue} /></IconWrapSearch>
+          
             <IconWrap><FontAwesomeIcon icon={faUser} size="lg" /></IconWrap>
             <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>
             </NavWrap>
+
+
         )
     }
 }
