@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import "../../App.css";
 import axios from 'axios';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 height: 100%;
 display: flex;
 justify-content: center;
@@ -12,7 +12,7 @@ background-color: #519e8a;
 border: 1px solid orange;
 `;
 
-const InsideBox = styled.div`
+export const InsideBox = styled.div`
 width: 25%;
 display: flex;
 flex-direction: column;
@@ -23,7 +23,7 @@ background-color:#FFFAFA;
 border: 1px solid green;
 `;
 
-const ObjectFrame  = styled.div`
+export const ObjectFrame  = styled.div`
 width: 100%;
 height: auto;
 display: flex;
