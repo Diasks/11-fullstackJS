@@ -56,8 +56,9 @@ handleInputchange = () => {
 }
 
 getInfo = () => {
-    debugger;
-    axios.get('http://localhost:4000/search')
+  console.log(this.state.query);
+      debugger;
+    axios.post(`http://localhost:4000/search/${this.state.query}`)
       .then(({ data }) => {
         this.setState({
           results: data.data
