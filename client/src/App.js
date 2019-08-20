@@ -6,7 +6,7 @@ import Login from "./components/pages/Login";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Api from "./components/pages/Api";
-import Game from "./components/pages/Game";
+
 
 function App() {
   return (
