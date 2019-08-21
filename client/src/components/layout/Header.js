@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
+import Suggestions from '../pages/Suggestions';
+import doSomething from '../pages/Suggestions';
+
 
 const NavWrap = styled.div`
 width: 100%
@@ -39,33 +42,13 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: '',
             results: []
               }
               this.showValue = this.showValue.bind(this);
         };
-        
-handleInputchange = () => {
-    debugger;
-    this.setState({
-        query: this.search.value
-    }, () => {
-        
-                this.getInfo()
-       
-    })
-}
 
-getInfo = () => {
-  console.log(this.state.query);
-      debugger;
-    axios.post(`http://localhost:4000/search/${this.state.query}`)
-      .then(({ data }) => {
-        this.setState({
-          results: data.data
-        })
-      })
-  }
+
+
 
   showValue(e){
     debugger;
@@ -76,6 +59,8 @@ getInfo = () => {
     .then((data) => {
       debugger;
       console.log(data.data);
+      this.setState({results: data.data})
+      debugger;
     })
 }
 
@@ -83,18 +68,23 @@ getInfo = () => {
     render() 
     {
         return (
-        
+        <div> 
             <NavWrap> 
             <Input placeholder="search for.." ref={el=> this.nameValue=el}></Input>
             <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" onClick={this.showValue} /></IconWrapSearch>
           
             <IconWrap><FontAwesomeIcon icon={faUser} size="lg" /></IconWrap>
             <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>
+           
             </NavWrap>
+            
+<div>
+ {this.state.results && 
+         <Suggestions results={this.state.results} />
+         }
+</div>
 
-
-        )
-    }
-}
-    
+</div>
+        )}
+  }
     export default Header;

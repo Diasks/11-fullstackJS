@@ -53,7 +53,7 @@ app.get("/search/:query", function(req, res) {
       debugger;
       if (err) throw error;
       console.log(data);
-      res.send({data})
+      res.json({data})
   });
   });
 
