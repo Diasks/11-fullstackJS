@@ -7,3 +7,6 @@ router.use(bodyParser.json());
 
 var User = require('../models/User');
 
+
+
+    module.exports = router;
