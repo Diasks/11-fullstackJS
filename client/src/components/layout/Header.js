@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios';
-import Suggestions from '../pages/Suggestions';
 import { Link } from 'react-router-dom';
 
 const NavWrap = styled.div`
@@ -24,18 +22,7 @@ padding: 10px;
 margin: 5px;
 `;
 
-const Input  = styled.input`
-background-color: white;
-padding: 8px 8px;
-border-radius: 5px;
-outline: none;
 
-::placeholder {
-    font-size: 1.1em;
-    font-weight: lighter;
-    color: #999
-  }
-`;
 
 class Header extends Component {
     constructor() {
