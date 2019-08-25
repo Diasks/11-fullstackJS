@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import Suggestions from '../pages/Suggestions';
-import doSomething from '../pages/Suggestions';
-
+import { Link } from 'react-router-dom';
 
 const NavWrap = styled.div`
 width: 100%
@@ -47,7 +46,8 @@ class Header extends Component {
               this.showValue = this.showValue.bind(this);
         };
 
-
+     
+     
 
 
   showValue(e){
@@ -71,11 +71,11 @@ class Header extends Component {
         <div> 
             <NavWrap> 
             <Input placeholder="search for.." ref={el=> this.nameValue=el}></Input>
-            <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" onClick={this.showValue} /></IconWrapSearch>
+            <Link to="/register"> <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" onClick={this.showValue} /></IconWrapSearch> </Link>
           
-            <IconWrap><FontAwesomeIcon icon={faUser} size="lg" /></IconWrap>
-            <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>
-           
+            <Link to="/register"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
+            <Link to="/register">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
+  
             </NavWrap>
             
 <div>
