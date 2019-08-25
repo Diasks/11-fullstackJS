@@ -38,52 +38,21 @@ outline: none;
 `;
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            results: []
-              }
-              this.showValue = this.showValue.bind(this);
+    constructor() {
+        super();
         };
 
      
-     
-
-
-  showValue(e){
-    debugger;
-    e.preventDefault();
-    console.log(this.nameValue.value)
-    let query = this.nameValue.value;
-    axios.get(`http://localhost:4000/search/${query}`)
-    .then((data) => {
-      debugger;
-      console.log(data.data);
-      this.setState({results: data.data})
-      debugger;
-    })
-}
-
-   
+    
     render() 
     {
         return (
         <div> 
             <NavWrap> 
-            <Input placeholder="search for.." ref={el=> this.nameValue=el}></Input>
-            <Link to="/register"> <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" onClick={this.showValue} /></IconWrapSearch> </Link>
-          
-            <Link to="/register"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
-            <Link to="/register">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
-  
+            <Link to="/search"> <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg"/></IconWrapSearch> </Link>
+            <Link to="/profile"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
+            <Link to="/cart">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
             </NavWrap>
-            
-<div>
- {this.state.results && 
-         <Suggestions results={this.state.results} />
-         }
-</div>
-
 </div>
         )}
   }
