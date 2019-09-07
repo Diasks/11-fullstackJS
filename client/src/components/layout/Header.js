@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faShoppingCart, faHome } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 const NavWrap = styled.div`
@@ -25,18 +25,13 @@ margin: 5px;
 
 
 class Header extends Component {
-    constructor() {
-        super();
-        };
 
-     
-    
     render() 
     {
         return (
         <div> 
             <NavWrap> 
-            <Link to="/search"> <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg"/></IconWrapSearch> </Link>
+            <Link to="/"> <IconWrapSearch><FontAwesomeIcon icon={faHome} size="lg"/></IconWrapSearch> </Link>
             <Link to="/profile"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
             <Link to="/cart">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
             </NavWrap>
