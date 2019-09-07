@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -24,15 +24,9 @@ margin: 5px;
 
 
 
-class Header extends Component {
-    constructor() {
-        super();
-        };
+const Header = () => {
 
-     
     
-    render() 
-    {
         return (
         <div> 
             <NavWrap> 
@@ -42,5 +36,5 @@ class Header extends Component {
             </NavWrap>
 </div>
         )}
-  }
+  
     export default Header;
