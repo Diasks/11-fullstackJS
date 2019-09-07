@@ -9,11 +9,8 @@ const config = require("dotenv").config();
 const mongoose = require("mongoose");
 const AuthController = require('./controllers/AuthController');
 const UserController = require('./controllers/UserController');
-<<<<<<< HEAD
 const gamesRouter = require('./routes/games');
 const gameRouter = require('./routes/game');
-=======
->>>>>>> develop
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -52,19 +49,7 @@ app.use('/', indexRouter);
 app.use('/search', UserController);
 app.use('/users', usersRouter);
 
-<<<<<<< HEAD
-app.get('/game', (req, res) => {
-  db.collection('games').find().toArray((err, results) =>{
-    if(err) throw err;
-    console.log(err);
-    console.log(results);
-    results.forEach((value)=>{
-      console.log(value);
-    })
-   return res.json(results);
-  })
-});
-=======
+
 app.get("/search/:query", function(req, res) {  
   debugger;
   db.collection('games').find({
@@ -79,7 +64,35 @@ app.get("/search/:query", function(req, res) {
   });
   });
 
->>>>>>> develop
+app.get('/game/:slug', (req, res) => {
+  debugger;
+  let slug = req.params.slug;
+  debugger;
+  db.collection('games').find({slug: slug}).toArray((err, info) => {
+    debugger;
+    if(err) throw err;
+    console.log(err);
+    console.log(info);
+   return res.json(info);
+  } )});
+
+
+
+app.get('/game', (req, res) => {
+  db.collection('games').find().toArray((err, results) =>{
+    if(err) throw err;
+    console.log(err);
+    console.log(results);
+    results.forEach((value)=>{
+      console.log(value);
+    })
+   return res.json(results);
+  })
+});
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -26,7 +26,7 @@ searchGames = async query => {
   }
 
 //hämta specifikt spel från min databas baserat på vilken man tryckt på för att ser mer detaljerat
-getUser = async (slug) => {
+getGame = async (slug) => {
   debugger;
 const res = await axios.get(`http://localhost:4000/game/${slug}`);
 debugger;
@@ -59,7 +59,7 @@ render() {
      </Fragment>
     )} />
      <Route exact path="/game/:slug" render={props => (
-      <Game getUser={this.getGame} game={game}/>
+      <Game {... props} getGame= {this.getGame} game={game}/>
     )}/>
  
     </Switch>

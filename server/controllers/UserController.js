@@ -7,7 +7,6 @@ const VerifyToken = require('../middleware/VerifyToken');
 var User = require('../models/User');
 
 
-<<<<<<< HEAD
 // GET ALL USERS
 router.get('/', VerifyToken, function(req, res) {
     debugger;
@@ -24,18 +23,18 @@ if(error) {
 });
 
 //GET SPECIFIC USER -> DIDN'T USE YET
-router.get('/:id', VerifyToken, function(req, res) {
-    debugger;
-    User.findById(req.param.id, function(error, user) {
-    if(error) {
-        return res.status(500).send("an error occured")
-    } else {
-        res.status(200).send(user);
-    }
+// router.get('/:id', VerifyToken, function(req, res) {
+//     debugger;
+//     User.findById(req.param.id, function(error, user) {
+//     if(error) {
+//         return res.status(500).send("an error occured")
+//     } else {
+//         res.status(200).send(user);
+//     }
     
-    })
+//     })
     
-    });
+//     });
 
       //TODO: UPDATE USER
     router.patch("/:id", VerifyToken, function(req, res) {
@@ -64,7 +63,5 @@ router.get('/:id', VerifyToken, function(req, res) {
         });
     });
 
-=======
->>>>>>> develop
 
     module.exports = router;
