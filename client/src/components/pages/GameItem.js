@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-function GameItem({game: {name, id, background_image}}) {
+function GameItem({game: {name, id, background_image, slug}}) {
     debugger;
     return (
-        <div className="card text-center">
-            <img src={background_image} alt="" className="round-img" style={{width: '60px'}}/>
+        <div>
+            <img src={background_image} alt="game"/>
             <h3>{name} {id}</h3> 
- 
+            <Link to={`/game/${slug}`}>Details</Link>
             </div>
     )
 }

@@ -9,10 +9,12 @@ import Footer from "./components/layout/Footer";
 import axios from 'axios';
 import Startpage from './components/pages/Startpage';
 import Games from './components/pages/Games';
+import Game from './components/pages/Game';
 
 class App extends Component {
   state = {
-games: []
+games: [],
+game: []
   }
 
 //refaktorisera till async funktion för att söka i databasen
@@ -23,10 +25,20 @@ searchGames = async query => {
     this.setState({games: res.data.data })
   }
 
+//hämta specifikt spel från min databas baserat på vilken man tryckt på för att ser mer detaljerat
+getUser = async (slug) => {
+  debugger;
+const res = await axios.get(`http://localhost:4000/game/${slug}`);
+debugger;
+this.setState({game: res.data});
+
+}
+
+
 
 render() { 
   //refaktorisera till att dekonstruera state för o ta ut spel från state
-  const { games } = this.state;
+  const { games, game } = this.state;
 
   return (
     <div> 
@@ -46,6 +58,9 @@ render() {
     <Games games={games}/>
      </Fragment>
     )} />
+     <Route exact path="/game/:slug" render={props => (
+      <Game getUser={this.getGame} game={game}/>
+    )}/>
  
     </Switch>
     <Footer />

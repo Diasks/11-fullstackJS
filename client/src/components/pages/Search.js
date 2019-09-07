@@ -54,7 +54,7 @@ class Search extends Component {
 return ( 
     <div> 
      
-                <form onSubmit={this.onSubmit} className="form">
+                <form onSubmit={this.onSubmit}>
 <Input type="text" name="query" placeholder="...search" value={this.state.query} onChange={this.onChange} />
 <Button type="submit">search</Button>
                 </form> 
