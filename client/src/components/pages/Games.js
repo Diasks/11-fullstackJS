@@ -1,10 +1,13 @@
 import React from 'react'
+import GameItem from './GameItem';
 
 const Games = (games) => {
     debugger;
     return (
         <div>
-            <h1>hej</h1>
+            {games.map(game => (
+                  <GameItem key={game.id} user={game} />
+              ))}  
         </div>
     )
 }
