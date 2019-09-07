@@ -8,6 +8,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import axios from 'axios';
 import Startpage from './components/pages/Startpage';
+import Games from './components/pages/Games';
 
 class App extends Component {
   state = {
@@ -42,6 +43,7 @@ render() {
       <Startpage/>
 <Search 
   searchGames={this.searchGames}/>
+    <Games games={games}/>
      </Fragment>
     )} />
  
