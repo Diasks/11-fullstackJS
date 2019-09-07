@@ -1,7 +1,4 @@
 import React from 'react';
-import { Wrapper,
-    InsideBox,
-    ObjectFrame } from './Api';
     import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -20,9 +17,12 @@ const Startpage = () =>  {
    
         return ( 
             <div> 
-              <Link to="/login">Login</Link> <Link to="/register">Register</Link>
+             
                  <BigTitle>GAMEOVER</BigTitle>
-               <Paragraph>Välkommen till Gameover! Din butik för spel!</Paragraph>
+                 <Link to="/login">Login</Link> <Link to="/register">Register</Link>
+               <Paragraph>Välkommen till Gameover! Din butik för spel!
+           
+               </Paragraph>
                TODO: SÖK HÄÄÄÄÄÄÄÄR
                
   

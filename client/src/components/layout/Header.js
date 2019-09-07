@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 const NavWrap = styled.div`
 width: 100%
@@ -21,38 +22,25 @@ padding: 10px;
 margin: 5px;
 `;
 
-const Input  = styled.input`
-background-color: white;
-padding: 8px 8px;
-border-radius: 5px;
-outline: none;
 
-::placeholder {
-    font-size: 1.1em;
-    font-weight: lighter;
-    color: #999
-  }
-`;
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-              }
+    constructor() {
+        super();
         };
-        
-   
+
+     
+    
     render() 
     {
         return (
+        <div> 
             <NavWrap> 
-            <Input></Input>
-            <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg" /></IconWrapSearch>
-            <IconWrap><FontAwesomeIcon icon={faUser} size="lg" /></IconWrap>
-            <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>
+            <Link to="/search"> <IconWrapSearch><FontAwesomeIcon icon={faSearch} size="lg"/></IconWrapSearch> </Link>
+            <Link to="/profile"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
+            <Link to="/cart">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
             </NavWrap>
-        )
-    }
-}
-    
+</div>
+        )}
+  }
     export default Header;

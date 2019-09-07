@@ -7,6 +7,7 @@ const VerifyToken = require('../middleware/VerifyToken');
 var User = require('../models/User');
 
 
+<<<<<<< HEAD
 // GET ALL USERS
 router.get('/', VerifyToken, function(req, res) {
     debugger;
@@ -63,5 +64,7 @@ router.get('/:id', VerifyToken, function(req, res) {
         });
     });
 
+=======
+>>>>>>> develop
 
     module.exports = router;

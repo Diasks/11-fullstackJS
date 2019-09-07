@@ -9,8 +9,11 @@ const config = require("dotenv").config();
 const mongoose = require("mongoose");
 const AuthController = require('./controllers/AuthController');
 const UserController = require('./controllers/UserController');
+<<<<<<< HEAD
 const gamesRouter = require('./routes/games');
 const gameRouter = require('./routes/game');
+=======
+>>>>>>> develop
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -46,8 +49,10 @@ app.use('/user', UserController);
 app.use('/games', gamesRouter);
 app.use('/game', gameRouter);
 app.use('/', indexRouter);
+app.use('/search', UserController);
 app.use('/users', usersRouter);
 
+<<<<<<< HEAD
 app.get('/game', (req, res) => {
   db.collection('games').find().toArray((err, results) =>{
     if(err) throw err;
@@ -59,6 +64,22 @@ app.get('/game', (req, res) => {
    return res.json(results);
   })
 });
+=======
+app.get("/search/:query", function(req, res) {  
+  debugger;
+  db.collection('games').find({
+    "$text": {
+      "$search": req.params.query
+    }
+  }).toArray( function (err, data) {
+      debugger;
+      if (err) throw error;
+      console.log(data);
+      res.json({data})
+  });
+  });
+
+>>>>>>> develop
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
