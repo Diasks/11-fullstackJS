@@ -60,7 +60,8 @@ import {
             console.log(res);
             console.log(res.data);
             localStorage.setItem("jwt", res.data.token);
-          localStorage.setItem("user", res.data.user);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+          // localStorage.setItem("user", res.data.user);
           this.props.history.push("/profile");
         })
     };
