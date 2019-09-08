@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGamepad, faSearch } from '@fortawesome/free-solid-svg-icons'
+
 
 export const GameImage = styled.img`
 width:100%;
@@ -8,6 +11,7 @@ border-radius: 10px;
 `;
 
 const Input  = styled.input`
+width:50%
 background-color: white;
 padding: 8px 8px;
 border-radius: 5px;
@@ -20,15 +24,24 @@ outline: none;
   }
 `;
 
-const Button = styled.button `
-background-color: #fff;
-color: #519e8a;
-border-radius: 5px;
-border: 2px solid #519e8a;
+const SearchTitle = styled.h2`
+text-align: center;
+`;
 
+const SearchForm = styled.form`
+text-align: center;
+`;
+
+const Button = styled.button `
+background-color: white;
+color: black;
+margin: 5px;
+padding: 5px;
+border-radius: 5px;
+border: 1px solid black;
 :hover {
-    color: black;
-    border: 2px solid black;
+    color: #519e8a;
+    border: 1px solid #519e8a;
   }
 
 `;
@@ -54,10 +67,11 @@ class Search extends Component {
 return ( 
     <div> 
      
-                <form onSubmit={this.onSubmit}>
+                <SearchForm onSubmit={this.onSubmit}>
+                    <SearchTitle> <FontAwesomeIcon icon={faGamepad} size="2x"/> Search for a game</SearchTitle>
 <Input type="text" name="query" placeholder="...search" value={this.state.query} onChange={this.onChange} />
-<Button type="submit">search</Button>
-                </form> 
+<Button type="submit"><FontAwesomeIcon icon={faSearch} size="lg"/>Search</Button>
+                </SearchForm> 
            </div>
 )
 

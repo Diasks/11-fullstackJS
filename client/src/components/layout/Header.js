@@ -11,17 +11,27 @@ display: flex;
 background-color: lightgrey;
 `;
 
-const IconWrapSearch = styled.div`
-padding-top: 12px;
-margin: 2px;
-margin-right: 10px;
-`;
-
 const IconWrap = styled.div`
 padding: 10px;
 margin: 5px;
+color:#519e8a;;
+:hover {
+    color: black;
+  }
 `;
 
+const StyledLink = styled(Link)`
+color: #519e8a;;
+    text-decoration: none;
+font-weight: bold;
+    &:hover {
+        color: black; 
+    }
+
+    &:focus, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
 
 
 const Header = ({isLoggedIn}) => {
@@ -29,10 +39,11 @@ const Header = ({isLoggedIn}) => {
         return (
         <div> 
             <NavWrap> 
-            <Link to="/"> <IconWrapSearch><FontAwesomeIcon icon={faHome} size="lg"/></IconWrapSearch> </Link>
+            <Link to="/"> <IconWrap><FontAwesomeIcon icon={faHome} size="lg"/></IconWrap> </Link>
             <Link to="/profile"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
             <Link to="/cart">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
-           {isLoggedIn ?     <Link to="/" onClick={() => {localStorage.clear();}}>Logout</Link> : null}
+            {!isLoggedIn ? <IconWrap> <StyledLink to="/login">Login</StyledLink>  <StyledLink to="/register">Register</StyledLink> </IconWrap> : null }
+           {isLoggedIn ?   <IconWrap> <StyledLink to="/" onClick={() => {localStorage.clear();}}>Logout</StyledLink></IconWrap> : null}
             </NavWrap>
 </div>
         )} 
