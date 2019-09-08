@@ -38,11 +38,20 @@ if(error) {
 
       //TODO: UPDATE USER
     router.patch("/:id", VerifyToken, function(req, res) {
+    
         debugger;
-        User.findByIdAndUpdate(
+        //req.body.updatedUser
+        User.findByIdAndUpdate(   req.params.id, {
+"telephone" :req.body.updatedUser.telephone ,
+"address" :req.body.updatedUser.address ,
+"zipcode" :req.body.updatedUser.zipcode ,
+"city" :req.body.updatedUser.city 
+
+        },
             //put things here
-         
+        
           function(error, user) {
+            debugger;
             if (error) {
               res.json({ status: "error", message: `${error}` });
             }

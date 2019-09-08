@@ -18,6 +18,7 @@ render() {
     } 
 
       else  {
+        const { addToCart, isLoggedIn } = this.props;
         const { name, rating, released, clip, genres } = this.props.game[0];
 debugger;
    return (
@@ -30,6 +31,8 @@ debugger;
 
 ))}      </ul>
             <Link to="/" className="btn btn-light">Back to search</Link>
+            {isLoggedIn ?  <button onClick={() => {addToCart(this.props.game[0])}}>click</button> : null }
+           
         </Fragment>
     )
 }

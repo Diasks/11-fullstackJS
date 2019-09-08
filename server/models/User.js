@@ -8,7 +8,12 @@ name: String,
 lastname: String,
 birthdate: { type: Date, default: Date.now },
 email: String,
-password: String
+password: String,
+telephone: Number,
+address: String,
+zipcode: Number,
+city: String,
+
 });
 
 
