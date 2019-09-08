@@ -14,14 +14,14 @@ background-color: lightgrey;
 const IconWrap = styled.div`
 padding: 10px;
 margin: 5px;
-color:#519e8a;;
+color:#519e8a;
 :hover {
     color: black;
   }
 `;
 
-const StyledLink = styled(Link)`
-color: #519e8a;;
+export const StyledLink = styled(Link)`
+color: #519e8a;
     text-decoration: none;
 font-weight: bold;
     &:hover {
