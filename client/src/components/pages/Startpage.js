@@ -1,6 +1,17 @@
 import React from 'react';
-    import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGhost } from '@fortawesome/free-solid-svg-icons'
+
+const WrapGhost = styled.div`
+text-align: center;
+:hover {
+    color: red;
+
+  }
+
+
+`;
 
  const BigTitle = styled.h1`
  text-align: center;
@@ -12,20 +23,18 @@ import styled from 'styled-components';
  width: 100%;`;
   
 
-const Startpage = ({isLoggedIn}) =>  {
+const Startpage = () =>  {
 
    
         return ( 
             <div> 
              
                  <BigTitle>GAMEOVER</BigTitle>
-                 {!isLoggedIn ? <div> <Link to="/login">Login</Link> <Link to="/register">Register</Link> </div> : null }
+                <WrapGhost>  <FontAwesomeIcon icon={faGhost} size="5x"/> </WrapGhost>
                  
-               <Paragraph>Välkommen till Gameover! Din butik för spel!
-           
-               </Paragraph>
-               TODO: SÖK HÄÄÄÄÄÄÄÄR
-               
+               <Paragraph>Welcome to Gameover! Your store for games!</Paragraph>
+              
+
   
 
             </div>
