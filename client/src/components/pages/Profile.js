@@ -5,7 +5,6 @@ class Profile extends Component {
 
 componentDidMount() {
     this.props.getLoggedInUser();
-
 }
 
 handleSubmit = async (e) => {
@@ -29,7 +28,9 @@ handleChange = (e) => {
 
     render() { 
         const { name, lastname, email, birthdate, telephone, address, zipcode, city } = this.props.user;
+        const isLoggedIn = this.props.isLoggedIn;
         const { showing } = this.state;
+if (isLoggedIn)  
         return ( 
             <div>
                 <h1>Hello {name} {lastname}!</h1>
@@ -53,10 +54,13 @@ handleChange = (e) => {
                     : null
                 }
             </div>  
-           
+        
             </div>
 
          );
+        else {
+            return (<h1>Du måste logga in för att kunna se din profil!</h1>)
+        }
     }
 }
  
