@@ -32,7 +32,7 @@ const SearchForm = styled.form`
 text-align: center;
 `;
 
-const Button = styled.button `
+export const Button = styled.button `
 background-color: white;
 color: black;
 margin: 5px;

@@ -1,6 +1,43 @@
-import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom';
- 
+import React, { Component } from 'react'
+import { GameWrapper } from './Games';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { StyledLink } from '../layout/Header';
+import { Button } from './Search';
+
+const GameFrame = styled.div`
+    width: 50%;
+    height: auto;
+    margin: 10px;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 10px;
+   box-shadow: 0px 10px 30px #555;
+   display:flex;
+`;
+
+const ParaContainer = styled.p`
+margin: 5px;
+width:50%;
+`;
+
+const RatingStar = styled.span`
+color: yellow;
+`;
+
+const ListGenre = styled.div`
+list-style: none;
+border-radius: 5px;
+text-align: center;
+padding: 5px;
+background-color: #519e8a;
+border: 1px solid black;
+`;
+
+
+
+
 export class Game extends Component {
 
 componentDidMount () {
@@ -22,18 +59,23 @@ render() {
         const { name, rating, released, clip, genres } = this.props.game[0];
 debugger;
    return (
-        <Fragment>
-         {name}, rating: {rating}, released: {released} <iframe title="preview" src={clip.clip}></iframe>
-         <ul>
+        <GameWrapper>
+          <GameFrame> 
+          <iframe title="preview" src={clip.clip}></iframe>
+         <ParaContainer>{name}</ParaContainer> 
+         <ParaContainer><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </ParaContainer>
+        <ParaContainer> {released} </ParaContainer>
+         <ParaContainer>
        {genres.map((genre, i) =>(
 
-<li key={i}>{genre.name}</li>
+<ListGenre key={i}>{genre.name}</ListGenre>
 
-))}      </ul>
-            <Link to="/" className="btn btn-light">Back to search</Link>
-            {isLoggedIn ?  <button onClick={() => {addToCart(this.props.game[0])}}>click</button> : null }
-           
-        </Fragment>
+))}      </ParaContainer>
+        
+            {isLoggedIn ?  <Button onClick={() => {addToCart(this.props.game[0])}}><FontAwesomeIcon icon={faCartPlus} size="lg"/>add to cart</Button> : null }
+            <StyledLink to="/" className="btn btn-light">Go Back</StyledLink>
+            </GameFrame>
+        </GameWrapper>
     )
 }
 }
