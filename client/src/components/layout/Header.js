@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faShoppingCart, faHome } from '@fortawesome/free-solid-svg-icons'
@@ -24,18 +24,18 @@ margin: 5px;
 
 
 
-class Header extends Component {
+const Header = ({isLoggedIn}) => {
 
-    render() 
-    {
         return (
         <div> 
             <NavWrap> 
             <Link to="/"> <IconWrapSearch><FontAwesomeIcon icon={faHome} size="lg"/></IconWrapSearch> </Link>
             <Link to="/profile"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
             <Link to="/cart">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
+           {isLoggedIn ?     <Link to="/" onClick={() => {localStorage.clear();}}>Logout</Link> : null}
             </NavWrap>
 </div>
-        )}
-  }
+        )} 
+    
+  
     export default Header;

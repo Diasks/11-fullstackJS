@@ -53,14 +53,8 @@ cart: []
 
 
 searchUser = async (updatedUser, _id) => {
-//   const updatedUser = {
-//     telephone: this.state.telephone,
-//     address: this.state.address,
-//     zipcode: this.state.zipcode,
-//     city: this.state.city,
-// };
+
 debugger;
-// let _id = this.props.user._id;
 var token = localStorage.getItem("jwt");
 debugger;
         var config = {
@@ -74,9 +68,6 @@ localStorage.setItem('user', JSON.stringify(result.data));
 debugger;
 
 }
-
-
- 
   
 
 //refaktorisera till async funktion för att söka i databasen
@@ -106,7 +97,7 @@ render() {
     <div> 
 
     <Router>
-    <Header />
+    <Header isLoggedIn={isLoggedIn}/>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Switch>
