@@ -67,7 +67,12 @@ debugger;
     lastname: req.body.user.lastName,
     birtdate: req.body.user.birthDate,
     email: req.body.user.email,
-    password: req.body.user.password
+    password: req.body.user.password,
+    telephone: req.body.user.telephone,
+    address: req.body.user.address,
+    zipcode: req.body.user.zipcode,
+    city: req.body.user.city,
+    role: req.body.user.role
     }, function (error, user){
         if(error){
             return res.status(500).send("an error occured")

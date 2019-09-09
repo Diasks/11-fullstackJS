@@ -12,12 +12,14 @@ import Games from './components/pages/Games';
 import Game from './components/pages/Game';
 import Profile from './components/pages/Profile';
 import Cart from './components/pages/Cart';
+import Dashboard from './components/pages/Dashboard';
 
 class App extends Component {
   state = {
 games: [],
 game: [],
 isLoggedIn: false,
+isAdmin: false,
 user: {},
 cart: []
   }
@@ -34,11 +36,26 @@ componentDidMount() {
   let token = localStorage.getItem('jwt');
   debugger;
   let user = JSON.parse(localStorage.getItem('user'));
+  if (token != null) {
+    debugger;
+    let isAdmin = JSON.parse(localStorage.getItem('user')).role;
+    if (isAdmin === "admin") {
+      debugger;
+      this.setState({isAdmin: true})
+    }
+  }
+
+ 
+ 
+
   debugger;
   if (token) {
     this.setState({isLoggedIn: true, user: user})
     debugger;
   }
+
+
+
   }
 
 
@@ -97,15 +114,16 @@ this.setState({game: res.data});
 
 render() { 
   //refaktorisera till att dekonstruera state för o ta ut spel från state
-  const { games, game, user, cart, isLoggedIn } = this.state;
+  const { games, game, user, cart, isLoggedIn, isAdmin } = this.state;
 
   return (
     <div> 
 
     <Router>
-    <Header isLoggedIn={isLoggedIn}/>
+    <Header isLoggedIn={isLoggedIn} isAdmin={isAdmin}/>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/dashboard" component={Dashboard} />
         <Switch>
           <Route exact path='/profile' render={props=> (
             <Profile getLoggedInUser={this.getLoggedInUser} isLoggedIn={isLoggedIn} user={user} searchUser={this.searchUser}/>
