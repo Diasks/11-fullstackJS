@@ -38,14 +38,18 @@ if(error) {
 
       //TODO: UPDATE USER
     router.patch("/:id", VerifyToken, function(req, res) {
-    
         debugger;
-        //req.body.updatedUser
-        User.findByIdAndUpdate(   req.params.id, {
+        
+        User.findByIdAndUpdate({_id: req.params.id}, {
+          "name" :req.body.updatedUser.name ,
+"lastname" :req.body.updatedUser.lastname ,
+"birthdate" :req.body.updatedUser.birthdate ,
+"city" :req.body.updatedUser.city,
 "telephone" :req.body.updatedUser.telephone ,
 "address" :req.body.updatedUser.address ,
 "zipcode" :req.body.updatedUser.zipcode ,
-"city" :req.body.updatedUser.city 
+"city" :req.body.updatedUser.city,
+"role" :req.body.updatedUser.role  
 
         },
             //put things here
