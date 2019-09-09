@@ -175,6 +175,11 @@ handleSubmit = e => {
         birthDate: this.state.birthDate,
         email: this.state.email,
         password: this.state.password,
+        telephone: null,
+address: null,
+zipcode: null,
+city: null,
+role: 'user'
     };
 
     axios.post(`http://localhost:4000/auth/register`, { user }).then(res => {
