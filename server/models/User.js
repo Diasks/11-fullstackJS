@@ -13,6 +13,7 @@ telephone: Number,
 address: String,
 zipcode: Number,
 city: String,
+role: String
 
 });
 

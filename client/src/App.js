@@ -23,6 +23,12 @@ cart: []
   }
 
   //hämta inloggad användare
+componentDidMount() {
+  debugger;
+  this.getLoggedInUser();
+
+}
+
   getLoggedInUser = () => {
     debugger;
   let token = localStorage.getItem('jwt');
