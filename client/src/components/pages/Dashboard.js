@@ -213,6 +213,7 @@ if (user._id !== id) {
             debugger;
             console.log(res);
             console.log(res.data);
+          
     })
 }
 
@@ -247,8 +248,8 @@ debugger;
 console.log(result);
 //sätt edit till false så mitt formulär inte syns!
     this.setState({    
-        user: result.data, edit: false });
-                        
+        users: this.state.users, edit: false });
+       debugger; 
                         }
 
 
@@ -258,13 +259,14 @@ console.log(result);
                          
                 
                              return <form onSubmit={this.onCreateHandle}>   
-                             name: <input type="text" name="firstName" placeholder="name" onChange={this.handleChange}/>
-                                        lastname: <input type="text" name="lastName" placeholder="lastname" onChange={this.handleChange}/>
-                                        email: <input type="text" name="email" placeholder="email" onChange={this.handleChange}/>
-                                        birthdate: <input type="number" name="birthDate" placeholder="birthdate" onChange={this.handleChange}/>
-                                             telephone: <input type="number" name="telephone" placeholder="phonenumber" onChange={this.handleChange}/>
-                                        address: <input type="text" name="address" placeholder="address" onChange={this.handleChange}/>
-                                        zipcode: <input type="number" name="zipcode" placeholder="zipcode" onChange={this.handleChange}/>
+                             name: <input type="text" name="firstName" placeholder="name" required onChange={this.handleChange}/>
+                                        lastname: <input type="text" name="lastName" placeholder="lastname" required onChange={this.handleChange}/>
+                                        email: <input type="text" name="email" placeholder="email" required onChange={this.handleChange}/>
+                                        birthdate: <input type="number" name="birthDate" placeholder="birthdate" required onChange={this.handleChange}/>
+                                             telephone: <input type="number" name="telephone" placeholder="phonenumber" required onChange={this.handleChange}/>
+                                             password: <input type="text" name="password" placeholder="password" required onChange={this.handleChange}/>
+                                        address: <input type="text" name="address" placeholder="address" required onChange={this.handleChange}/>
+                                        zipcode: <input type="number" name="zipcode" placeholder="zipcode" required onChange={this.handleChange}/>
                                         city: <input type="text" name="city" placeholder="city" onChange={this.handleChange}/>
                                         role: <input type="text" name="role" placeholder="role" onChange={this.handleChange}/>
                                          
@@ -281,13 +283,13 @@ renderEditForm() {
         let  {name, lastname, email, birthdate, telephone, address, zipcode, city, role} = this.state.user;
 
      return <form onSubmit={this.onUpdateHandle}>   
-     name: <input type="text" name="name" placeholder={name} onChange={this.handleChange}/>
-                lastname: <input type="text" name="lastname" placeholder={lastname} onChange={this.handleChange}/>
-                email: <input type="text" name="email" placeholder={email} onChange={this.handleChange}/>
-                birthdate: <input type="number" name="birthdate" placeholder={birthdate} onChange={this.handleChange}/>
-                     telephone: <input type="number" name="telephone" placeholder={telephone} onChange={this.handleChange}/>
-                address: <input type="text" name="address" placeholder={address} onChange={this.handleChange}/>
-                zipcode: <input type="number" name="zipcode" placeholder={zipcode} onChange={this.handleChange}/>
+     name: <input type="text" name="name" placeholder={name} required onChange={this.handleChange}/>
+                lastname: <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
+                email: <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
+                birthdate: <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
+                     telephone: <input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/>
+                address: <input type="text" name="address" placeholder={address} required onChange={this.handleChange}/>
+                zipcode: <input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/>
                 city: <input type="text" name="city" placeholder={city} onChange={this.handleChange}/>
                 role: <input type="text" name="role" placeholder={role} onChange={this.handleChange}/>
                  
