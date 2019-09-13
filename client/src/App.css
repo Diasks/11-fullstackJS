@@ -25,6 +25,31 @@ html {
  display:flex;
 }
 
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+
+
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	td:nth-of-type(1):before { content: "name"; }
+	td:nth-of-type(2):before { content: "lastname"; }
+	td:nth-of-type(3):before { content: "birthdate"; }
+	td:nth-of-type(4):before { content: "email"; }
+	td:nth-of-type(5):before { content: "telephone"; }
+	td:nth-of-type(6):before { content: "address"; }
+	td:nth-of-type(7):before { content: "zipcode"; }
+	td:nth-of-type(8):before { content: "city"; }
+  td:nth-of-type(9):before { content: "role"; }
+  td:nth-of-type(10):before { content: "delete"; }
+	td:nth-of-type(11):before { content: "edit"; }
+	
+}
+
+
 @media screen and (max-width:1200px){
   .box{
     width: 40%;
