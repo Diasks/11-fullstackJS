@@ -16,7 +16,8 @@ text-align: center;
  const BigTitle = styled.h1`
  text-align: center;
  width: 100%;
- margin: 20px;`;
+ margin: 10px;
+ `;
   
  const Paragraph = styled.p`
  text-align: center;

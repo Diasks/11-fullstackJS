@@ -21,7 +21,9 @@ game: [],
 isLoggedIn: false,
 isAdmin: false,
 user: {},
-cart: []
+cart: [],
+success: false,
+orders: []
   }
 
   //hämta inloggad användare
@@ -29,6 +31,7 @@ componentDidMount() {
   debugger;
   this.getLoggedInUser();
   this.getCart();
+  this.getOrders();
 }
 
   getLoggedInUser = () => {
@@ -44,18 +47,11 @@ componentDidMount() {
       this.setState({isAdmin: true})
     }
   }
-
- 
- 
-
   debugger;
   if (token) {
     this.setState({isLoggedIn: true, user: user})
     debugger;
   }
-
-
-
   }
 
 
@@ -77,11 +73,13 @@ componentDidMount() {
 
     const result = await axios.patch(`http://localhost:4000/cart/${usersCart}`,{ myObj }, config);
 debugger;
-    //axios posta till users cart funkar yeay!!!!
-    alert(`du har lagt ${myObj} i kundvagnen`);
-    this.setState({cart:[...this.state.cart, myObj]});
+    this.setState({cart:[...this.state.cart, myObj], success: true});
+    
     debugger;
   }
+
+
+
 
 
 searchUser = async (updatedUser, _id) => {
@@ -174,6 +172,24 @@ this.setState({cart: res.data.cart});
 }
 }
 
+
+getOrders = async () => {
+  debugger;
+  var token = localStorage.getItem("jwt");
+  var config = {
+    headers: {'x-access-token': token}
+}
+if (token != null) { 
+  debugger;
+  let usersCart = JSON.parse(localStorage.getItem('user'))._id;
+const res = await axios.get(`http://localhost:4000/cart/${usersCart}`, config);
+debugger;
+this.setState({orders: res.data.orders});
+}
+}
+
+
+
 deleteFromCart = async (id) => {
   debugger;
   let gameId = id;
@@ -228,7 +244,7 @@ logoutUser = () =>
 
 render() { 
   //refaktorisera till att dekonstruera state för o ta ut spel från state
-  const { games, game, user, cart, isLoggedIn, isAdmin } = this.state;
+  const { games, game, user, cart, isLoggedIn, isAdmin, success, orders } = this.state;
 
   return (
     <div> 
@@ -240,7 +256,7 @@ render() {
         <Route path="/dashboard" component={Dashboard} />
         <Switch>
           <Route exact path='/profile' render={props=> (
-            <Profile getLoggedInUser={this.getLoggedInUser} isLoggedIn={isLoggedIn} user={user} searchUser={this.searchUser}/>
+            <Profile getLoggedInUser={this.getLoggedInUser} isLoggedIn={isLoggedIn} user={user} searchUser={this.searchUser} getOrders={this.getOrders} orders={orders}/>
           )}/> 
     <Route 
     exact 
@@ -249,11 +265,11 @@ render() {
       <Startpage isLoggedIn={isLoggedIn}/>
 <Search 
   searchGames={this.searchGames}/>
-    <Games games={games}/>
+    <Games games={games} success={success}/>
      </Fragment>
     )} />
      <Route exact path="/game/:slug" render={props => (
-      <Game {... props} getGame= {this.getGame} game={game} addToCart={this.addToCart} isLoggedIn={isLoggedIn}/>
+      <Game {... props} getGame= {this.getGame} game={game} addToCart={this.addToCart} success={success} isLoggedIn={isLoggedIn}/>
     )}/>
  <Route exact path="/cart" render={props => (  
 <Cart cart={cart} isLoggedIn={isLoggedIn} deleteFromCart={this.deleteFromCart} sendOrder={this.sendOrder}/>

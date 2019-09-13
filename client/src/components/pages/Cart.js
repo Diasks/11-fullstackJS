@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const ShoppingCart = styled.div`
 width: 600px;
-height: 423px;
+height: auto;
 margin: 80px auto;
 background: #FFFFFF;
 box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
