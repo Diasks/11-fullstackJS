@@ -8,8 +8,11 @@ flex-direction: column;
 justify-content: space-between;
 align-items: center;
 background-color: lightgrey;
-padding: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+border-top: 1px solid black;
 `;
+
 
 const Copyright = styled.span`
   align-self: center;

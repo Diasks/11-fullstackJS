@@ -56,7 +56,7 @@ render() {
 
       else  {
         const { addToCart, isLoggedIn } = this.props;
-        const { name, rating, released, clip, genres } = this.props.game[0];
+        const { name, rating, released, clip, genres, price } = this.props.game[0];
 debugger;
    return (
         <GameWrapper>
@@ -65,6 +65,7 @@ debugger;
          <ParaContainer>{name}</ParaContainer> 
          <ParaContainer><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </ParaContainer>
         <ParaContainer> {released} </ParaContainer>
+        <ParaContainer>{price}:-</ParaContainer>
          <ParaContainer>
        {genres.map((genre, i) =>(
 

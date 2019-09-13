@@ -32,7 +32,7 @@ font-weight: bold;
 
 
 
-function GameItem({game: {name, id, background_image, slug}}) {
+function GameItem({game: {name, background_image, slug}}) {
     debugger;
     return (
         <Box style={{backgroundImage: `url(${background_image})`, backgroundPosition: 'center', backgroundSize: '400px 300px', backgroundRepeat: 'no-repeat'}}>

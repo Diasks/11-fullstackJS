@@ -13,9 +13,11 @@ flex-flow: wrap;
 
 const Games = ({games}) => {
     debugger;
+
+
     return (
         <GameWrapper>
-            {games.map(game => (
+            {games === '' ? <h2>sorry we dont have this game</h2> : games.map(game => (
                   <GameItem key={game.id} game={game} />
               ))}  
         </GameWrapper>

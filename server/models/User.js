@@ -3,6 +3,21 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+const OrderSchema = new Schema({
+    created: {type: Date, default:Date.now},
+    id: String,
+    name: String,
+    image: String
+});
+
+const CartSchema = new Schema({
+    id: String,
+    name: String,
+    image: String,
+    price: Number
+});
+
+
 const UserSchema = new Schema({
 name: String,
 lastname: String,
@@ -13,8 +28,9 @@ telephone: Number,
 address: String,
 zipcode: Number,
 city: String,
-role: String
-
+role: String,
+orders:[[OrderSchema]],
+cart:[CartSchema],
 });
 
 
