@@ -7,6 +7,9 @@ const VerifyToken = require('../middleware/VerifyToken');
 var User = require('../models/User');
 
 
+
+
+
 // GET ALL USERS
 router.get('/', VerifyToken, function(req, res) {
     debugger;
@@ -59,6 +62,7 @@ if(error) {
           }
         );
       });
+
 
 
 

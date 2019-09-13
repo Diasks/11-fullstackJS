@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -20,7 +22,7 @@ display: flex;
 :nth-child(3) {
     border-top:  1px solid #E1E8EE;
     border-bottom:  1px solid #E1E8EE;
-
+}
     @media (max-width: 800px) {
         height: auto;
     flex-wrap: wrap;
@@ -30,10 +32,8 @@ display: flex;
 
 const DeleteButton = styled.span`
   display: inline-block;
-  Cursor: pointer;
   width: 18px;
   height: 17px;
-  background: url(&quot;delete-icn.svg&quot;) no-repeat center;
   @media (max-width: 800px) {
     margin-right: 20px;
 }
@@ -99,8 +99,18 @@ border-radius: 10px;
 }
 `;
 
-const CartItem = ({item: {name, id, image} }) =>  {
 
+const ItemPrice = styled.div`
+width: 83px;
+padding-top: 27px;
+text-align: center;
+font-size: 16px;
+color: black;
+font-weight: 300;
+`;
+
+const CartItem = ({item: { name, id, image, price}, deleteFromCart }) =>  {
+debugger;
             return (
 
 
@@ -108,7 +118,7 @@ const CartItem = ({item: {name, id, image} }) =>  {
 
   <Item>
     <DivButton>
-      <DeleteButton></DeleteButton>
+      <DeleteButton onClick={() => {deleteFromCart(id)}}><FontAwesomeIcon icon={faTrashAlt} size="lg"/></DeleteButton>
     </DivButton>
  
             
@@ -122,16 +132,16 @@ const CartItem = ({item: {name, id, image} }) =>  {
     </GameDescription>
  
     <Quantity>
-      <button class="plus-btn" type="button" name="button">
-    plus
+      <button type="button" name="button">
+      <FontAwesomeIcon icon={faPlus} size="lg"/>
       </button>
       <input type="text" name="name" value="1" />
-      <button class="minus-btn" type="button" name="button">
-      minus
+      <button type="button" name="button">
+      <FontAwesomeIcon icon={faMinus} size="lg"/>
       </button>
     </Quantity>
  
-    <div class="total-price">$549</div>
+    <ItemPrice>{price}:-</ItemPrice>
   </Item>
 
 

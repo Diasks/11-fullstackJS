@@ -34,7 +34,7 @@ font-weight: bold;
 `;
 
 
-const Header = ({isLoggedIn, isAdmin}) => {
+const Header = ({isLoggedIn, isAdmin, logoutUser}) => {
 
         return (
         <div> 
@@ -44,7 +44,7 @@ const Header = ({isLoggedIn, isAdmin}) => {
             <Link to="/cart">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
             {!isLoggedIn ? <IconWrap> <StyledLink to="/login">Login</StyledLink>  <StyledLink to="/register">Register</StyledLink> </IconWrap> : null }
             {isAdmin ?  <Link to="/dashboard"><IconWrap><FontAwesomeIcon icon={faUserCog} size="lg"/> </IconWrap> </Link>  : null }
-           {isLoggedIn ?    <Link to="/" onClick={() => {localStorage.clear();}}><IconWrap><FontAwesomeIcon icon={faSignOutAlt} size="lg"/></IconWrap></Link> : null}
+           {isLoggedIn ?    <Link to="/" onClick={logoutUser}><IconWrap><FontAwesomeIcon icon={faSignOutAlt} size="lg"/></IconWrap></Link> : null}
             </NavWrap>
 </div>
         )} 

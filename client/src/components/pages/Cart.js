@@ -12,7 +12,6 @@ margin: 80px auto;
 background: #FFFFFF;
 box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
 border-radius: 6px;
-border: 2px solid black;
 
 display: flex;
 flex-direction: column;
@@ -33,7 +32,7 @@ font-size: 18px;
 font-weight: 400;
 `; 
 
-const Cart = ({cart, isLoggedIn }) =>  {
+const Cart = ({cart, isLoggedIn, deleteFromCart, sendOrder  }) =>  {
     debugger;
     //passa igenom en remove from cart funktion
 
@@ -51,11 +50,12 @@ else {
 <ShoppingCart>
   <Title>
     Shopping Bag
+   
   </Title>
 {Object.keys(cart).length === 0 ? <h2>Oh no! You cart is empty!</h2> : cart.map(item => (
-    <CartItem key={item.id} item={item} />
+    <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
 ))}   
-         
+         <button onClick={() => {sendOrder(cart)}}>order</button>
         </ShoppingCart>
     )
 }}
