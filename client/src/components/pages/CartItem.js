@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
@@ -109,7 +109,7 @@ color: black;
 font-weight: 300;
 `;
 
-const CartItem = ({item: { name, id, image, price}, deleteFromCart }) =>  {
+const CartItem = ({item: { name, id, image, price}, deleteFromCart}) =>  {
 debugger;
             return (
 
@@ -121,7 +121,7 @@ debugger;
       <DeleteButton onClick={() => {deleteFromCart(id)}}><FontAwesomeIcon icon={faTrashAlt} size="lg"/></DeleteButton>
     </DivButton>
  
-            
+         
 
     <GameImageDiv>
       <GameImage src={image} alt="" />
@@ -131,15 +131,8 @@ debugger;
       <GameDescriptionSpan>{name} </GameDescriptionSpan>
     </GameDescription>
  
-    <Quantity>
-      <button type="button" name="button">
-      <FontAwesomeIcon icon={faPlus} size="lg"/>
-      </button>
-      <input type="text" name="name" value="1" />
-      <button type="button" name="button">
-      <FontAwesomeIcon icon={faMinus} size="lg"/>
-      </button>
-    </Quantity>
+  
+
  
     <ItemPrice>{price}:-</ItemPrice>
   </Item>

@@ -61,7 +61,7 @@ componentDidMount() {
 
   addToCart = async (props) =>
   { 
-debugger;
+  debugger;
     let usersCart = JSON.parse(localStorage.getItem('user'))._id;
     debugger;
     const myObj = {
@@ -101,6 +101,10 @@ debugger;
 
 }
 
+
+
+
+
 sendOrder = async (cart) => {
 debugger;
 const myObj = cart.map(data => ({
@@ -133,6 +137,8 @@ debugger;
 
     this.removeCartItems();
   }
+
+
 
 
 removeCartItems = async () => {
