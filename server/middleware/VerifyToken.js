@@ -3,7 +3,7 @@ const config = require("dotenv").config();
 
 function verifyToken(req, res, next) {
     debugger;
-    let token = req.headers['x-access-token'];
+    let token = req.headers['x-access-token'] || req.body.headers['x-access-token'];
 
     if(!token) {
         debugger;

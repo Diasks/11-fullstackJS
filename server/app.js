@@ -9,10 +9,15 @@ const config = require("dotenv").config();
 const mongoose = require("mongoose");
 const AuthController = require('./controllers/AuthController');
 const UserController = require('./controllers/UserController');
-const gamesRouter = require('./routes/games');
-const gameRouter = require('./routes/game');
+const CartController = require('./controllers/CartController');
+const GameController = require('./controllers/GameController');
+const SearchController = require('./controllers/SearchController');
+const OrderController = require('./controllers/OrderController');
+// const gamesRouter = require('./routes/games');
+// const gameRouter = require('./routes/game');
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+
+// const usersRouter = require('./routes/users');
 
 const app = express();
 app.use(cors());
@@ -30,6 +35,16 @@ db.once("open", function() {
 });
 
 
+app.use('/auth', AuthController);
+app.use('/user', UserController);
+app.use('/cart', CartController);
+app.use('/games', GameController);
+app.use('/', indexRouter);
+app.use('/search', SearchController);
+app.use('/order', OrderController);
+// app.use('/users', usersRouter);
+
+
 // view engine setup
 app.set("view engine", "pug");
 app.set('views', path.join(__dirname, 'views'));
@@ -41,54 +56,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/auth', AuthController);
-app.use('/user', UserController);
-app.use('/games', gamesRouter);
-app.use('/game', gameRouter);
-app.use('/', indexRouter);
-app.use('/search', UserController);
-app.use('/users', usersRouter);
 
 
-app.get("/search/:query", function(req, res) {  
-  debugger;
-  db.collection('games').find({
-    "$text": {
-      "$search": req.params.query
-    }
-  }).toArray( function (err, data) {
-      debugger;
-      if (err) throw error;
-      console.log(data);
-      res.json({data})
-  });
-  });
-
-app.get('/game/:slug', (req, res) => {
-  debugger;
-  let slug = req.params.slug;
-  debugger;
-  db.collection('games').find({slug: slug}).toArray((err, info) => {
-    debugger;
-    if(err) throw err;
-    console.log(err);
-    console.log(info);
-   return res.json(info);
-  } )});
-
-
-
-app.get('/game', (req, res) => {
-  db.collection('games').find().toArray((err, results) =>{
-    if(err) throw err;
-    console.log(err);
-    console.log(results);
-    results.forEach((value)=>{
-      console.log(value);
-    })
-   return res.json(results);
-  })
-});
 
 
 
