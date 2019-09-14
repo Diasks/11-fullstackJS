@@ -76,8 +76,16 @@ debugger;
     this.setState({cart:[...this.state.cart, myObj], success: true});
     
     debugger;
+    this.changeSuccess();
   }
 
+
+  changeSuccess = async () => {
+debugger;
+this.setState({success: false});
+debugger;
+
+  }
 
 
 
@@ -132,8 +140,10 @@ debugger;
     // alert(`du har lagt ${} i kundvagnen`);
     // this.setState({cart:[...this.state.cart, myObj]});
     debugger;
-
+this.setState({success: true, orders: result.data.orders})
     this.removeCartItems();
+    this.changeSuccess();
+    this.getOrders();
   }
 
 
@@ -235,11 +245,24 @@ debugger;
 this.setState({game: res.data});
 }
 
-logoutUser = () =>
+logoutUser = async () =>
 {
+  const {isAdmin} = this.state;
+  const {isLoggedIn} = this.state
+
   debugger;
-  localStorage.clear(); 
-  this.setState({isLoggedin: false})
+
+  this.setState({isAdmin: false});
+  this.setState({isLoggedIn: false});
+  
+console.log(this.state);
+  debugger;
+
+  console.log(this.state);
+
+  
+  // localStorage.clear(); 
+  debugger;
 }
 
 render() { 
@@ -272,7 +295,7 @@ render() {
       <Game {... props} getGame= {this.getGame} game={game} addToCart={this.addToCart} success={success} isLoggedIn={isLoggedIn}/>
     )}/>
  <Route exact path="/cart" render={props => (  
-<Cart cart={cart} isLoggedIn={isLoggedIn} deleteFromCart={this.deleteFromCart} sendOrder={this.sendOrder}/>
+<Cart cart={cart} isLoggedIn={isLoggedIn} deleteFromCart={this.deleteFromCart} sendOrder={this.sendOrder} success={success}/>
     )}/>
     </Switch>
     <Footer />

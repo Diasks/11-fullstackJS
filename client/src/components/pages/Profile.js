@@ -46,39 +46,39 @@ if (isLoggedIn)
                 <Form onSubmit={this.handleSubmit}> 
                 <Firstname> 
 <Label>Firstname</Label>
-<Input type="text" name="name" placeholder={name} onChange={this.handleChange}/>
+<Input type="text" name="name" placeholder={name} required onChange={this.handleChange}/>
 </Firstname>
 
 <Lastname> 
 <Label>Lastname</Label>
-<Input type="text" name="lastname" placeholder={lastname} onChange={this.handleChange}/>
+<Input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
 </Lastname>
 
 <Birthdate> 
 <Label>Birthdate</Label>
-<Input type="number" name="birthdate" placeholder={birthdate} onChange={this.handleChange}/></Birthdate>
+<Input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/></Birthdate>
 
 <Email> 
 <Label>Email</Label>
-<Input type="text" name="email" placeholder={email} onChange={this.handleChange}/>
+<Input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
 </Email>
 
 <Password> 
 <Label>Telephone</Label>
-<Input type="number" name="telephone" placeholder={telephone} onChange={this.handleChange}/></Password>
+<Input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/></Password>
 
 
 <Password> 
 <Label>Address</Label>
-<Input type="text" name="address" placeholder={address} onChange={this.handleChange}/></Password>
+<Input type="text" name="address" placeholder={address} required onChange={this.handleChange}/></Password>
 
 <Password> 
 <Label>Zipcode</Label>
-<Input type="number" name="zipcode" placeholder={zipcode} onChange={this.handleChange}/></Password>
+<Input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/></Password>
 
 <Password> 
 <Label>City</Label>
-<Input type="text" name="city" placeholder={city} onChange={this.handleChange}/></Password>
+<Input type="text" name="city" placeholder={city} required onChange={this.handleChange}/></Password>
 
  
 
@@ -92,7 +92,11 @@ if (isLoggedIn)
 <button onClick={() => this.setState({ showing: !showing })}>dina ordrar</button>
 { showing 
     ? <div>
-      
+     {orders.map((order, i) => {
+debugger;
+console.log(order[0]);
+          return      <div>  <li key={i} >{order[i].name}</li></div>
+})}
         hej
        {console.log({orders})}</div>
     : null
