@@ -31,6 +31,10 @@ only screen and (max-width: 760px),
 const TableStyle = styled.table`
     width: 100%; 
     border-collapse: collapse; 
+ overflow:auto;
+display: block;
+
+ 
 
     @media 
 only screen and (max-width: 760px),
@@ -68,17 +72,16 @@ text-align: left;
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
     display: block; 
-    
-	border: none;
+  
 		border-bottom: 1px solid #eee; 
 		position: relative;
-		padding-left: 50%; 
+		padding-left: 35%; 
         
         :before { 
         position: absolute;
 		top: 6px;
 		left: 6px;
-		width: 45%; 
+		width: 25%; 
 		padding-right: 10px; 
 		white-space: nowrap; }
 
@@ -86,6 +89,8 @@ only screen and (max-width: 760px),
 `;
 
 const TableHead = styled.thead`
+
+
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -329,7 +334,6 @@ const { users } = this.state;
 	<TheadTr>
 		<TableH>name</TableH>
 		<TableH>lastname</TableH>
-		<TableH>birhdate</TableH>
         <TableH>email</TableH>
 		<TableH>telephone</TableH>
 		<TableH>address</TableH>
@@ -348,7 +352,6 @@ const { users } = this.state;
      
 		<TableD>{user.name}</TableD>
 		<TableD>{user.lastname}</TableD>
-		<TableD>{user.birthdate}</TableD>
         <TableD>{user.email}</TableD>
 		<TableD>{user.telephone}</TableD>
 		<TableD>{user.address}</TableD>
