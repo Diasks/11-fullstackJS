@@ -92,13 +92,20 @@ if (isLoggedIn)
 <button onClick={() => this.setState({ showing: !showing })}>dina ordrar</button>
 { showing 
     ? <div>
-     {orders.map((order, i) => {
+
+
+{orders.map((order) => {
 debugger;
-console.log(order[0]);
-          return      <div>  <li key={i} >{order[i].name}</li></div>
-})}
+return (
+order.map((el) =>{
+    debugger;
+    console.log(`hej jag är ${el.name}`);
+    return      <div>  <li key={el.id}>{el.name}</li></div>
+}
+))})}
+
         hej
-       {console.log({orders})}</div>
+       </div>
     : null
 }
 </div>  
