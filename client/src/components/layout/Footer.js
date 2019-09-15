@@ -11,6 +11,7 @@ background-color: lightgrey;
 padding-top: 10px;
 padding-bottom: 10px;
 border-top: 1px solid black;
+position: fixed; left: 0; bottom: 0;
 `;
 
 
