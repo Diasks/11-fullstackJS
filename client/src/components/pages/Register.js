@@ -59,7 +59,7 @@ border: 1px solid #519e8a;
   }
 `;
 
-const Firstname  = styled.div`
+export const Firstname  = styled.div`
 margin-right: 1%;
 display: flex;
 flex-direction: column;
@@ -67,7 +67,7 @@ margin-bottom: 15px;
 width: 49%;
 `;
 
-const Lastname  = styled.div`
+export const Lastname  = styled.div`
 margin-left: 1%;
 display: flex;
 flex-direction: column;
@@ -75,7 +75,7 @@ margin-bottom: 15px;
 width: 49%;
 `;
 
-const Birthdate  = styled.div`
+export const Birthdate  = styled.div`
 display: flex;
 flex-direction: column;
 margin-bottom: 15px;

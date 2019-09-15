@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { GameWrapper } from './Games';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -55,13 +55,16 @@ render() {
     } 
 
       else  {
-        const { addToCart, isLoggedIn } = this.props;
+        const { addToCart, isLoggedIn, success } = this.props;
         const { name, rating, released, clip, genres, price } = this.props.game[0];
 debugger;
    return (
+     
+    <Fragment>{success ? <h3>game was added to cart!</h3> : null}
         <GameWrapper>
+       
           <GameFrame> 
-          <iframe title="preview" src={clip.clip}></iframe>
+          <iframe title="preview" src={clip.clip} autoplay="false"></iframe>
          <ParaContainer>{name}</ParaContainer> 
          <ParaContainer><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </ParaContainer>
         <ParaContainer> {released} </ParaContainer>
@@ -77,6 +80,7 @@ debugger;
             <StyledLink to="/" className="btn btn-light">Go Back</StyledLink>
             </GameFrame>
         </GameWrapper>
+        </Fragment>
     )
 }
 }

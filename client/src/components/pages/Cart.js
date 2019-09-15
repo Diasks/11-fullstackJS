@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const ShoppingCart = styled.div`
 width: 600px;
-height: 423px;
+height: auto;
 margin: 80px auto;
 background: #FFFFFF;
 box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
@@ -32,7 +32,7 @@ font-size: 18px;
 font-weight: 400;
 `; 
 
-const Cart = ({cart, isLoggedIn, deleteFromCart, sendOrder, plusItem, minusItem, click  }) =>  {
+const Cart = ({cart, isLoggedIn, deleteFromCart, sendOrder, success  }) =>  {
     debugger;
     //passa igenom en remove from cart funktion
 
@@ -48,12 +48,13 @@ else {
 
     
 <ShoppingCart>
+{success ? <h3>order sent!</h3> : null}
   <Title>
     Shopping Bag
    
   </Title>
 {Object.keys(cart).length === 0 ? <h2>Oh no! You cart is empty!</h2> : cart.map(item => (
-    <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart} plusItem={plusItem} minusItem={minusItem} click={click}  />
+    <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
 ))}   
          <button onClick={() => {sendOrder(cart)}}>order</button>
         </ShoppingCart>

@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const OrderSchema = new Schema({
-    created: {type: Date, default:Date.now},
     id: String,
     name: String,
     image: String
