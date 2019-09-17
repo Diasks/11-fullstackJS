@@ -67,9 +67,10 @@ if (token) {
 
 
   addToCart = async (props) => { 
-
 debugger;
-let user = JSON.parse(localStorage.getItem('user'));
+
+
+let user = JSON.parse(localStorage.getItem('user'))._id;
 const token = localStorage.getItem("jwt");
 const config = {
   headers: {'x-access-token': token}
@@ -87,6 +88,8 @@ debugger;
     debugger;
     this.changeSuccess();
     return result;
+
+
   } 
 
 changeSuccess = async () => {
@@ -124,7 +127,7 @@ const token = localStorage.getItem("jwt");
 const config = {
   headers: {'x-access-token': token}
 }
-let user = JSON.parse(localStorage.getItem('user'));
+let user = JSON.parse(localStorage.getItem('user'))._id;
 const myObj = cart.map(data => ({
 id: data.id,
 name: data.name,
@@ -150,7 +153,7 @@ debugger;
 const config = {
   headers: {'x-access-token': token}
 }
-  let user = JSON.parse(localStorage.getItem('user'));
+  let user = JSON.parse(localStorage.getItem('user'))._id;
   const result = await axios.patch(`http://localhost:4000/search/${user}`, config);
   debugger;
   this.setState({cart: []});
@@ -161,14 +164,14 @@ return result;
 
 getCart = async () => {
   debugger;
-
-    let user = JSON.parse(localStorage.getItem('user'));
-    const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem("jwt");
+    debugger;
 const config = {
   headers: {'x-access-token': token}
 }
 if (token != null) { 
   debugger;
+  let user = JSON.parse(localStorage.getItem('user'))._id;
 const res = await axios.get(`http://localhost:4000/cart/${user}`, config);
 debugger;
 this.setState({cart: res.data.cart});
@@ -177,15 +180,14 @@ this.setState({cart: res.data.cart});
 
 getOrders = async () => {
   debugger;
-
-  let user = JSON.parse(localStorage.getItem('user'));
-  let token = localStorage.getItem('jwt');
+  const token = localStorage.getItem('jwt');
   const config = {
     headers: {'x-access-token': token}
   }
 if (token != null) { 
   debugger;
-  
+
+  let user = JSON.parse(localStorage.getItem('user'))._id;
 const res = await axios.get(`http://localhost:4000/cart/${user}`, config);
 debugger;
 this.setState({orders: res.data.orders});
@@ -196,7 +198,7 @@ this.setState({orders: res.data.orders});
 deleteFromCart = async (id) => {
   debugger;
   let token = localStorage.getItem('jwt');
-    let user = JSON.parse(localStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('user'))._id;
     const config = {
       headers: {'x-access-token': token}
     }
