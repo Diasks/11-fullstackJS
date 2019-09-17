@@ -64,7 +64,8 @@ debugger;
         <GameWrapper>
        
           <GameFrame> 
-          <iframe title="preview" src={clip.clip} autoplay="false"></iframe>
+ 
+          <video controls src={clip.clip} type="video/mp4" height="200"></video>
          <ParaContainer>{name}</ParaContainer> 
          <ParaContainer><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </ParaContainer>
         <ParaContainer> {released} </ParaContainer>

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 
 
+
 const ShoppingCart = styled.div`
 width: 600px;
 height: auto;
