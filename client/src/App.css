@@ -1,0 +1,63 @@
+#root,
+body,
+html {
+  height: 100%;
+}
+
+.container{
+  width: 100%;
+  height: auto;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.box{
+  width: 25%;
+  height: 150px;
+  background: white;
+  margin: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+ box-shadow: 0px 10px 30px #555;
+ display:flex;
+}
+
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+
+
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	td:nth-of-type(1):before { content: "name"; }
+	td:nth-of-type(2):before { content: "lastname"; }
+	td:nth-of-type(3):before { content: "birthdate"; }
+	td:nth-of-type(4):before { content: "email"; }
+	td:nth-of-type(5):before { content: "telephone"; }
+	td:nth-of-type(6):before { content: "address"; }
+	td:nth-of-type(7):before { content: "zipcode"; }
+	td:nth-of-type(8):before { content: "city"; }
+  td:nth-of-type(9):before { content: "role"; }
+  td:nth-of-type(10):before { content: "delete"; }
+	td:nth-of-type(11):before { content: "edit"; }
+	
+}
+
+
+@media screen and (max-width:1200px){
+  .box{
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:600px){
+  .box{
+    width: 90%;
+  }
+}
