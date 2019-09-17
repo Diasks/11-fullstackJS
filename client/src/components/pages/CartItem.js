@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faDollarSign} from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -125,7 +125,7 @@ debugger;
   
 
  
-    <ItemPrice>{price}:-</ItemPrice>
+     <ItemPrice><FontAwesomeIcon icon={faDollarSign} size="lg"></FontAwesomeIcon>{price}</ItemPrice>
   </Item>
 
 

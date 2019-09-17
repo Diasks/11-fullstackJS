@@ -1,38 +1,80 @@
 import React, { Component, Fragment } from 'react'
 import { GameWrapper } from './Games';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import { StyledLink } from '../layout/Header';
-import { Button } from './Search';
+import { faStar, faCartPlus, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import {SearchTitle} from './Search';
+
+export const ButtonDiv = styled.div`
+text-align: center;
+`;
+
+
+const StyledLink = styled(Link)`
+color: #B0B0B0;
+margin-bottom: 10px;
+    text-decoration: none;
+    &:hover {
+        color: #F5F5F5; 
+    }
+    &:focus, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
+export const AddToCartButton = styled.button`
+width: 50%;
+color: black;
+background-color: #F5F5F5;
+margin: 5px;
+padding: 5px;
+border-radius: 5px;
+:hover {
+    background-color: #B0B0B0;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+
+`;
+
+ const Headline   = styled.h1`
+color: #111;
+font-weight: lighter;
+`;
+
+const Paragraph = styled.p`
+font-size: 0.8em;
+margin-bottom: 0.25em;
+color: #222;
+font-weight: lighter;
+`;
+ 
 
 const GameFrame = styled.div`
-    width: 50%;
+    width: 100%;
     height: auto;
-    margin: 10px;
     flex-direction: column;
     box-sizing: border-box;
-    border-radius: 10px;
    box-shadow: 0px 10px 30px #555;
    display:flex;
 `;
 
-const ParaContainer = styled.p`
-margin: 5px;
-width:50%;
+
+const FrameList = styled.ul`
+width: 50%;
+padding: 0;
+font-size: 0.8em;
+color: #222;
+font-weight: lighter;
 `;
 
 const RatingStar = styled.span`
-color: yellow;
+color: #DAA520;
 `;
 
 const ListGenre = styled.li`
-list-style: none;
-border-radius: 5px;
-text-align: center;
-padding: 5px;
-background-color: #519e8a;
-border: 1px solid black;
+list-style-type: square;
 `;
 
 
@@ -60,24 +102,23 @@ render() {
 debugger;
    return (
      
-    <Fragment>{success ? <h3>game was added to cart!</h3> : null}
+    <Fragment>{success ? <SearchTitle>game was added to cart!</SearchTitle> : null}
         <GameWrapper>
        
           <GameFrame> 
  
-          {clip ?  <video controls src={clip.clip} type="video/mp4" height="200"></video> : <h4>no video available!</h4>}
-         <ParaContainer>{name}</ParaContainer> 
-         <ParaContainer><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </ParaContainer>
-        <ParaContainer> {released} </ParaContainer>
-        <ParaContainer>{price}:-</ParaContainer>
-         <ParaContainer>
+
+       {clip ?  <video controls src={clip.clip} type="video/mp4" height="200"></video> : <h4>no video available!</h4>}
+         <Headline>{name}</Headline> 
+         <Paragraph><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </Paragraph>
+        <Paragraph>Releasedate: {released} </Paragraph>
+         <FrameList>Genre:
        {genres.map((genre, i) =>(
-
 <ListGenre key={i}>{genre.name}</ListGenre>
+))}      </FrameList>
+      <Paragraph><FontAwesomeIcon icon={faDollarSign} size="lg"></FontAwesomeIcon>{price}</Paragraph>
 
-))}      </ParaContainer>
-        
-            {isLoggedIn ?  <Button onClick={() => {addToCart(this.props.game[0])}}><FontAwesomeIcon icon={faCartPlus} size="lg"/>add to cart</Button> : null }
+            {isLoggedIn ?  <ButtonDiv><AddToCartButton onClick={() => {addToCart(this.props.game[0])}}><FontAwesomeIcon icon={faCartPlus} size="lg"/>add to cart</AddToCartButton></ButtonDiv> : null }
             <StyledLink to="/" className="btn btn-light">Go Back</StyledLink>
             </GameFrame>
         </GameWrapper>
