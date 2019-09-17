@@ -57,7 +57,7 @@ else {
 {Object.keys(cart).length === 0 ? <h2>Oh no! You cart is empty!</h2> : cart.map(item => (
     <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
 ))}   
-         <button onClick={() => {sendOrder(cart)}}>order</button>
+         {Object.keys(cart).length === 0 ? null : <button onClick={() => {sendOrder(cart)}}>order</button>}
         </ShoppingCart>
     )
 }}

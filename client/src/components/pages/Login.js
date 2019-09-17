@@ -43,6 +43,7 @@ import {
     
     handleSubmit = e => {
         e.preventDefault();
+        let errors = this.state.errors;
     
         if(formValidator(this.state.errors)) {
             console.info('Valid Form')
@@ -59,11 +60,16 @@ import {
             debugger;
             console.log(res);
             console.log(res.data);
+            if (res.data.status === "email does not exist") {
+              debugger;
+              errors.email = "email does not exist";
+              this.setState({ errors });
+            } else { 
+              debugger;
             localStorage.setItem("jwt", res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.user));
-          // localStorage.setItem("user", res.data.user);
           this.props.history.push("/profile");
-        })
+        }})
     };
     
     handleChange = e => {

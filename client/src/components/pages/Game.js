@@ -26,7 +26,7 @@ const RatingStar = styled.span`
 color: yellow;
 `;
 
-const ListGenre = styled.div`
+const ListGenre = styled.li`
 list-style: none;
 border-radius: 5px;
 text-align: center;
@@ -65,7 +65,7 @@ debugger;
        
           <GameFrame> 
  
-          <video controls src={clip.clip} type="video/mp4" height="200"></video>
+          {clip ?  <video controls src={clip.clip} type="video/mp4" height="200"></video> : <h4>no video available!</h4>}
          <ParaContainer>{name}</ParaContainer> 
          <ParaContainer><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </ParaContainer>
         <ParaContainer> {released} </ParaContainer>

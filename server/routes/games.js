@@ -6,7 +6,7 @@
 
 
 // router.get("/", (req, res, next)=> {
-// axios.get("https://api.rawg.io/api/games")
+// axios.get("https://api.rawg.io/api/games?page=20")
 // .then ((results) =>{
 //     console.log(results);
 //     // let gamesArray = [];

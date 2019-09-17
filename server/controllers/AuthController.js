@@ -22,6 +22,7 @@ if (error) {
 
 if(!user){
     debugger;
+    res.json({status: "email does not exist"});
     return res.status(404).send('No registered user found with that email');
 }
 

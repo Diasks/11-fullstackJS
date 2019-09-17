@@ -6,13 +6,11 @@ const TheadTr = styled.tr`
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
-
     display: block; 
     position: absolute;
     top: -9999px;
     left: -9999px;
     border: 1px solid #ccc;
-
 }
 `;
 
@@ -20,10 +18,8 @@ const RegTr = styled.tr`
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
-
     display: block; 
     border: 1px solid #ccc;
-
 }
 `;
 
@@ -33,15 +29,10 @@ const TableStyle = styled.table`
     border-collapse: collapse; 
  overflow:auto;
 display: block;
-
- 
-
     @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
-
     display: block; 
-
 }
 `;
 
@@ -52,13 +43,10 @@ const TableH = styled.th`
     padding: 6px; 
   border: 1px solid #ccc; 
   text-align: left; 
- 
-
   @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
     display: block; 
-    
 }
 `;
 
@@ -66,37 +54,29 @@ const TableD = styled.td`
 padding: 6px; 
 border: 1px solid #ccc; 
 text-align: left; 
-
-
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
     display: block; 
-  
 		border-bottom: 1px solid #eee; 
 		position: relative;
 		padding-left: 35%; 
-        
         :before { 
         position: absolute;
 		top: 6px;
 		left: 6px;
 		width: 25%; 
 		padding-right: 10px; 
-		white-space: nowrap; }
-
+        white-space: nowrap; 
+    }
 }
 `;
 
 const TableHead = styled.thead`
-
-
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
-
     display: block; 
-
 }
 `;
 
@@ -105,12 +85,9 @@ const TableBody = styled.tbody`
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
-
     display: block; 
-
 }
 `;
-
 
 const DeleteButton = styled.button `
 background-color: red;
@@ -128,9 +105,6 @@ border-radius: 5px;
 `;
 
 
-
-
-
 class Dashboard extends Component {
     constructor() {
         super();
@@ -143,33 +117,30 @@ class Dashboard extends Component {
     }
   
 //hämta alla användare från min databas
-    componentDidMount() {
+    async componentDidMount() {
+debugger;        
 
-debugger;        let token = localStorage.getItem("jwt");
-        let config = {
+const token = localStorage.getItem("jwt");
+        const config = {
             headers: {'x-access-token': token}
-        }
-        axios.get('http://localhost:4000/user', config
-        )
-        .then(res => {
+        } 
+
+       
             debugger;
+        const res = await axios.get('http://localhost:4000/user', config);
             const users = res.data;
             console.log(res.data);
             this.setState({
                 users
-            })
-        })
-    }
-
-
-    
+            })   
+        } 
 
 //Funkar med backenden och tar bort användaren, visas direkt, yeay!
 onDeleteHandle() {  
     debugger;
     let id = arguments[0];
-    var token = localStorage.getItem("jwt");
-        var config = {
+    const token = localStorage.getItem("jwt");
+        const config = {
             headers: {'x-access-token': token}
         }
         axios.delete('http://localhost:4000/user/id', config, {params: {_id: id}})
@@ -177,6 +148,7 @@ onDeleteHandle() {
             console.log(response);
             debugger;
           this.setState({
+             // eslint-disable-next-line array-callback-return
              users: this.state.users.filter(user => {
 if (user._id !== id) {
     return user;
@@ -186,20 +158,14 @@ if (user._id !== id) {
         });
     };
   
-
-
- 
     handleChange = (e) => {
         console.log(e.target.value);
         this.setState({[e.target.name]: e.target.value});
     }
 
-
-
-
     onCreateHandle = async (e) => {
         e.preventDefault();
-      
+    
         debugger;
         const user = {
             firstName: this.state.firstName,
@@ -214,25 +180,22 @@ if (user._id !== id) {
     role: this.state.role
         };
     debugger;
-        axios.post(`http://localhost:4000/auth/register`, { user }).then(res => {
-            debugger;
-            console.log(res);
-            console.log(res.data);
-          
-    })
-}
+        const res = await axios.post(`http://localhost:4000/auth/register`, { user });
+        console.log(res);
+        console.log(res.data);
+    return res; 
+} 
 
 
 //TODO: update user!
 onUpdateHandle = async (e) => {  
     e.preventDefault();
-
     //efter submit kör update funktionen, det är här jag vill göra min axios request till min backend!
     debugger;
-
+ 
 let _id =  this.state.user._id;
-    let token = localStorage.getItem("jwt");
-            let config = {
+    const token = localStorage.getItem("jwt");
+            const config = {
                 headers: {'x-access-token': token}
             }
 
@@ -255,8 +218,8 @@ console.log(result);
     this.setState({    
         users: this.state.users, edit: false });
        debugger; 
-                        }
-
+       return result;
+    } 
 
                         renderCreateForm() {  
                             //om edit ändras till true, displaya mitt icke fungerande formulär  
@@ -277,9 +240,6 @@ console.log(result);
                                          
                                 <button type="submit">Create</button>      </form>    }  
                                 }
-
-
-
 
 renderEditForm() {  
     //om edit ändras till true, displaya mitt icke fungerande formulär  
@@ -303,7 +263,6 @@ renderEditForm() {
     
 
 onEditHandle(e) { 
-
     //sätter edit till true så mitt formulär kan visas, sätter in användarens id
     debugger;
     this.setState({    
@@ -312,7 +271,6 @@ onEditHandle(e) {
 
 
 onCreate(e) { 
-
     //sätter edit till true så mitt formulär kan visas, sätter in användarens id
     debugger;
     this.setState({    
@@ -322,10 +280,8 @@ onCreate(e) {
 
     render() { 
 const { users } = this.state;
-
         return ( 
-        
-            <div>
+            <Fragment>
                 <CreateButton onClick={this.onCreate.bind(this)}>Add new user</CreateButton> 
                 {this.renderCreateForm()}
                 {this.renderEditForm()}
@@ -349,7 +305,6 @@ const { users } = this.state;
     {users.map((user, index) => (
         	  <Fragment> 
             <RegTr>
-     
 		<TableD>{user.name}</TableD>
 		<TableD>{user.lastname}</TableD>
         <TableD>{user.email}</TableD>
@@ -363,12 +318,9 @@ const { users } = this.state;
         </RegTr>
         </Fragment>
     ))}
- 
-
-	
 	</TableBody>
 </TableStyle>
-            </div>
+            </Fragment>
          );
     }
 }
