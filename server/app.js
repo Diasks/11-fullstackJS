@@ -42,6 +42,7 @@ app.use('/games', GameController);
 app.use('/', indexRouter);
 app.use('/search', SearchController);
 app.use('/order', OrderController);
+// app.use('/games', gamesRouter);
 // app.use('/users', usersRouter);
 
 
