@@ -13,17 +13,17 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: #519e8a;
+background-color: #B0B0B0;
 `;
 
 export const FormContainer = styled.div`
 width: 50%;
 display: flex;
 flex-direction: column;
-padding: 20px 40px;
+padding: 10px 30px;
 border-radius: 20px;
 box-shadow: 0px 10px 50px #555;
-background-color:#FFFAFA;
+background-color:#F5F5F5;
 `;
 
 export const Form  = styled.form`
@@ -50,7 +50,7 @@ export const Input  = styled.input`
 padding: 10px 10px;
 border-radius: 5px;
 outline: none;
-border: 1px solid #519e8a;
+border: 1px solid #F5F5F5;
 
 ::placeholder {
     font-size: 1.1em;
@@ -104,9 +104,6 @@ align-items: center;
 `;
 
 export const RegisterButton  = styled.button`
-background-color: #519e8a;
-color: #fff;
-border: 2px solid #fff;
 width: 100%;
 margin-top: 1em;
 padding: 8px 0px;
@@ -115,11 +112,14 @@ font-weight: lighter;
 letter-spacing: 1px;
 margin-bottom: 0.25em;
 border-radius: 5px;
+color: black;
+background-color: #F5F5F5;
+border: 1px solid #484848;
 
 :hover {
-    color: #519e8a;
-    background-color: #fff;
-    border: 2px solid #519e8a;
+    background-color: #B0B0B0;
+color: #fff;
+border: 1px solid #fff;
   }
 `;
 

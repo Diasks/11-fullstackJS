@@ -117,7 +117,7 @@ order.map((el) =>{
          );
 
         else {
-            return (<h1>Du måste logga in för att kunna se din profil!</h1>)
+            return (<Headline>Du måste logga in för att kunna se din profil!</Headline>)
         }
     }
 }

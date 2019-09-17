@@ -6,28 +6,26 @@ import { Link } from 'react-router-dom';
 
 const NavWrap = styled.div`
 width: 100%
-border-bottom: 1px solid black;
 display: flex;
-background-color: lightgrey;
+background-color: #484848;
+box-shadow: 0px 10px 50px #555;
 `;
 
 const IconWrap = styled.div`
-padding: 10px;
-margin: 5px;
-color:#519e8a;
+padding: 6px;
+margin: 3px;
+color:#B0B0B0;
 :hover {
-    color: black;
+    color: #F5F5F5;
   }
 `;
 
 export const StyledLink = styled(Link)`
-color: #519e8a;
+color: #B0B0B0;
     text-decoration: none;
-font-weight: bold;
     &:hover {
-        color: black; 
+        color: #F5F5F5; 
     }
-
     &:focus, &:visited, &:link, &:active {
         text-decoration: none;
     }

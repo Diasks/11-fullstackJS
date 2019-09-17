@@ -7,11 +7,14 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
-background-color: lightgrey;
-padding-top: 10px;
-padding-bottom: 10px;
-border-top: 1px solid black;
-position: fixed; left: 0; bottom: 0;
+background-color: #484848;
+color: #B0B0B0;
+padding-top: 6px;
+padding-bottom: 6px;
+position: sticky; 
+left: 0; 
+bottom: 0;
+box-shadow: 0px 10px 50px #555;
 `;
 
 
@@ -53,20 +56,7 @@ class Footer extends Component {
     {
         return (
             <FooterWrap> 
-                <FooterInsideBox>
-        <TextBox>
-          <TextTitle>Company</TextTitle>
-            About Us
-        </TextBox>
-        <TextBox>
-          <TextTitle>Information</TextTitle>
-            Orders
-        </TextBox>
-        <TextBox>
-          <TextTitle>Support</TextTitle>
-            Contact Us
-        </TextBox>
-      </FooterInsideBox>
+   
                       <Copyright>© GAMEOVER 2019</Copyright>
             </FooterWrap>
         )

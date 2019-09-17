@@ -1,9 +1,9 @@
 import React from 'react'
 import CartItem from '../pages/CartItem';
 import styled from 'styled-components';
-
-
-
+import  {  Headline} from './Register';
+import { SearchTitle } from './Search';
+import {AddToCartButton, ButtonDiv} from './Game';
 
 
 const ShoppingCart = styled.div`
@@ -24,6 +24,8 @@ flex-direction: column;
     }
 `;
 
+
+
 const Title = styled.div`
 height: 60px;
 border-bottom: 1px solid #E1E8EE;
@@ -37,7 +39,7 @@ const Cart = ({cart, isLoggedIn, deleteFromCart, sendOrder, success  }) =>  {
     debugger;
     //passa igenom en remove from cart funktion
 
-if (!isLoggedIn) return (<div><h1>Du måste logga in för att kunna se din kundvagn!</h1></div>)
+if (!isLoggedIn) return (<div><Headline>Du måste logga in för att kunna se din kundvagn!</Headline></div>)
 
 
 
@@ -49,15 +51,15 @@ else {
 
     
 <ShoppingCart>
-{success ? <h3>order sent!</h3> : null}
+{success ? <SearchTitle>order sent!</SearchTitle> : null}
   <Title>
     Shopping Bag
    
   </Title>
-{Object.keys(cart).length === 0 ? <h2>Oh no! You cart is empty!</h2> : cart.map(item => (
+{Object.keys(cart).length === 0 ? <Headline>Oh no! You cart is empty!</Headline> : cart.map(item => (
     <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
 ))}   
-         <button onClick={() => {sendOrder(cart)}}>order</button>
+         <ButtonDiv>  <AddToCartButton onClick={() => {sendOrder(cart)}}>order</AddToCartButton></ButtonDiv>
         </ShoppingCart>
     )
 }}

@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 
 const Box = styled.div `
-    width: 25%;
-    height: 200px;
+    width: 40%;
+    height: 150px;
     margin: 10px;
     box-sizing: border-box;
     border-radius: 10px;
@@ -21,7 +21,7 @@ color: white;
     text-decoration: none;
 font-weight: bold;
     :hover {
-        color: red; 
+        color: #B0B0B0; 
     }
 
     &:focus, &:visited, &:link, &:active {
@@ -35,7 +35,7 @@ font-weight: bold;
 function GameItem({game: {name, background_image, slug}}) {
     debugger;
     return (
-        <Box style={{backgroundImage: `url(${background_image})`, backgroundPosition: 'center', backgroundSize: '400px 300px', backgroundRepeat: 'no-repeat'}}>
+        <Box style={{backgroundImage: `url(${background_image})`, backgroundPosition: 'center', backgroundSize: '200px 200px', backgroundRepeat: 'no-repeat'}}>
             <StyledLink to={`/game/${slug}`}> {name}</StyledLink>
             </Box>
     )
