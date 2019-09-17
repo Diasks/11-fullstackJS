@@ -35,6 +35,8 @@ db.once("open", function() {
 });
 
 
+
+
 app.use('/auth', AuthController);
 app.use('/user', UserController);
 app.use('/cart', CartController);
@@ -55,9 +57,14 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 
+app.get("*", function(request, response) {
+  response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
 
 
 

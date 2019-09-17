@@ -60,7 +60,7 @@ else {
     <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
 ))}   
 
-        {Object.keys(cart).length === 0 ? null :  <AddToCartButton> <button onClick={() => {sendOrder(cart)}}>order</AddToCartButton></ButtonDiv>}
+        {Object.keys(cart).length === 0 ? null :  <ButtonDiv><AddToCartButton onClick={() => {sendOrder(cart)}}>order</AddToCartButton></ButtonDiv>}
 
         </ShoppingCart>
     )
