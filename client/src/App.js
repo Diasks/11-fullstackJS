@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
@@ -13,6 +14,9 @@ import Game from './components/pages/Game';
 import Profile from './components/pages/Profile';
 import Cart from './components/pages/Cart';
 import Dashboard from './components/pages/Dashboard';
+
+
+
 
 class App extends Component {
   state = {
@@ -31,92 +35,82 @@ offlineAlert: !navigator.onLine
 componentDidMount() {
   window.addEventListener('online', () => {
     this.setState({offlineAlert: false})
-  })
-
+  });
   window.addEventListener('offline', () => {
     this.setState({offlineAlert: true})
-  })
-
-
-
+  });
   debugger;
   this.getLoggedInUser();
   this.getCart();
   this.getOrders();
 }
 
-  getLoggedInUser = () => {
-    debugger;
-  let token = localStorage.getItem('jwt');
+getLoggedInUser = () => {
   debugger;
-  let user = JSON.parse(localStorage.getItem('user'));
-  if (token != null) {
-    debugger;
-    let isAdmin = JSON.parse(localStorage.getItem('user')).role;
-    if (isAdmin === "admin") {
-      debugger;
-      this.setState({isAdmin: true})
-    }
-  }
+let token = localStorage.getItem('jwt');
+debugger;
+let user = JSON.parse(localStorage.getItem('user'));
+if (token != null) {
   debugger;
-  if (token) {
-    this.setState({isLoggedIn: true, user: user})
+  let isAdmin = JSON.parse(localStorage.getItem('user')).role;
+  if (isAdmin === "admin") {
     debugger;
+    this.setState({isAdmin: true})
   }
-  }
+}
+debugger;
+if (token) {
+  this.setState({isLoggedIn: true, user: user})
+  debugger;
+}
+}
 
 
-  addToCart = async (props) =>
-  { 
-  debugger;
-    let usersCart = JSON.parse(localStorage.getItem('user'))._id;
-    debugger;
+  addToCart = async (props) => { 
+
+debugger;
+let user = JSON.parse(localStorage.getItem('user'));
+const token = localStorage.getItem("jwt");
+const config = {
+  headers: {'x-access-token': token}
+}
+  debugger; 
     const myObj = {
       id: props.id,
   name: props.name,
   image: props.background_image,
   price: props.price
     }
-    let token = localStorage.getItem('jwt');
-    var config = {
-      headers: {'x-access-token': token}
-  }
-
-    const result = await axios.patch(`http://localhost:4000/cart/${usersCart}`,{ myObj }, config);
+    const result = await axios.patch(`http://localhost:4000/cart/${user}`,{ myObj }, config);
 debugger;
     this.setState({cart:[...this.state.cart, myObj], success: true});
-    
     debugger;
     this.changeSuccess();
-  }
+    return result;
+  } 
 
-
-  changeSuccess = async () => {
+changeSuccess = async () => {
 debugger;
 this.setState({success: false});
 debugger;
-
   }
 
 
 
 
 searchUser = async (updatedUser, _id) => {
-
-debugger;
-var token = localStorage.getItem("jwt");
-debugger;
-        var config = {
-            headers: {'x-access-token': token}
-        }
         debugger;
+ 
+          const token = localStorage.getItem("jwt");
+const config = {
+  headers: {'x-access-token': token}
+}
     const result = await axios.patch(`http://localhost:4000/user/${_id}`,{ updatedUser }, config);
 debugger;
 this.setState({user: result.data});
 localStorage.setItem('user', JSON.stringify(result.data));
 debugger;
-
-}
+} 
 
 
 
@@ -124,6 +118,13 @@ debugger;
 
 sendOrder = async (cart) => {
 debugger;
+
+debugger;
+const token = localStorage.getItem("jwt");
+const config = {
+  headers: {'x-access-token': token}
+}
+let user = JSON.parse(localStorage.getItem('user'));
 const myObj = cart.map(data => ({
 id: data.id,
 name: data.name,
@@ -131,108 +132,87 @@ image: data.image,
 price: data.price
 }));
 debugger;
-
-
-
-    let user = JSON.parse(localStorage.getItem('user'))._id;
-    debugger;
-
-    // let order = []
-    // order.push(myObj);
-debugger;
-    let token = localStorage.getItem('jwt');
-    var config = {
-      headers: {'x-access-token': token}
-  }
-
     const result = await axios.patch(`http://localhost:4000/order/${user}`, {myObj}, config);
-debugger;
-    //axios posta till users cart funkar yeay!!!!
-    // alert(`du har lagt ${} i kundvagnen`);
-    // this.setState({cart:[...this.state.cart, myObj]});
+
     debugger;
 this.setState({success: true, orders: result.data.orders})
     this.removeCartItems();
     this.changeSuccess();
     this.getOrders();
-  }
-
-
+  } 
 
 
 removeCartItems = async () => {
 
 debugger;
-  let user = JSON.parse(localStorage.getItem('user'))._id;
-  let token = localStorage.getItem('jwt');
-  var config = {
-    headers: {'x-access-token': token}
-}
 
+  const token = localStorage.getItem("jwt");
+const config = {
+  headers: {'x-access-token': token}
+}
+  let user = JSON.parse(localStorage.getItem('user'));
   const result = await axios.patch(`http://localhost:4000/search/${user}`, config);
   debugger;
   this.setState({cart: []});
-
-debugger;
-
-}
+  debugger;
+return result;
+} 
 
 
 getCart = async () => {
   debugger;
-  var token = localStorage.getItem("jwt");
-  var config = {
-    headers: {'x-access-token': token}
+
+    let user = JSON.parse(localStorage.getItem('user'));
+    const token = localStorage.getItem("jwt");
+const config = {
+  headers: {'x-access-token': token}
 }
 if (token != null) { 
   debugger;
-  let usersCart = JSON.parse(localStorage.getItem('user'))._id;
-const res = await axios.get(`http://localhost:4000/cart/${usersCart}`, config);
+const res = await axios.get(`http://localhost:4000/cart/${user}`, config);
 debugger;
 this.setState({cart: res.data.cart});
-}
-}
+}} 
 
 
 getOrders = async () => {
   debugger;
-  var token = localStorage.getItem("jwt");
-  var config = {
+
+  let user = JSON.parse(localStorage.getItem('user'));
+  let token = localStorage.getItem('jwt');
+  const config = {
     headers: {'x-access-token': token}
-}
+  }
 if (token != null) { 
   debugger;
-  let usersCart = JSON.parse(localStorage.getItem('user'))._id;
-const res = await axios.get(`http://localhost:4000/cart/${usersCart}`, config);
+  
+const res = await axios.get(`http://localhost:4000/cart/${user}`, config);
 debugger;
 this.setState({orders: res.data.orders});
-}
-}
+} } 
 
 
 
 deleteFromCart = async (id) => {
   debugger;
+  let token = localStorage.getItem('jwt');
+    let user = JSON.parse(localStorage.getItem('user'));
+    const config = {
+      headers: {'x-access-token': token}
+    }
   let gameId = id;
-  var token = localStorage.getItem("jwt");
-  debugger;
-  var config = {
-    headers: {'x-access-token': token}
-}
 debugger;
-  let usersCart = JSON.parse(localStorage.getItem('user'))._id;
-  debugger;
-const res = await axios.patch(`http://localhost:4000/games/${usersCart}`, {gameId}, config);
+    debugger;
+const res = await axios.patch(`http://localhost:4000/games/${user}`, {gameId}, config);
 debugger;
-
-
 this.setState({cart: res.data.cart});
 
-}
+} 
 
 //refaktorisera till async funktion för att söka i databasen
 searchGames = async query => {
   debugger;
+
     const res = await axios.get(`http://localhost:4000/search/${query}`);
   debugger;
   if (Object.keys(res.data.data).length === 0)
@@ -244,20 +224,20 @@ searchGames = async query => {
     debugger;
     this.setState({games: res.data.data })
   }
-
-
-  }
+} 
 
 //hämta specifikt spel från min databas baserat på vilken man tryckt på för att ser mer detaljerat
 getGame = async (slug) => {
+
   debugger;
 const res = await axios.get(`http://localhost:4000/games/${slug}`);
 debugger;
 this.setState({game: res.data});
-}
+} 
 
 logoutUser = async () =>
 {
+  // eslint-disable-next-line no-unused-vars
   const {isAdmin} = this.state;
   const {isLoggedIn} = this.state
 
@@ -266,13 +246,8 @@ logoutUser = async () =>
   this.setState({isAdmin: false});
   this.setState({isLoggedIn: false});
   
-console.log(this.state);
-  debugger;
-
-  console.log(this.state);
-
   
-  // localStorage.clear(); 
+  localStorage.clear(); 
   debugger;
 }
 
