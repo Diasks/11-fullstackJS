@@ -23,11 +23,22 @@ isAdmin: false,
 user: {},
 cart: [],
 success: false,
-orders: []
+orders: [],
+offlineAlert: !navigator.onLine
   }
 
   //hämta inloggad användare
 componentDidMount() {
+  window.addEventListener('online', () => {
+    this.setState({offlineAlert: false})
+  })
+
+  window.addEventListener('offline', () => {
+    this.setState({offlineAlert: true})
+  })
+
+
+
   debugger;
   this.getLoggedInUser();
   this.getCart();
@@ -265,12 +276,19 @@ console.log(this.state);
   debugger;
 }
 
+
+
 render() { 
+
   //refaktorisera till att dekonstruera state för o ta ut spel från state
   const { games, game, user, cart, isLoggedIn, isAdmin, success, orders } = this.state;
 
   return (
     <div> 
+    <div>{this.state.offlineAlert &&
+    "You are offline. Your changes will sync once you have an internet connection again."
+    }</div>
+    
 
     <Router>
     <Header isLoggedIn={isLoggedIn} logoutUser={this.logoutUser} isAdmin={isAdmin}/>
