@@ -15,7 +15,7 @@ const SearchController = require('./controllers/SearchController');
 const OrderController = require('./controllers/OrderController');
 // const gamesRouter = require('./routes/games');
 // const gameRouter = require('./routes/game');
-const indexRouter = require('./routes/index');
+
 
 // const usersRouter = require('./routes/users');
 
@@ -41,7 +41,6 @@ app.use('/auth', AuthController);
 app.use('/user', UserController);
 app.use('/cart', CartController);
 app.use('/games', GameController);
-app.use('/', indexRouter);
 app.use('/search', SearchController);
 app.use('/order', OrderController);
 // app.use('/games', gamesRouter);
