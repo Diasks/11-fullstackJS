@@ -113,6 +113,8 @@ class Dashboard extends Component {
             create: false,
                user: {},
             users: [],
+            isCreated: false,
+            isUpdated: false
           }
     }
   
@@ -139,11 +141,14 @@ const token = localStorage.getItem("jwt");
 onDeleteHandle() {  
     debugger;
     let id = arguments[0];
+    debugger;
     const token = localStorage.getItem("jwt");
+    debugger;
         const config = {
             headers: {'x-access-token': token}
         }
-        axios.delete('http://localhost:4000/user/id', config, {params: {_id: id}})
+        debugger;
+        axios.delete(`http://localhost:4000/user/${id}`, config, {params: {_id: id}})
         .then(response => {
             console.log(response);
             debugger;
@@ -181,9 +186,10 @@ if (user._id !== id) {
         };
     debugger;
         const res = await axios.post(`http://localhost:4000/auth/register`, { user });
-        console.log(res);
-        console.log(res.data);
-    return res; 
+        debugger;
+        this.setState({isCreated: true, create: false})
+        return res;
+   
 } 
 
 
@@ -215,8 +221,7 @@ debugger;
 debugger;
 console.log(result);
 //sätt edit till false så mitt formulär inte syns!
-    this.setState({    
-        users: this.state.users, edit: false });
+this.setState({   isUpdated: true, edit: false  })
        debugger; 
        return result;
     } 
@@ -248,7 +253,7 @@ renderEditForm() {
         let  {name, lastname, email, birthdate, telephone, address, zipcode, city, role} = this.state.user;
 
      return <form onSubmit={this.onUpdateHandle}>   
-     name: <input type="text" name="name" placeholder={name} required onChange={this.handleChange}/>
+     name: <input type="text" name="firstname" placeholder={name} required onChange={this.handleChange}/>
                 lastname: <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
                 email: <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
                 birthdate: <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
@@ -279,10 +284,12 @@ onCreate(e) {
 
 
     render() { 
-const { users } = this.state;
+const { users, isCreated, isUpdated  } = this.state;
         return ( 
             <Fragment>
                 <CreateButton onClick={this.onCreate.bind(this)}>Add new user</CreateButton> 
+                {isCreated ? <h2>user created!</h2> : null }
+                {isUpdated ? <h2>user updated!</h2> : null }
                 {this.renderCreateForm()}
                 {this.renderEditForm()}
 <TableStyle>

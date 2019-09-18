@@ -14,10 +14,13 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: #B0B0B0;
+padding-top: 30px;
+padding-bottom: 30px;
 `;
 
 export const FormContainer = styled.div`
 width: 50%;
+height: 100%;
 display: flex;
 flex-direction: column;
 padding: 10px 30px;

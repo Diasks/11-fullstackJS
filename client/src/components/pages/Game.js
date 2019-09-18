@@ -118,7 +118,7 @@ debugger;
 ))}      </FrameList>
       <Paragraph><FontAwesomeIcon icon={faDollarSign} size="lg"></FontAwesomeIcon>{price}</Paragraph>
 
-            {isLoggedIn ?  <ButtonDiv><AddToCartButton onClick={() => {addToCart(this.props.game[0])}}><FontAwesomeIcon icon={faCartPlus} size="lg"/>add to cart</AddToCartButton></ButtonDiv> : null }
+            {isLoggedIn ?  <ButtonDiv> <AddToCartButton onClick={() => {addToCart(this.props.game[0])}}><FontAwesomeIcon icon={faCartPlus} size="lg"/>add to cart</AddToCartButton> </ButtonDiv> : null }
             <StyledLink to="/" className="btn btn-light">Go Back</StyledLink>
             </GameFrame>
         </GameWrapper>

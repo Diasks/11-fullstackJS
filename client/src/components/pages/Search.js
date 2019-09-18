@@ -4,6 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGamepad, faSearch } from '@fortawesome/free-solid-svg-icons'
 
 
+const WrapContent = styled.div`
+height: 100%;
+border: 1px solid green;
+`;
+
+
 export const GameImage = styled.img`
 width:100%;
 height: 83%;

@@ -287,8 +287,7 @@ render() {
     path='/' render={props => (
       <Fragment>
       <Startpage isLoggedIn={isLoggedIn}/>
-<Search 
-  searchGames={this.searchGames}/>
+<Search searchGames={this.searchGames}/>
     <Games games={games} success={success}/>
      </Fragment>
     )} />
