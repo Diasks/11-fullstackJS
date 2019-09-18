@@ -39,7 +39,7 @@ const Cart = ({cart, isLoggedIn, deleteFromCart, sendOrder, success  }) =>  {
     debugger;
     //passa igenom en remove from cart funktion
 
-if (!isLoggedIn) return (<div><Headline>Du måste logga in för att kunna se din kundvagn!</Headline></div>)
+if (!isLoggedIn) return (<div><Headline>You need to be logged in to access your cart!   <span role="img" aria-label="smileywithsunglasses">😎</span></Headline></div>)
 
 
 
@@ -55,8 +55,9 @@ else {
   <Title>
     Shopping Bag
    
+  
   </Title>
-{Object.keys(cart).length === 0 ? <Headline>Oh no! You cart is empty!</Headline> : cart.map(item => (
+{Object.keys(cart).length === 0 ? <Headline>Oh no! You cart is empty!   <span role="img" aria-label="dizzyemoji">😵</span>  </Headline> : cart.map(item => (
     <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
 ))}   
 
