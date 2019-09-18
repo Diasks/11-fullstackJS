@@ -1,8 +1,16 @@
+
 #root,
 body,
 html {
   height: 100%;
 }
+
+body {
+  margin-bottom: 60px;
+}
+
+
+
 
 
 tr:nth-of-type(odd) { 

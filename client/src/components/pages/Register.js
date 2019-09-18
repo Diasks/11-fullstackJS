@@ -20,6 +20,8 @@ export const FormContainer = styled.div`
 width: 50%;
 display: flex;
 flex-direction: column;
+margin-top: 15px;
+margin-bottom: 15px;
 padding: 10px 30px;
 border-radius: 20px;
 box-shadow: 0px 10px 50px #555;
