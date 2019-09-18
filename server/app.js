@@ -68,6 +68,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+const port = process.env.PORT || 4000;
+app.listen(port);
+
+console.log('App is listening on port ' + port);
 
 // app.use(express.static(path.join(__dirname, "../client/build")));
 
