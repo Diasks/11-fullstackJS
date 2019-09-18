@@ -17,7 +17,7 @@ const OrderController = require('./controllers/OrderController');
 // const gameRouter = require('./routes/game');
 
 
-// const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/users');
 
 const app = express();
 app.use(cors());
@@ -44,7 +44,7 @@ app.use('/games', GameController);
 app.use('/search', SearchController);
 app.use('/order', OrderController);
 // app.use('/games', gamesRouter);
-// app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 
 
 // view engine setup
@@ -68,10 +68,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const port = process.env.PORT || 4000;
-app.listen(port);
 
-console.log('App is listening on port ' + port);
 
 // app.use(express.static(path.join(__dirname, "../client/build")));
 

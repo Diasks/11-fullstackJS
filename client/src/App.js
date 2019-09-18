@@ -215,7 +215,7 @@ this.setState({cart: res.data.cart});
 searchGames = async query => {
   debugger;
 
-    const res = await axios.get(`/search/${query}`);
+    const res = await axios.get(`http://localhost:4000/search/${query}`);
   debugger;
   if (Object.keys(res.data.data).length === 0)
   {
