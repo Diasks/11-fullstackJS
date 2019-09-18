@@ -171,6 +171,7 @@ if (user._id !== id) {
         };
     debugger;
         const res = await axios.post(`/auth/register`, { user });
+        
     return res; 
 } 
 
