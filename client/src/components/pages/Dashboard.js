@@ -113,32 +113,45 @@ class Dashboard extends Component {
             create: false,
                user: {},
             users: [],
+            isCreated: false,
+            isUpdated: false
           }
     }
   
-
+//hämta alla användare från min databas
     async componentDidMount() {
-let token = localStorage.getItem("jwt");
-        let config = {
+debugger;        
+
+const token = localStorage.getItem("jwt");
+        const config = {
             headers: {'x-access-token': token}
-        }
-        const res = await axios.get('/user', config);
+        } 
+
+       
+            debugger;
+        const res = await axios.get('http://localhost:4000/user', config);
             const users = res.data;
+            console.log(res.data);
             this.setState({
                 users
             })   
         } 
 
-
+//Funkar med backenden och tar bort användaren, visas direkt, yeay!
 onDeleteHandle() {  
     debugger;
     let id = arguments[0];
-    let token = localStorage.getItem("jwt");
-        let config = {
+    debugger;
+    const token = localStorage.getItem("jwt");
+    debugger;
+        const config = {
             headers: {'x-access-token': token}
         }
-        axios.delete('/user/id', config, {params: {_id: id}})
+        debugger;
+        axios.delete(`http://localhost:4000/user/${id}`, config, {params: {_id: id}})
         .then(response => {
+            console.log(response);
+            debugger;
           this.setState({
              // eslint-disable-next-line array-callback-return
              users: this.state.users.filter(user => {
@@ -151,11 +164,13 @@ if (user._id !== id) {
     };
   
     handleChange = (e) => {
+        console.log(e.target.value);
         this.setState({[e.target.name]: e.target.value});
     }
 
     onCreateHandle = async (e) => {
         e.preventDefault();
+    
         debugger;
         const user = {
             firstName: this.state.firstName,
@@ -170,9 +185,11 @@ if (user._id !== id) {
     role: this.state.role
         };
     debugger;
-        const res = await axios.post(`/auth/register`, { user });
-        
-    return res; 
+        const res = await axios.post(`http://localhost:4000/auth/register`, { user });
+        debugger;
+        this.setState({isCreated: true, create: false})
+        return res;
+   
 } 
 
 
@@ -183,8 +200,8 @@ onUpdateHandle = async (e) => {
     debugger;
  
 let _id =  this.state.user._id;
-    let token = localStorage.getItem("jwt");
-            let config = {
+    const token = localStorage.getItem("jwt");
+            const config = {
                 headers: {'x-access-token': token}
             }
 
@@ -200,11 +217,11 @@ let _id =  this.state.user._id;
         role: this.state.role
     };
 debugger;
-    const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
+    const result = await axios.patch(`http://localhost:4000/user/${_id}`,{ updatedUser }, config);
 debugger;
-
-    this.setState({    
-        users: this.state.users, edit: false });
+console.log(result);
+//sätt edit till false så mitt formulär inte syns!
+this.setState({   isUpdated: true, edit: false  })
        debugger; 
        return result;
     } 
@@ -236,7 +253,7 @@ renderEditForm() {
         let  {name, lastname, email, birthdate, telephone, address, zipcode, city, role} = this.state.user;
 
      return <form onSubmit={this.onUpdateHandle}>   
-     name: <input type="text" name="name" placeholder={name} required onChange={this.handleChange}/>
+     name: <input type="text" name="firstname" placeholder={name} required onChange={this.handleChange}/>
                 lastname: <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
                 email: <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
                 birthdate: <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
@@ -251,22 +268,28 @@ renderEditForm() {
     
 
 onEditHandle(e) { 
+    //sätter edit till true så mitt formulär kan visas, sätter in användarens id
+    debugger;
     this.setState({    
     edit: true,    user: arguments[0]  });
 }
 
 
 onCreate(e) { 
+    //sätter edit till true så mitt formulär kan visas, sätter in användarens id
+    debugger;
     this.setState({    
     create: true  });
 }
 
 
     render() { 
-const { users } = this.state;
+const { users, isCreated, isUpdated  } = this.state;
         return ( 
             <Fragment>
                 <CreateButton onClick={this.onCreate.bind(this)}>Add new user</CreateButton> 
+                {isCreated ? <h2>user created!</h2> : null }
+                {isUpdated ? <h2>user updated!</h2> : null }
                 {this.renderCreateForm()}
                 {this.renderEditForm()}
 <TableStyle>
