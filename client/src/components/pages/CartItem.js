@@ -80,15 +80,6 @@ font-weight: 400;
 }
 `;
 
-const Quantity = styled.div`
-padding-top: 20px;
-margin-right: 60px;
-@media (max-width: 800px) {
-    width: 100%;
-    text-align: center;
-    margin: 6px 0;
-}
-`;
 
 const GameImage = styled.img`
 width:100%;

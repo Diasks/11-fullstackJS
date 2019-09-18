@@ -74,7 +74,6 @@ color: #DAA520;
 `;
 
 const ListGenre = styled.li`
-padding: 5px;
 list-style-type: square;
 `;
 
@@ -108,19 +107,17 @@ debugger;
        
           <GameFrame> 
  
-          <video controls src={clip.clip} type="video/mp4" height="200"></video>
+
+       {clip ?  <video controls src={clip.clip} type="video/mp4" height="200"></video> : <h4>no video available!</h4>}
          <Headline>{name}</Headline> 
          <Paragraph><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </Paragraph>
         <Paragraph>Releasedate: {released} </Paragraph>
          <FrameList>Genre:
        {genres.map((genre, i) =>(
-
 <ListGenre key={i}>{genre.name}</ListGenre>
-
 ))}      </FrameList>
       <Paragraph><FontAwesomeIcon icon={faDollarSign} size="lg"></FontAwesomeIcon>{price}</Paragraph>
 
-        
             {isLoggedIn ?  <ButtonDiv><AddToCartButton onClick={() => {addToCart(this.props.game[0])}}><FontAwesomeIcon icon={faCartPlus} size="lg"/>add to cart</AddToCartButton></ButtonDiv> : null }
             <StyledLink to="/" className="btn btn-light">Go Back</StyledLink>
             </GameFrame>
