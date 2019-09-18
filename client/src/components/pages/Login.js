@@ -56,7 +56,7 @@ import {
             password: this.state.password,
         };
     
-        axios.post(`http://localhost:4000/auth/login`, { user }).then(res => {
+        axios.post(`/auth/login`, { user }).then(res => {
             debugger;
             console.log(res);
             console.log(res.data);
