@@ -3,7 +3,7 @@
   "version": "0.0.0",
  "main": "app.js",
   "scripts": {
-    "start": "node --inspect ./server/bin/www"
+    "start": "node --inspect ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
