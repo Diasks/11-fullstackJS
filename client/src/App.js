@@ -88,8 +88,10 @@ debugger;
     
     debugger;
     this.changeSuccess();
-  }
+    debugger;
+    return result;
 
+  }
 
   changeSuccess = async () => {
 debugger;
@@ -123,27 +125,21 @@ debugger;
 
 
 sendOrder = async (cart) => {
+
 debugger;
+const token = localStorage.getItem("jwt");
+const config = {
+  headers: {'x-access-token': token}
+}
+let user = JSON.parse(localStorage.getItem('user'))._id;
 const myObj = cart.map(data => ({
 id: data.id,
 name: data.name,
 image: data.image,
 price: data.price
 }));
-debugger;
 
 
-
-    let user = JSON.parse(localStorage.getItem('user'))._id;
-    debugger;
-
-    // let order = []
-    // order.push(myObj);
-debugger;
-    let token = localStorage.getItem('jwt');
-    var config = {
-      headers: {'x-access-token': token}
-  }
 
     const result = await axios.patch(`http://localhost:4000/order/${user}`, {myObj}, config);
 debugger;
@@ -152,8 +148,10 @@ debugger;
     // this.setState({cart:[...this.state.cart, myObj]});
     debugger;
 this.setState({success: true, orders: result.data.orders})
+this.changeSuccess();
+debugger;
     this.removeCartItems();
-    this.changeSuccess();
+
     this.getOrders();
   }
 
