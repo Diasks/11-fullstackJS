@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 
 const FooterWrap = styled.div`
-width: 100%
+width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -11,7 +11,7 @@ background-color: #484848;
 color: #B0B0B0;
 padding-top: 6px;
 padding-bottom: 6px;
-position: sticky; 
+position: absolute; 
 left: 0; 
 bottom: 0;
 box-shadow: 0px 10px 50px #555;

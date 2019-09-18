@@ -82,7 +82,7 @@ const config = {
   image: props.background_image,
   price: props.price
     }
-    const result = await axios.patch(`http://localhost:4000/cart/${user}`,{ myObj }, config);
+    const result = await axios.patch(`/cart/${user}`,{ myObj }, config);
 debugger;
     this.setState({cart:[...this.state.cart, myObj], success: true});
     debugger;
@@ -108,7 +108,7 @@ searchUser = async (updatedUser, _id) => {
 const config = {
   headers: {'x-access-token': token}
 }
-    const result = await axios.patch(`http://localhost:4000/user/${_id}`,{ updatedUser }, config);
+    const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
 debugger;
 this.setState({user: result.data});
 localStorage.setItem('user', JSON.stringify(result.data));
@@ -135,7 +135,7 @@ image: data.image,
 price: data.price
 }));
 debugger;
-    const result = await axios.patch(`http://localhost:4000/order/${user}`, {myObj}, config);
+    const result = await axios.patch(`/order/${user}`, {myObj}, config);
 
     debugger;
 this.setState({success: true, orders: result.data.orders})
@@ -154,7 +154,7 @@ const config = {
   headers: {'x-access-token': token}
 }
   let user = JSON.parse(localStorage.getItem('user'))._id;
-  const result = await axios.patch(`http://localhost:4000/search/${user}`, config);
+  const result = await axios.patch(`/search/${user}`, config);
   debugger;
   this.setState({cart: []});
   debugger;
@@ -172,7 +172,7 @@ const config = {
 if (token != null) { 
   debugger;
   let user = JSON.parse(localStorage.getItem('user'))._id;
-const res = await axios.get(`http://localhost:4000/cart/${user}`, config);
+const res = await axios.get(`/cart/${user}`, config);
 debugger;
 this.setState({cart: res.data.cart});
 }} 
@@ -188,7 +188,7 @@ if (token != null) {
   debugger;
 
   let user = JSON.parse(localStorage.getItem('user'))._id;
-const res = await axios.get(`http://localhost:4000/cart/${user}`, config);
+const res = await axios.get(`/cart/${user}`, config);
 debugger;
 this.setState({orders: res.data.orders});
 } } 
@@ -205,7 +205,7 @@ deleteFromCart = async (id) => {
   let gameId = id;
 debugger;
     debugger;
-const res = await axios.patch(`http://localhost:4000/games/${user}`, {gameId}, config);
+const res = await axios.patch(`/games/${user}`, {gameId}, config);
 debugger;
 this.setState({cart: res.data.cart});
 
@@ -215,7 +215,7 @@ this.setState({cart: res.data.cart});
 searchGames = async query => {
   debugger;
 
-    const res = await axios.get(`http://localhost:4000/search/${query}`);
+    const res = await axios.get(`/search/${query}`);
   debugger;
   if (Object.keys(res.data.data).length === 0)
   {
@@ -232,7 +232,7 @@ searchGames = async query => {
 getGame = async (slug) => {
 
   debugger;
-const res = await axios.get(`http://localhost:4000/games/${slug}`);
+const res = await axios.get(`/games/${slug}`);
 debugger;
 this.setState({game: res.data});
 } 

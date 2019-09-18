@@ -24,7 +24,7 @@ const Games = ({games}) => {
 
     return (
         <GameWrapper>
-            {games === '' ? <StyledHeaderThree>sorry we dont have this game, try something new for once..</StyledHeaderThree> : games.map(game => (
+            {games === '' ? <StyledHeaderThree>sorry we dont have this game, try a new search! <span role="img" aria-label="emojigrin">😬</span></StyledHeaderThree> : games.map(game => (
                   <GameItem key={game.id} game={game} />
               ))}  
         </GameWrapper>

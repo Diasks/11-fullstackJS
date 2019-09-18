@@ -182,7 +182,7 @@ city: null,
 role: 'user'
     };
 
-    axios.post(`http://localhost:4000/auth/register`, { user }).then(res => {
+    axios.post(`/auth/register`, { user }).then(res => {
         debugger;
         console.log(res);
         console.log(res.data);

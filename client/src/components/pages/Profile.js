@@ -40,8 +40,9 @@ handleChange = (e) => {
 if (isLoggedIn)  
         return ( 
 <Container>
+
 <FormContainer>
-<Headline>Hello {name} {lastname}!</Headline>
+<Headline>Hello {name} {lastname}! <span role="img" aria-label="wavinghand">👋</span> </Headline>
 <p>Your information:</p>
                 <Form onSubmit={this.handleSubmit}> 
                 <Firstname> 
@@ -89,7 +90,7 @@ if (isLoggedIn)
 
 
 <div>
-<button onClick={() => this.setState({ showing: !showing })}>dina ordrar</button>
+<button onClick={() => this.setState({ showing: !showing })}>Orders</button>
 { showing 
     ? <div>
 
@@ -115,9 +116,9 @@ order.map((el) =>{
 
 
          );
-
+       
         else {
-            return (<Headline>Du måste logga in för att kunna se din profil!</Headline>)
+            return (<Headline>You need to be logged in to access your profile!   <span role="img" aria-label="smileywithsunglasses">😎</span> </Headline>)
         }
     }
 }

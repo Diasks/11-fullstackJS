@@ -12,6 +12,14 @@ const Box = styled.div `
     border-radius: 10px;
    box-shadow: 0px 10px 30px #555;
    display:flex;
+   background-position: center;
+background-size: 200px 200px;
+background-repeat: no-repeat;
+
+@media (min-width: 501px) {
+    background-position: center;
+    background-size: 500px 200px;
+    background-repeat: no-repeat;
   `;
 
 const StyledLink = styled(Link)`
@@ -35,7 +43,7 @@ font-weight: bold;
 function GameItem({game: {name, background_image, slug}}) {
     debugger;
     return (
-        <Box style={{backgroundImage: `url(${background_image})`, backgroundPosition: 'center', backgroundSize: '200px 200px', backgroundRepeat: 'no-repeat'}}>
+        <Box style={{backgroundImage: `url(${background_image})`}}>
             <StyledLink to={`/game/${slug}`}> {name}</StyledLink>
             </Box>
     )
