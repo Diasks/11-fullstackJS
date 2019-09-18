@@ -19,9 +19,6 @@ font-weight: lighter;
 `;
 
 const Games = ({games}) => {
-    debugger;
-
-
     return (
         <GameWrapper>
             {games === '' ? <StyledHeaderThree>sorry we dont have this game, try a new search! <span role="img" aria-label="emojigrin">😬</span></StyledHeaderThree> : games.map(game => (

@@ -116,37 +116,29 @@ class Dashboard extends Component {
           }
     }
   
-//hämta alla användare från min databas
+
     async componentDidMount() {
-debugger;        
-
-const token = localStorage.getItem("jwt");
-        const config = {
+let token = localStorage.getItem("jwt");
+        let config = {
             headers: {'x-access-token': token}
-        } 
-
-       
-            debugger;
+        }
         const res = await axios.get('/user', config);
             const users = res.data;
-            console.log(res.data);
             this.setState({
                 users
             })   
         } 
 
-//Funkar med backenden och tar bort användaren, visas direkt, yeay!
+
 onDeleteHandle() {  
     debugger;
     let id = arguments[0];
-    const token = localStorage.getItem("jwt");
-        const config = {
+    let token = localStorage.getItem("jwt");
+        let config = {
             headers: {'x-access-token': token}
         }
         axios.delete('/user/id', config, {params: {_id: id}})
         .then(response => {
-            console.log(response);
-            debugger;
           this.setState({
              // eslint-disable-next-line array-callback-return
              users: this.state.users.filter(user => {
@@ -159,13 +151,11 @@ if (user._id !== id) {
     };
   
     handleChange = (e) => {
-        console.log(e.target.value);
         this.setState({[e.target.name]: e.target.value});
     }
 
     onCreateHandle = async (e) => {
         e.preventDefault();
-    
         debugger;
         const user = {
             firstName: this.state.firstName,
@@ -181,8 +171,6 @@ if (user._id !== id) {
         };
     debugger;
         const res = await axios.post(`/auth/register`, { user });
-        console.log(res);
-        console.log(res.data);
     return res; 
 } 
 
@@ -194,8 +182,8 @@ onUpdateHandle = async (e) => {
     debugger;
  
 let _id =  this.state.user._id;
-    const token = localStorage.getItem("jwt");
-            const config = {
+    let token = localStorage.getItem("jwt");
+            let config = {
                 headers: {'x-access-token': token}
             }
 
@@ -213,8 +201,7 @@ let _id =  this.state.user._id;
 debugger;
     const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
 debugger;
-console.log(result);
-//sätt edit till false så mitt formulär inte syns!
+
     this.setState({    
         users: this.state.users, edit: false });
        debugger; 
@@ -263,16 +250,12 @@ renderEditForm() {
     
 
 onEditHandle(e) { 
-    //sätter edit till true så mitt formulär kan visas, sätter in användarens id
-    debugger;
     this.setState({    
     edit: true,    user: arguments[0]  });
 }
 
 
 onCreate(e) { 
-    //sätter edit till true så mitt formulär kan visas, sätter in användarens id
-    debugger;
     this.setState({    
     create: true  });
 }

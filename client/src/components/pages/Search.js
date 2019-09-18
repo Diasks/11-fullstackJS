@@ -16,7 +16,6 @@ background-color: white;
 padding: 8px 8px;
 border-radius: 5px;
 outline: none;
-
 ::placeholder {
     font-size: 1.1em;
     font-weight: lighter;
@@ -51,13 +50,10 @@ border-radius: 5px;
 `;
 
 class Search extends Component {
-    state = {
-        query: ''
-            };
+    state = { query: ''};
         
        
-        onChange = (e) => 
-        {
+        onChange = (e) => {
             this.setState({[e.target.name]: e.target.value});
     }
 
@@ -70,7 +66,6 @@ class Search extends Component {
     render() { 
 return ( 
     <Fragment> 
-     
                 <SearchForm onSubmit={this.onSubmit}>
                 <SearchTitle>   <FontAwesomeIcon icon={faGamepad} size="2x"/> </SearchTitle>
                     <SearchTitle>  Search for a game</SearchTitle>
@@ -78,16 +73,8 @@ return (
 <Button type="submit"><FontAwesomeIcon icon={faSearch} size="lg"/>Search</Button>
                 </SearchForm> 
            </Fragment>
-)
-
-
+)}
 }
 
-}
-  
 
-
-
-
- 
 export default Search;

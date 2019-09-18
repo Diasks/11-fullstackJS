@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faDollarSign} from '@fortawesome/free-solid-svg-icons'
 
 
-
 const DivButton = styled.div`
 position: relative;
 padding-top: 30px;
@@ -18,7 +17,6 @@ const Item = styled.div`
 padding: 20px 30px;
 height: 120px;
 display: flex;
-
 :nth-child(3) {
     border-top:  1px solid #E1E8EE;
     border-bottom:  1px solid #E1E8EE;
@@ -64,7 +62,6 @@ display: block;
 font-size: 14px;
 color: #43484D;
 font-weight: 400;
-
 :first-child {
     margin-bottom: 5px;
   }
@@ -101,39 +98,20 @@ font-weight: 300;
 `;
 
 const CartItem = ({item: { name, id, image, price}, deleteFromCart}) =>  {
-debugger;
             return (
-
-
- 
-
-  <Item>
+    <Item>
     <DivButton>
       <DeleteButton onClick={() => {deleteFromCart(id)}}><FontAwesomeIcon icon={faTrashAlt} size="lg"/></DeleteButton>
     </DivButton>
- 
-         
-
     <GameImageDiv>
       <GameImage src={image} alt="" />
     </GameImageDiv>
- 
     <GameDescription>
       <GameDescriptionSpan>{name} </GameDescriptionSpan>
     </GameDescription>
- 
-  
-
- 
      <ItemPrice><FontAwesomeIcon icon={faDollarSign} size="lg"></FontAwesomeIcon>{price}</ItemPrice>
   </Item>
-
-
-                
-        
-        )
-     
+        )    
 }
-
 
 export default CartItem

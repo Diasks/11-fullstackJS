@@ -183,17 +183,12 @@ role: 'user'
     };
 
     axios.post(`/auth/register`, { user }).then(res => {
-        debugger;
-        console.log(res);
-        console.log(res.data);
         if (res.data.status === "email already exist") {
           errors.email = "email already exist!";
           this.setState({ errors });
         } else {
           this.props.history.push("/login");
         }
-        
-        
     })
 };
 

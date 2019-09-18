@@ -33,9 +33,7 @@ color: #B0B0B0;
 
 
 const Header = ({isLoggedIn, isAdmin, logoutUser}) => {
-
         return (
-        <div> 
             <NavWrap> 
             <Link to="/"> <IconWrap><FontAwesomeIcon icon={faHome} size="lg"/></IconWrap> </Link>
             <Link to="/profile"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
@@ -44,7 +42,6 @@ const Header = ({isLoggedIn, isAdmin, logoutUser}) => {
             {isAdmin ?  <Link to="/dashboard"><IconWrap><FontAwesomeIcon icon={faUserCog} size="lg"/> </IconWrap> </Link>  : null }
            {isLoggedIn ?    <Link to="/login" onClick={logoutUser}><IconWrap><FontAwesomeIcon icon={faSignOutAlt} size="lg"/></IconWrap></Link> : null}
             </NavWrap>
-</div>
         )} 
     
   

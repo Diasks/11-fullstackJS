@@ -16,7 +16,6 @@ const CartSchema = new Schema({
     price: Number
 });
 
-
 const UserSchema = new Schema({
 name: String,
 lastname: String,

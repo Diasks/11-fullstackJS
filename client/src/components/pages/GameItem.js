@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
-
 const Box = styled.div `
     width: 40%;
     height: 150px;
@@ -15,7 +13,6 @@ const Box = styled.div `
    background-position: center;
 background-size: 200px 200px;
 background-repeat: no-repeat;
-
 @media (min-width: 501px) {
     background-position: center;
     background-size: 500px 200px;
@@ -31,14 +28,10 @@ font-weight: bold;
     :hover {
         color: #B0B0B0; 
     }
-
     &:focus, &:visited, &:link, &:active {
         text-decoration: none;
     }
 `;
-
-
-
 
 function GameItem({game: {name, background_image, slug}}) {
     debugger;

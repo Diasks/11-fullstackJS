@@ -10,7 +10,6 @@ export const ButtonDiv = styled.div`
 text-align: center;
 `;
 
-
 const StyledLink = styled(Link)`
 color: #B0B0B0;
 margin-bottom: 10px;
@@ -50,7 +49,6 @@ color: #222;
 font-weight: lighter;
 `;
  
-
 const GameFrame = styled.div`
     width: 100%;
     height: auto;
@@ -59,7 +57,6 @@ const GameFrame = styled.div`
    box-shadow: 0px 10px 30px #555;
    display:flex;
 `;
-
 
 const FrameList = styled.ul`
 width: 50%;
@@ -78,36 +75,27 @@ list-style-type: square;
 `;
 
 
-
-
 export class Game extends Component {
 
 componentDidMount () {
-    debugger;
     this.props.getGame(this.props.match.params.slug);
 }
 
 render() {
-    debugger;
- 
+
     if (this.props.game === undefined || Object.keys(this.props.game).length === 0)
     { 
-       debugger; 
        return (null) 
     } 
-
       else  {
         const { addToCart, isLoggedIn, success } = this.props;
         const { name, rating, released, clip, genres, price } = this.props.game[0];
-debugger;
+
    return (
      
     <Fragment>{success ? <SearchTitle>game was added to cart!</SearchTitle> : null}
         <GameWrapper>
-       
           <GameFrame> 
- 
-
        {clip ?  <video controls src={clip.clip} type="video/mp4" height="200"></video> : <h4>no video available!</h4>}
          <Headline>{name}</Headline> 
          <Paragraph><RatingStar><FontAwesomeIcon icon={faStar} size="lg"/></RatingStar> {rating} </Paragraph>
@@ -117,15 +105,13 @@ debugger;
 <ListGenre key={i}>{genre.name}</ListGenre>
 ))}      </FrameList>
       <Paragraph><FontAwesomeIcon icon={faDollarSign} size="lg"></FontAwesomeIcon>{price}</Paragraph>
-
             {isLoggedIn ?  <ButtonDiv><AddToCartButton onClick={() => {addToCart(this.props.game[0])}}><FontAwesomeIcon icon={faCartPlus} size="lg"/>add to cart</AddToCartButton></ButtonDiv> : null }
             <StyledLink to="/" className="btn btn-light">Go Back</StyledLink>
             </GameFrame>
         </GameWrapper>
         </Fragment>
-    )
-}
-}
+    )}
+ }
 }
 
 export default Game
