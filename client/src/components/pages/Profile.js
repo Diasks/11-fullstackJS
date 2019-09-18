@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {Container, FormContainer, Form, Headline, Label, Input, Firstname, Lastname,
     Birthdate, Email, Password, ButtonWrap, RegisterButton} from './Register';
-
-
 
 
 class Profile extends Component {
@@ -40,9 +38,9 @@ handleChange = (e) => {
 if (isLoggedIn)  
         return ( 
 <Container>
-
 <FormContainer>
 <Headline>Hello {name} {lastname}! <span role="img" aria-label="wavinghand">👋</span> </Headline>
+
 <p>Your information:</p>
                 <Form onSubmit={this.handleSubmit}> 
                 <Firstname> 
@@ -68,7 +66,6 @@ if (isLoggedIn)
 <Label>Telephone</Label>
 <Input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/></Password>
 
-
 <Password> 
 <Label>Address</Label>
 <Input type="text" name="address" placeholder={address} required onChange={this.handleChange}/></Password>
@@ -81,20 +78,16 @@ if (isLoggedIn)
 <Label>City</Label>
 <Input type="text" name="city" placeholder={city} required onChange={this.handleChange}/></Password>
 
- 
-
 <ButtonWrap> 
 <RegisterButton type="submit">Update</RegisterButton>
 </ButtonWrap>
 </Form>
 
 
-<div>
+<Fragment>
 <button onClick={() => this.setState({ showing: !showing })}>Orders</button>
 { showing 
     ? <div>
-
-
 {orders.map((order) => {
 debugger;
 return (
@@ -104,19 +97,14 @@ order.map((el) =>{
     return      <div>  <li key={el.id}>{el.name}</li></div>
 }
 ))})}
-
         hej
        </div>
     : null
 }
-</div>  
+</Fragment>  
 
 </FormContainer>
-</Container>
-
-
-         );
-       
+</Container>);
         else {
             return (<Headline>You need to be logged in to access your profile!   <span role="img" aria-label="smileywithsunglasses">😎</span> </Headline>)
         }

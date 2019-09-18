@@ -25,21 +25,7 @@ if(error) {
 
 });
 
-//GET SPECIFIC USER -> DIDN'T USE YET
-// router.get('/:id', VerifyToken, function(req, res) {
-//     debugger;
-//     User.findById(req.param.id, function(error, user) {
-//     if(error) {
-//         return res.status(500).send("an error occured")
-//     } else {
-//         res.status(200).send(user);
-//     }
-    
-//     })
-    
-//     });
 
-      //TODO: UPDATE USER
     router.patch("/:id", VerifyToken, function(req, res) {
         debugger;
         
@@ -54,9 +40,8 @@ if(error) {
 "city" :req.body.updatedUser.city,
 "role" :req.body.updatedUser.role  
 
-        },
-            //put things here
-        
+        }, {new: true},
+            
           function(error, user) {
             debugger;
             if (error) {
@@ -69,11 +54,9 @@ if(error) {
 
 
 
-
-//funkar med frontenden wohooo!!!
   router.delete('/:id', VerifyToken, function (req, res) {
       debugger;
-        User.findByIdAndRemove({_id: req.userId}, function(err, user){
+        User.findByIdAndRemove({_id: req.params.id}, function(err, user){
             debugger;
             if(err) res.json(err);
             else res.json('Successfully removed');

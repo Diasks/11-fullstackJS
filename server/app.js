@@ -13,16 +13,10 @@ const CartController = require('./controllers/CartController');
 const GameController = require('./controllers/GameController');
 const SearchController = require('./controllers/SearchController');
 const OrderController = require('./controllers/OrderController');
-// const gamesRouter = require('./routes/games');
-// const gameRouter = require('./routes/game');
 
-
-const usersRouter = require('./routes/users');
-const indexRouter = require('./routes/index');
 
 const app = express();
 app.use(cors());
-
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@gameover-uogeo.mongodb.net/test?retryWrites=true&w=majority`);
 
@@ -35,19 +29,12 @@ db.once("open", function() {
   console.log("DB connection is up and running");
 });
 
-
-
-
 app.use('/auth', AuthController);
 app.use('/user', UserController);
 app.use('/cart', CartController);
 app.use('/games', GameController);
 app.use('/search', SearchController);
 app.use('/order', OrderController);
-// app.use('/games', gamesRouter);
-app.use('/users', usersRouter);
-app.use('/index', indexRouter);
-
 
 // view engine setup
 app.set("view engine", "pug");
@@ -61,24 +48,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 
-
-// Handle React routing, return all requests to React app
-  // app.get('*', function(req, res) {
-  //   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  // });
-
-
-// app.use(express.static(path.join(__dirname, "../client/build")));
-
-
 app.get("*", function(request, response) {
   response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
-
-
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

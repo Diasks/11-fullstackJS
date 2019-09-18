@@ -71,8 +71,8 @@ debugger;
 
 
 let user = JSON.parse(localStorage.getItem('user'))._id;
-const token = localStorage.getItem("jwt");
-const config = {
+let token = localStorage.getItem("jwt");
+let config = {
   headers: {'x-access-token': token}
 }
   debugger; 
@@ -104,8 +104,8 @@ debugger;
 searchUser = async (updatedUser, _id) => {
         debugger;
  
-          const token = localStorage.getItem("jwt");
-const config = {
+          let token = localStorage.getItem("jwt");
+let config = {
   headers: {'x-access-token': token}
 }
     const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
@@ -123,8 +123,8 @@ sendOrder = async (cart) => {
 debugger;
 
 debugger;
-const token = localStorage.getItem("jwt");
-const config = {
+let token = localStorage.getItem("jwt");
+let config = {
   headers: {'x-access-token': token}
 }
 let user = JSON.parse(localStorage.getItem('user'))._id;
@@ -149,8 +149,8 @@ removeCartItems = async () => {
 
 debugger;
 
-  const token = localStorage.getItem("jwt");
-const config = {
+  let token = localStorage.getItem("jwt");
+let config = {
   headers: {'x-access-token': token}
 }
   let user = JSON.parse(localStorage.getItem('user'))._id;
@@ -164,9 +164,9 @@ return result;
 
 getCart = async () => {
   debugger;
-  const token = localStorage.getItem("jwt");
+  let token = localStorage.getItem("jwt");
     debugger;
-const config = {
+let config = {
   headers: {'x-access-token': token}
 }
 if (token != null) { 
@@ -180,8 +180,8 @@ this.setState({cart: res.data.cart});
 
 getOrders = async () => {
   debugger;
-  const token = localStorage.getItem('jwt');
-  const config = {
+  let token = localStorage.getItem('jwt');
+  let config = {
     headers: {'x-access-token': token}
   }
 if (token != null) { 
@@ -199,12 +199,11 @@ deleteFromCart = async (id) => {
   debugger;
   let token = localStorage.getItem('jwt');
     let user = JSON.parse(localStorage.getItem('user'))._id;
-    const config = {
+    let config = {
       headers: {'x-access-token': token}
     }
   let gameId = id;
 debugger;
-    debugger;
 const res = await axios.patch(`/games/${user}`, {gameId}, config);
 debugger;
 this.setState({cart: res.data.cart});

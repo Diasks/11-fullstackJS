@@ -13,18 +13,14 @@ margin: 80px auto;
 background: #FFFFFF;
 box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
 border-radius: 6px;
-
 display: flex;
 flex-direction: column;
-
 @media (max-width: 800px) {
     width: 100%;
     height: auto;
     overflow: hidden;
     }
 `;
-
-
 
 const Title = styled.div`
 height: 60px;
@@ -36,33 +32,24 @@ font-weight: 400;
 `; 
 
 const Cart = ({cart, isLoggedIn, deleteFromCart, sendOrder, success  }) =>  {
-    debugger;
-    //passa igenom en remove from cart funktion
-
-if (!isLoggedIn) return (<div><Headline>You need to be logged in to access your cart!   <span role="img" aria-label="smileywithsunglasses">😎</span></Headline></div>)
-
-
-
+   
+if (!isLoggedIn) 
+return (<Headline>You need to be logged in to access your cart!   
+<span role="img" aria-label="smileywithsunglasses">😎</span></Headline>
+)
 else { 
     return (
-
-
-
-
-    
 <ShoppingCart>
 {success ? <SearchTitle>order sent!</SearchTitle> : null}
   <Title>
     Shopping Bag
-   
-  
   </Title>
-{Object.keys(cart).length === 0 ? <Headline>Oh no! You cart is empty!   <span role="img" aria-label="dizzyemoji">😵</span>  </Headline> : cart.map(item => (
+{Object.keys(cart).length === 0 ? <Headline>Oh no! You cart is empty!   
+    <span role="img" aria-label="dizzyemoji">😵</span>  </Headline> : cart.map(item => (
     <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
 ))}   
-
-        {Object.keys(cart).length === 0 ? null :  <ButtonDiv><AddToCartButton onClick={() => {sendOrder(cart)}}>order</AddToCartButton></ButtonDiv>}
-
+        {Object.keys(cart).length === 0 ? null :  
+        <ButtonDiv><AddToCartButton onClick={() => {sendOrder(cart)}}>order</AddToCartButton></ButtonDiv>}
         </ShoppingCart>
     )
 }}
