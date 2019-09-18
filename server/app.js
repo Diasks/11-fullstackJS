@@ -18,6 +18,7 @@ const OrderController = require('./controllers/OrderController');
 
 
 const usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 
 const app = express();
 app.use(cors());
@@ -45,6 +46,7 @@ app.use('/search', SearchController);
 app.use('/order', OrderController);
 // app.use('/games', gamesRouter);
 app.use('/users', usersRouter);
+app.use('/index', indexRouter);
 
 
 // view engine setup
