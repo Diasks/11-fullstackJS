@@ -129,7 +129,7 @@ const token = localStorage.getItem("jwt");
 
        
             debugger;
-        const res = await axios.get('http://localhost:4000/user', config);
+        const res = await axios.get('/user', config);
             const users = res.data;
             console.log(res.data);
             this.setState({
@@ -148,7 +148,7 @@ onDeleteHandle() {
             headers: {'x-access-token': token}
         }
         debugger;
-        axios.delete(`http://localhost:4000/user/${id}`, config, {params: {_id: id}})
+        axios.delete(`/user/${id}`, config, {params: {_id: id}})
         .then(response => {
             console.log(response);
             debugger;
@@ -185,7 +185,7 @@ if (user._id !== id) {
     role: this.state.role
         };
     debugger;
-        const res = await axios.post(`http://localhost:4000/auth/register`, { user });
+        const res = await axios.post(`/auth/register`, { user });
         debugger;
         this.setState({isCreated: true, create: false})
         return res;
@@ -217,13 +217,12 @@ let _id =  this.state.user._id;
         role: this.state.role
     };
 debugger;
-    const result = await axios.patch(`http://localhost:4000/user/${_id}`,{ updatedUser }, config);
+    const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
 debugger;
 console.log(result);
 //sätt edit till false så mitt formulär inte syns!
 this.setState({   isUpdated: true, edit: false  })
-       debugger; 
-       return result;
+  
     } 
 
                         renderCreateForm() {  
