@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Box = styled.div`
-width: 25%;
+width: 40%;
 height: 200px;
 margin: 10px;
 box-sizing: border-box;
