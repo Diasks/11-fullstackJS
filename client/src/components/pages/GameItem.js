@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Box = styled.div`
-width: 40%;
-height: 150px;
-margin: 10px;
-box-sizing: border-box;
-border-radius: 10px;
-box-shadow: 0px 10px 30px #555;
+width: 25%;
+height: 200px;
+margin: 10px;
+box-sizing: border-box;
+border-radius: 10px;
+box-shadow: 0px 10px 30px #555;
 display:flex;
 background-position: center;
 background-size: 200px 200px;
