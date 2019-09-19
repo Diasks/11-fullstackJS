@@ -295,9 +295,6 @@ render() {
 <Cart cart={cart} isLoggedIn={isLoggedIn} deleteFromCart={this.deleteFromCart} sendOrder={this.sendOrder} success={success}/>
     )}/>
     </Switch>
-
-    <Footer />
-  
     </Router>
    
     </div>

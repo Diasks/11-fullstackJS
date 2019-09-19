@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import Footer from '../layout/Footer';
 import {
     Container,
     FormContainer,
@@ -100,6 +101,7 @@ import {
     render() {
         const {errors} = this.state;
         return (
+          <Fragment> 
     <Container>
     <FormContainer>
     <Headline>Login</Headline>
@@ -122,6 +124,8 @@ import {
     </Form>
     </FormContainer>
     </Container>
+    <Footer/>
+    </Fragment>
         );
     }
     }

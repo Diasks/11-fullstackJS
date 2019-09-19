@@ -1,23 +1,22 @@
 import React from "react";
 import styled from 'styled-components';
 
-const FooterWrap = styled.div`
+export const FooterWrap = styled.div`
+display: flex;
+flex-direction: column;
+height: 50px;
 width: 100%
 display: flex;
 background-color: #484848;
 box-shadow: 0px 10px 50px #555;
 align-items: center;
 color: #B0B0B0;
-padding-top: 6px;
+padding-top: 20px;
 padding-bottom: 6px;
-position: absolute; 
-left: 0; 
-bottom: 0;
-box-shadow: 0px 10px 50px #555;
-height: 60px;
+box-shadow: 0px 10px 50px #555;  
 `;
 
-const Copyright = styled.span`
+export const Copyright = styled.span`
   align-self: center;
   font-size: 10px;
 `;

@@ -1,10 +1,12 @@
 /* eslint-disable no-useless-escape */
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from 'styled-components';
+import Footer from '../layout/Footer';
 const axios = require('axios');
+
 
 export const Container = styled.div`
 width: 100%;
@@ -242,6 +244,7 @@ render() {
     const {errors} = this.state;
 
     return (
+      <Fragment> 
 <Container>
 <FormContainer>
 <Headline>Register</Headline>
@@ -289,6 +292,8 @@ render() {
 </Form>
 </FormContainer>
 </Container>
+<Footer/>
+</Fragment>
     );
 }
 }

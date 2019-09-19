@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import {Container, FormContainer, Headline, Label, RegisterButton} from './Register';
+import Footer from '../layout/Footer';
+import {Container, FormContainer, Headline, Label, RegisterButton} from './Register';
 
 const TheadTr = styled.tr`
 @media 
@@ -303,6 +304,7 @@ const { users, isCreated, isUpdated  } = this.state;
     ))}
 	</TableBody>
 </TableStyle>
+<Footer/>
             </Fragment>
          );
     }
