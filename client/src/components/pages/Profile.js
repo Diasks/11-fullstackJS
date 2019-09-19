@@ -101,7 +101,6 @@ order.map((el) =>{
     return      <div>  <li key={el.id}>{el.name}</li></div>
 }
 ))})}
-        hej
        </div>
     : null
 }
@@ -114,7 +113,8 @@ order.map((el) =>{
          );
 
         else {
-            return (<Headline>Du måste logga in för att kunna se din profil!</Headline>)
+            return (<Headline>You need to be logged in to access your profile!   
+                <span role="img" aria-label="smileywithsunglasses">😎</span></Headline>)
            
         }
     }

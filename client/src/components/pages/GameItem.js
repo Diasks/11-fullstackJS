@@ -13,19 +13,6 @@ display:flex;
 background-position: center;
 background-size: 200px 200px;
 background-repeat: no-repeat;
-
-@media (min-width: 501px) {
-    height: 200px;
-    background-position: center;
-    background-size: 500px 200px;
-    background-repeat: no-repeat; 
-}
-    @media (min-width:  1250px) {
-        height: 350px;
-        background-position: center;
-        background-size: 800px 350px;
-        background-repeat: no-repeat; 
-}
   `;
 
 
