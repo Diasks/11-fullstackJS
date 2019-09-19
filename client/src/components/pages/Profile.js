@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import {Container, FormContainer, Form, Headline, Label, Input, Firstname, Lastname,
     Birthdate, Email, Password, ButtonWrap, RegisterButton} from './Register';
+import Footer from '../layout/Footer';
+
+
 
 
 class Profile extends Component {
@@ -37,6 +40,7 @@ handleChange = (e) => {
     
 if (isLoggedIn)  
         return ( 
+            <Fragment>
 <Container>
 <FormContainer>
 <Headline>Hello {name} {lastname}! <span role="img" aria-label="wavinghand">👋</span> </Headline>
@@ -104,11 +108,17 @@ order.map((el) =>{
 </Fragment>  
 
 </FormContainer>
-</Container>);
+</Container>
+<Footer/></Fragment>
+
+         );
+
         else {
-            return (<Headline>You need to be logged in to access your profile!   <span role="img" aria-label="smileywithsunglasses">😎</span> </Headline>)
+            return (<Headline>Du måste logga in för att kunna se din profil!</Headline>)
+           
         }
     }
+  
 }
  
 export default Profile;

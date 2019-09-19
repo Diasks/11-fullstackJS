@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import CartItem from '../pages/CartItem';
 import styled from 'styled-components';
 import  {  Headline} from './Register';
 import { SearchTitle } from './Search';
 import {AddToCartButton, ButtonDiv} from './Game';
-
+import { FooterWrap, Copyright } from '../layout/Footer';
 
 const ShoppingCart = styled.div`
 width: 600px;
@@ -21,6 +21,25 @@ flex-direction: column;
     overflow: hidden;
     }
 `;
+
+const MyNewFooterWrap = styled(FooterWrap)`
+margin-top: 50%;
+@media (min-width: 414px) {
+    margin-top: 15%;
+    }
+    @media (min-width: 615px) {
+        margin-top: 12%;
+        }
+        @media (min-width: 850px) {
+            margin-top: 8%;
+            }
+            @media (min-width: 1280px) {
+                margin-top: 32%;
+                }
+
+
+`;
+
 
 const Title = styled.div`
 height: 60px;
@@ -39,6 +58,11 @@ return (<Headline>You need to be logged in to access your cart!
 )
 else { 
     return (
+
+
+
+
+    <Fragment> 
 <ShoppingCart>
 {success ? <SearchTitle>order sent!</SearchTitle> : null}
   <Title>
@@ -51,6 +75,8 @@ else {
         {Object.keys(cart).length === 0 ? null :  
         <ButtonDiv><AddToCartButton onClick={() => {sendOrder(cart)}}>order</AddToCartButton></ButtonDiv>}
         </ShoppingCart>
+        <MyNewFooterWrap>  <Copyright>© GAMEOVER 2019</Copyright></MyNewFooterWrap>
+        </Fragment>
     )
 }}
 
