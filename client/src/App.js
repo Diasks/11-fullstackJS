@@ -14,6 +14,8 @@ import Game from './components/pages/Game';
 import Profile from './components/pages/Profile';
 import Cart from './components/pages/Cart';
 import Dashboard from './components/pages/Dashboard';
+import styled from 'styled-components';
+
 
 
 
@@ -268,6 +270,7 @@ render() {
 
     <Router>
     <Header isLoggedIn={isLoggedIn} logoutUser={this.logoutUser} isAdmin={isAdmin}/>
+     
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/dashboard" component={Dashboard} />
@@ -292,7 +295,9 @@ render() {
 <Cart cart={cart} isLoggedIn={isLoggedIn} deleteFromCart={this.deleteFromCart} sendOrder={this.sendOrder} success={success}/>
     )}/>
     </Switch>
+
     <Footer />
+  
     </Router>
    
     </div>

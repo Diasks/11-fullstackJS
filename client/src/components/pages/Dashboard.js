@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import {Container, FormContainer, Headline, Label, RegisterButton} from './Register';
 
 const TheadTr = styled.tr`
 @media 
@@ -120,58 +121,41 @@ class Dashboard extends Component {
   
 //hämta alla användare från min databas
     async componentDidMount() {
-debugger;        
-
 const token = localStorage.getItem("jwt");
         const config = {
             headers: {'x-access-token': token}
         } 
-
-       
-            debugger;
-        const res = await axios.get('http://localhost:4000/user', config);
+        const res = await axios.get('/user', config);
             const users = res.data;
-            console.log(res.data);
             this.setState({
                 users
             })   
         } 
 
-//Funkar med backenden och tar bort användaren, visas direkt, yeay!
 onDeleteHandle() {  
-    debugger;
     let id = arguments[0];
-    debugger;
     const token = localStorage.getItem("jwt");
-    debugger;
         const config = {
             headers: {'x-access-token': token}
         }
-        debugger;
-        axios.delete(`http://localhost:4000/user/${id}`, config, {params: {_id: id}})
+        axios.delete(`/user/${id}`, config, {params: {_id: id}})
         .then(response => {
-            console.log(response);
-            debugger;
           this.setState({
-             // eslint-disable-next-line array-callback-return
              users: this.state.users.filter(user => {
 if (user._id !== id) {
     return user;
 }
              })
           });  
-        });
+      return response;  });
     };
   
     handleChange = (e) => {
-        console.log(e.target.value);
         this.setState({[e.target.name]: e.target.value});
     }
 
     onCreateHandle = async (e) => {
         e.preventDefault();
-    
-        debugger;
         const user = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -184,21 +168,17 @@ if (user._id !== id) {
     city: this.state.city,
     role: this.state.role
         };
-    debugger;
-        const res = await axios.post(`http://localhost:4000/auth/register`, { user });
-        debugger;
+  
+        const res = await axios.post(`/auth/register`, { user });
         this.setState({isCreated: true, create: false})
         return res;
    
 } 
 
 
-//TODO: update user!
+
 onUpdateHandle = async (e) => {  
-    e.preventDefault();
-    //efter submit kör update funktionen, det är här jag vill göra min axios request till min backend!
-    debugger;
- 
+    e.preventDefault(); 
 let _id =  this.state.user._id;
     const token = localStorage.getItem("jwt");
             const config = {
@@ -216,68 +196,64 @@ let _id =  this.state.user._id;
         city: this.state.city,
         role: this.state.role
     };
-debugger;
-    const result = await axios.patch(`http://localhost:4000/user/${_id}`,{ updatedUser }, config);
-debugger;
-console.log(result);
-//sätt edit till false så mitt formulär inte syns!
+
+    const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
 this.setState({   isUpdated: true, edit: false  })
-       debugger; 
-       return result;
+return result;
+
     } 
 
                         renderCreateForm() {  
-                            //om edit ändras till true, displaya mitt icke fungerande formulär  
-                            if (this.state.create) {   
-                         
-                
-                             return <form onSubmit={this.onCreateHandle}>   
-                             name: <input type="text" name="firstName" placeholder="name" required onChange={this.handleChange}/>
-                                        lastname: <input type="text" name="lastName" placeholder="lastname" required onChange={this.handleChange}/>
-                                        email: <input type="text" name="email" placeholder="email" required onChange={this.handleChange}/>
-                                        birthdate: <input type="number" name="birthDate" placeholder="birthdate" required onChange={this.handleChange}/>
-                                             telephone: <input type="number" name="telephone" placeholder="phonenumber" required onChange={this.handleChange}/>
-                                             password: <input type="text" name="password" placeholder="password" required onChange={this.handleChange}/>
-                                        address: <input type="text" name="address" placeholder="address" required onChange={this.handleChange}/>
-                                        zipcode: <input type="number" name="zipcode" placeholder="zipcode" required onChange={this.handleChange}/>
-                                        city: <input type="text" name="city" placeholder="city" onChange={this.handleChange}/>
-                                        role: <input type="text" name="role" placeholder="role" onChange={this.handleChange}/>
-                                         
-                                <button type="submit">Create</button>      </form>    }  
-                                }
+                           
+                             if (this.state.create) {   
+                           
+                                                             return <Container><FormContainer onSubmit={this.onCreateHandle}>   
+                                                             <Headline>Create new user</Headline>
+                                                            <Label>name:</Label>  <input type="text" name="firstName" placeholder="name" required onChange={this.handleChange}/>
+                                                                        <Label>lastname:</Label> <input type="text" name="lastName" placeholder="lastname" required onChange={this.handleChange}/>
+                                                                        <Label>email:</Label> <input type="text" name="email" placeholder="email" required onChange={this.handleChange}/>
+                                                                        <Label>birthdate:</Label> <input type="number" name="birthDate" placeholder="birthdate" required onChange={this.handleChange}/>
+                                                                             <Label>telephone:</Label> <input type="number" name="telephone" placeholder="phonenumber" required onChange={this.handleChange}/>
+                                                                             <Label>password:</Label> <input type="text" name="password" placeholder="password" required onChange={this.handleChange}/>
+                                                                        <Label>address:</Label> <input type="text" name="address" placeholder="address" required onChange={this.handleChange}/>
+                                                                        <Label>zipcode:</Label> <input type="number" name="zipcode" placeholder="zipcode" required onChange={this.handleChange}/>
+                                                                        <Label>city:</Label> <input type="text" name="city" placeholder="city" onChange={this.handleChange}/>
+                                                                        <Label>role:</Label> <input type="text" name="role" placeholder="role" onChange={this.handleChange}/>
+                                                                         
+                                                                <RegisterButton type="submit">Create</RegisterButton>      </FormContainer> </Container>   }  
+                                                                   
+                        }
 
 renderEditForm() {  
-    //om edit ändras till true, displaya mitt icke fungerande formulär  
-    if (this.state.edit) {   
  
-        let  {name, lastname, email, birthdate, telephone, address, zipcode, city, role} = this.state.user;
+    if (this.state.edit) {   
+ 
+                let  {name, lastname, email, birthdate, telephone, address, zipcode, city, role} = this.state.user;
+        
+             return <Container>  <FormContainer onSubmit={this.onUpdateHandle}>   
+                                  <Headline>Update user</Headline>
+                                  <Label>name:</Label> <input type="text" name="firstname" placeholder={name} required onChange={this.handleChange}/>
+                        <Label>lastname:</Label> <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
+                        <Label>email:</Label> <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
+                        <Label>birthdate:</Label> <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
+                             <Label>telephone:</Label> <input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/>
+                        <Label>address:</Label> <input type="text" name="address" placeholder={address} required onChange={this.handleChange}/>
+                        <Label>zipcode:</Label> <input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/>
+                        <Label>city:</Label> <input type="text" name="city" placeholder={city} onChange={this.handleChange}/>
+                        <Label>role:</Label> <input type="text" name="role" placeholder={role} onChange={this.handleChange}/>
+                         
+                <RegisterButton type="submit">Update</RegisterButton>      </FormContainer></Container>    }  
 
-     return <form onSubmit={this.onUpdateHandle}>   
-     name: <input type="text" name="firstname" placeholder={name} required onChange={this.handleChange}/>
-                lastname: <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
-                email: <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
-                birthdate: <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
-                     telephone: <input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/>
-                address: <input type="text" name="address" placeholder={address} required onChange={this.handleChange}/>
-                zipcode: <input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/>
-                city: <input type="text" name="city" placeholder={city} onChange={this.handleChange}/>
-                role: <input type="text" name="role" placeholder={role} onChange={this.handleChange}/>
-                 
-        <button type="submit">Update</button>      </form>    }  
-        }
+}
     
 
 onEditHandle(e) { 
-    //sätter edit till true så mitt formulär kan visas, sätter in användarens id
-    debugger;
     this.setState({    
     edit: true,    user: arguments[0]  });
 }
 
 
 onCreate(e) { 
-    //sätter edit till true så mitt formulär kan visas, sätter in användarens id
-    debugger;
     this.setState({    
     create: true  });
 }
