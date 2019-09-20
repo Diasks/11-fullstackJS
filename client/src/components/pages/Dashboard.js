@@ -172,6 +172,11 @@ if (user._id !== id) {
   
         const res = await axios.post(`/auth/register`, { user });
         this.setState({isCreated: true, create: false})
+
+        const token = localStorage.getItem("jwt");
+        const config = {
+            headers: {'x-access-token': token}
+        }
         const result = await axios.get('/user', config);
         const users = result.data;
             this.setState({
