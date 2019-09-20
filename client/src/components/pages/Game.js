@@ -93,7 +93,8 @@ render() {
 
    return (
      
-    <Fragment>{success ? <SearchTitle>game was added to cart!</SearchTitle> : null}
+    <Fragment>
+    {success ? <SearchTitle>game was added to cart!</SearchTitle> : null}
         <GameWrapper>
           <GameFrame> 
        {clip ?  <video controls src={clip.clip} type="video/mp4" height="200"></video> : <h4>no video available!</h4>}

@@ -120,7 +120,6 @@ class Dashboard extends Component {
           }
     }
   
-//hämta alla användare från min databas
     async componentDidMount() {
 const token = localStorage.getItem("jwt");
         const config = {
@@ -157,7 +156,6 @@ if (user._id !== id) {
 
     onCreateHandle = async (e) => {
         e.preventDefault();
-        console.log('jag är onCreateHandle o gör backend requests!');
         const user = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -184,6 +182,7 @@ if (user._id !== id) {
                 users, create: false, isCreated: true
             })
             this.changeCreatedStatus();
+            return res;
 } 
 
 
@@ -196,7 +195,6 @@ changeCreatedStatus = () => {
 
 onUpdateHandle = async (e) => {  
     e.preventDefault(); 
-    console.log('jag är onUpdateHandle o gör backend requests!');
 let _id =  this.state.user._id;
     const token = localStorage.getItem("jwt");
             const config = {
@@ -223,6 +221,7 @@ const res = await axios.get('/user', config);
         users, edit: false, isUpdated: true
     })
 this.changeUpdatedStatus();
+return result;
     } 
 
     changeUpdatedStatus = () => {
@@ -230,10 +229,7 @@ this.changeUpdatedStatus();
           isUpdated: false
         })
     }
-
-
                         renderCreateForm() {  
-                           
                              if (this.state.create) {   
                            
                                                              return <Container><FormContainer>
@@ -323,20 +319,19 @@ renderEditForm() {
     
 
 onEditHandle(e) { 
-    console.log('jag är onEditHandle!');
     this.setState({    
     edit: true,    user: arguments[0]  });
 }
 
 
 onCreate(e) { 
-    console.log('jag är onCreate!');
     this.setState({    
     create: true  });
 }
 
 
     render() { 
+        
 const { users, isCreated, isUpdated  } = this.state;
         return ( 
             <Fragment>

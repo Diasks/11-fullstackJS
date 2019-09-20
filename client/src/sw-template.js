@@ -29,7 +29,24 @@ workbox.routing.registerRoute(
   console.log('Workbox could not be loaded. No offline supports');
 }
 
+const queue = new workbox.backgroundSync.Queue('my-queue-name', {
+  onSync: async (queue) => {
+    let entry;
+    while (entry = await this.shiftRequest()) {
+      try {
+        await fetch(entry.request);
+        console.error('Replay successful for request', entry.request);
+      } catch (error) {
+        console.error('Replay failed for request', entry.request, error);
 
+        // Put the entry back in the queue and re-throw the error:
+        await this.unshiftRequest(entry);
+        throw error;
+      }
+    }
+    console.log('Replay complete!');
+  }
+});
   
 
 

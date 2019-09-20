@@ -6,7 +6,6 @@ import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Search from "./components/pages/Search";
 import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
 import axios from 'axios';
 import Startpage from './components/pages/Startpage';
 import Games from './components/pages/Games';
@@ -14,10 +13,6 @@ import Game from './components/pages/Game';
 import Profile from './components/pages/Profile';
 import Cart from './components/pages/Cart';
 import Dashboard from './components/pages/Dashboard';
-import styled from 'styled-components';
-
-
-
 
 
 class App extends Component {
@@ -33,7 +28,7 @@ orders: [],
 offlineAlert: !navigator.onLine
   }
 
-  //hämta inloggad användare
+ 
 componentDidMount() {
   window.addEventListener('online', () => {
     this.setState({offlineAlert: false})
@@ -48,36 +43,26 @@ componentDidMount() {
 }
 
 getLoggedInUser = () => {
-  debugger;
 let token = localStorage.getItem('jwt');
-debugger;
 let user = JSON.parse(localStorage.getItem('user'));
 if (token != null) {
-  debugger;
   let isAdmin = JSON.parse(localStorage.getItem('user')).role;
   if (isAdmin === "admin") {
-    debugger;
     this.setState({isAdmin: true})
   }
 }
-debugger;
 if (token) {
   this.setState({isLoggedIn: true, user: user})
-  debugger;
 }
 }
 
 
   addToCart = async (props) => { 
-debugger;
-
-
 let user = JSON.parse(localStorage.getItem('user'))._id;
 let token = localStorage.getItem("jwt");
 let config = {
   headers: {'x-access-token': token}
 }
-  debugger; 
     const myObj = {
       id: props.id,
   name: props.name,
@@ -85,23 +70,14 @@ let config = {
   price: props.price
     }
     const result = await axios.patch(`/cart/${user}`,{ myObj }, config);
-debugger;
     this.setState({cart:[...this.state.cart, myObj], success: true});
-    debugger;
     this.changeSuccess();
     return result;
-
-
   } 
 
-changeSuccess = async () => {
-debugger;
+changeSuccess = () => {
 this.setState({success: false});
-debugger;
   }
-
-
-
 
 searchUser = async (updatedUser, _id) => {
           let token = localStorage.getItem("jwt");
@@ -114,12 +90,7 @@ this.setState({user: result.data});
 localStorage.setItem('user', JSON.stringify(result.data));
 } 
 
-
-
-
-
 sendOrder = async (cart) => {
-
 let token = localStorage.getItem("jwt");
 let config = {
   headers: {'x-access-token': token}
@@ -175,7 +146,7 @@ if (token != null) {
   let user = JSON.parse(localStorage.getItem('user'))._id;
 const res = await axios.get(`/cart/${user}`, config);
 this.setState({orders: res.data.orders});
-} } 
+}} 
 
 
 
@@ -188,7 +159,6 @@ deleteFromCart = async (id) => {
   let gameId = id;
 const res = await axios.patch(`/games/${user}`, {gameId}, config);
 this.setState({cart: res.data.cart});
-
 } 
 
 
@@ -224,7 +194,6 @@ logoutUser = async () =>
 
 render() { 
 
-  //refaktorisera till att dekonstruera state för o ta ut spel från state
   const { games, game, user, cart, isLoggedIn, isAdmin, success, orders } = this.state;
 
   return (
@@ -236,7 +205,6 @@ render() {
 
     <Router>
     <Header isLoggedIn={isLoggedIn} logoutUser={this.logoutUser} isAdmin={isAdmin}/>
-     
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/dashboard" component={Dashboard} />
@@ -262,7 +230,6 @@ render() {
     )}/>
     </Switch>
     </Router>
-   
     </Fragment>
   );
 }}

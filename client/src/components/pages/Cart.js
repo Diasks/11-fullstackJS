@@ -58,16 +58,12 @@ return (<Headline>You need to be logged in to access your cart!
 )
 else { 
     return (
-
-
-
-
     <Fragment> 
 <ShoppingCart>
-{success ? <SearchTitle>order sent!</SearchTitle> : null}
   <Title>
     Shopping Bag
   </Title>
+  {success ? <SearchTitle>order sent!</SearchTitle> : null}
 {Object.keys(cart).length === 0 ? <Headline>Oh no! You cart is empty!   
     <span role="img" aria-label="dizzyemoji">😵</span>  </Headline> : cart.map(item => (
     <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart}  />
