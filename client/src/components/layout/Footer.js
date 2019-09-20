@@ -6,11 +6,11 @@ display: flex;
 flex-direction: column;
 height: 50px;
 width: 100%
-display: flex;
 background-color: #484848;
 box-shadow: 0px 10px 50px #555;
 align-items: center;
 color: #B0B0B0;
+position: sticky;
 padding-top: 20px;
 padding-bottom: 6px;
 box-shadow: 0px 10px 50px #555;  
