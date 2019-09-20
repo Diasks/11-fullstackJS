@@ -14,9 +14,9 @@ componentDidMount() {
 handleSubmit = async (e) => {
 e.preventDefault();
 const updatedUser = {
-    firstName: this.state.firstName,
-    lastName: this.state.lastName,
-    birthDate: this.state.birthDate,
+    name: this.state.name,
+    lastname: this.state.lastname,
+    birthdate: this.state.birthdate,
     email: this.state.email,
     telephone: this.state.telephone,
     address: this.state.address,
@@ -49,17 +49,17 @@ if (isLoggedIn)
                 <Form onSubmit={this.handleSubmit}> 
                 <Firstname> 
 <Label>Firstname</Label>
-<Input type="text" name="firstName" required placeholder={name}  onChange={this.handleChange}/>
+<Input type="text" name="name" required placeholder={name}  onChange={this.handleChange}/>
 </Firstname>
 
 <Lastname> 
 <Label>Lastname</Label>
-<Input type="text" name="lastName"  required placeholder={lastname} onChange={this.handleChange}/>
+<Input type="text" name="lastname"  required placeholder={lastname} onChange={this.handleChange}/>
 </Lastname>
 
 <Birthdate> 
 <Label>Birthdate</Label>
-<Input type="number" name="birthDate"  required placeholder={birthdate} onChange={this.handleChange}/></Birthdate>
+<Input type="number" name="birthdate"  required placeholder={birthdate} onChange={this.handleChange}/></Birthdate>
 
 <Email> 
 <Label>Email</Label>

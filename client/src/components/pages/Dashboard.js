@@ -245,10 +245,10 @@ renderEditForm() {
         
              return <Container>  <FormContainer onSubmit={this.onUpdateHandle}>   
                                   <Headline>Update user</Headline>
-                                  <Label>name:</Label> <input type="text" name="firstName" placeholder={name} required onChange={this.handleChange}/>
-                        <Label>lastname:</Label> <input type="text" name="lastName" placeholder={lastname} required onChange={this.handleChange}/>
+                                  <Label>name:</Label> <input type="text" name="name" placeholder={name} required onChange={this.handleChange}/>
+                        <Label>lastname:</Label> <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
                         <Label>email:</Label> <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
-                        <Label>birthdate:</Label> <input type="number" name="birthDate" placeholder={birthdate} required onChange={this.handleChange}/>
+                        <Label>birthdate:</Label> <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
                              <Label>telephone:</Label> <input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/>
                         <Label>address:</Label> <input type="text" name="address" placeholder={address} required onChange={this.handleChange}/>
                         <Label>zipcode:</Label> <input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/>

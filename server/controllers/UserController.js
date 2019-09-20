@@ -20,9 +20,9 @@ if(error) {
 
     router.patch("/:id", VerifyToken, function(req, res) {
         User.findByIdAndUpdate({_id: req.params.id}, {
-          "name" :req.body.updatedUser.firstName ,
-"lastname" :req.body.updatedUser.lastName ,
-"birthdate" :req.body.updatedUser.birthDate ,
+          "name" :req.body.updatedUser.name ,
+"lastname" :req.body.updatedUser.lastname ,
+"birthdate" :req.body.updatedUser.birthdate ,
 "city" :req.body.updatedUser.city,
 "telephone" :req.body.updatedUser.telephone ,
 "address" :req.body.updatedUser.address ,
