@@ -224,16 +224,16 @@ const res = await axios.get('/user', config);
                            
                                                              return <Container><FormContainer onSubmit={this.onCreateHandle}>   
                                                              <Headline>Create new user</Headline>
-                                                            <Label>name:</Label>  <input type="text" name="firstName" placeholder="name" required onChange={this.handleChange}/>
-                                                                        <Label>lastname:</Label> <input type="text" name="lastName" placeholder="lastname" required onChange={this.handleChange}/>
-                                                                        <Label>email:</Label> <input type="text" name="email" placeholder="email" required onChange={this.handleChange}/>
-                                                                        <Label>birthdate:</Label> <input type="number" name="birthDate" placeholder="birthdate" required onChange={this.handleChange}/>
-                                                                             <Label>telephone:</Label> <input type="number" name="telephone" placeholder="phonenumber" required onChange={this.handleChange}/>
-                                                                             <Label>password:</Label> <input type="text" name="password" placeholder="password" required onChange={this.handleChange}/>
-                                                                        <Label>address:</Label> <input type="text" name="address" placeholder="address" required onChange={this.handleChange}/>
-                                                                        <Label>zipcode:</Label> <input type="number" name="zipcode" placeholder="zipcode" required onChange={this.handleChange}/>
-                                                                        <Label>city:</Label> <input type="text" name="city" placeholder="city" onChange={this.handleChange}/>
-                                                                        <Label>role:</Label> <input type="text" name="role" placeholder="role" onChange={this.handleChange}/>
+                                                            <Label>name:</Label>  <input type="text" name="firstName" required placeholder="name"  onChange={this.handleChange}/>
+                                                                        <Label>lastname:</Label> <input type="text" required name="lastName" placeholder="lastname"  onChange={this.handleChange}/>
+                                                                        <Label>email:</Label> <input type="text" required name="email" placeholder="email"  onChange={this.handleChange}/>
+                                                                        <Label>birthdate:</Label> <input type="number" required name="birthDate" placeholder="birthdate"  onChange={this.handleChange}/>
+                                                                             <Label>telephone:</Label> <input type="number" required name="telephone" placeholder="phonenumber"  onChange={this.handleChange}/>
+                                                                             <Label>password:</Label> <input type="text" required name="password" placeholder="password"  onChange={this.handleChange}/>
+                                                                        <Label>address:</Label> <input type="text" required name="address" placeholder="address"  onChange={this.handleChange}/>
+                                                                        <Label>zipcode:</Label> <input type="number" required name="zipcode" placeholder="zipcode"  onChange={this.handleChange}/>
+                                                                        <Label>city:</Label> <input type="text" required name="city" placeholder="city" onChange={this.handleChange}/>
+                                                                        <Label>role:</Label> <input type="text" required name="role" placeholder="role" onChange={this.handleChange}/>
                                                                          
                                                                 <button type="submit">Create</button>      </FormContainer> </Container>   }  
                                                                    
@@ -247,15 +247,15 @@ renderEditForm() {
         
              return <Container>  <FormContainer onSubmit={this.onUpdateHandle}>   
                                   <Headline>Update user</Headline>
-                                  <Label>name:</Label> <input type="text" name="name" placeholder={name} required onChange={this.handleChange}/>
-                        <Label>lastname:</Label> <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
-                        <Label>email:</Label> <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
-                        <Label>birthdate:</Label> <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
-                             <Label>telephone:</Label> <input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/>
-                        <Label>address:</Label> <input type="text" name="address" placeholder={address} required onChange={this.handleChange}/>
-                        <Label>zipcode:</Label> <input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/>
-                        <Label>city:</Label> <input type="text" name="city" placeholder={city} onChange={this.handleChange}/>
-                        <Label>role:</Label> <input type="text" name="role" placeholder={role} onChange={this.handleChange}/>
+                                  <Label>name:</Label> <input type="text" name="name" required placeholder={name}  onChange={this.handleChange}/>
+                        <Label>lastname:</Label> <input type="text" name="lastname" required placeholder={lastname}  onChange={this.handleChange}/>
+                        <Label>email:</Label> <input type="text" name="email" required placeholder={email}  onChange={this.handleChange}/>
+                        <Label>birthdate:</Label> <input type="number" name="birthdate" required placeholder={birthdate}  onChange={this.handleChange}/>
+                             <Label>telephone:</Label> <input type="number" name="telephone" required placeholder={telephone} onChange={this.handleChange}/>
+                        <Label>address:</Label> <input type="text" name="address" required  placeholder={address} onChange={this.handleChange}/>
+                        <Label>zipcode:</Label> <input type="number" name="zipcode" required placeholder={zipcode} onChange={this.handleChange}/>
+                        <Label>city:</Label> <input type="text" name="city" required placeholder={city} onChange={this.handleChange}/>
+                        <Label>role:</Label> <input type="text" name="role" required placeholder={role} onChange={this.handleChange}/>
                          
                 <button type="submit">Update</button>      </FormContainer></Container>    }  
 
