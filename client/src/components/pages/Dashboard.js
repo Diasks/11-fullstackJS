@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Footer from '../layout/Footer';
-import {Container, FormContainer, Headline, Label} from './Register';
+import {Container, FormContainer, Headline, Label, Form, RegisterButton, ButtonWrap } from './Register';
 
 const TheadTr = styled.tr`
 @media 
@@ -222,7 +222,8 @@ const res = await axios.get('/user', config);
                            
                              if (this.state.create) {   
                            
-                                                             return <Container><FormContainer onSubmit={this.onCreateHandle}>   
+                                                             return <Container><FormContainer>
+                                     <Form onSubmit={this.onCreateHandle}>   
                                                              <Headline>Create new user</Headline>
                                                             <Label>name:</Label>  <input type="text" name="firstName" required placeholder="name"  onChange={this.handleChange}/>
                                                                         <Label>lastname:</Label> <input type="text" required name="lastName" placeholder="lastname"  onChange={this.handleChange}/>
@@ -235,7 +236,9 @@ const res = await axios.get('/user', config);
                                                                         <Label>city:</Label> <input type="text" required name="city" placeholder="city" onChange={this.handleChange}/>
                                                                         <Label>role:</Label> <input type="text" required name="role" placeholder="role" onChange={this.handleChange}/>
                                                                          
-                                                                <button type="submit">Create</button>      </FormContainer> </Container>   }  
+                                                                   <ButtonWrap> 
+<RegisterButton type="submit">Create</RegisterButton>
+</ButtonWrap>       </Form> </FormContainer> </Container>   }  
                                                                    
                         }
 
@@ -245,8 +248,10 @@ renderEditForm() {
  
                 let  {name, lastname, email, birthdate, telephone, address, zipcode, city, role} = this.state.user;
         
-             return <Container>  <FormContainer onSubmit={this.onUpdateHandle}>   
-                                  <Headline>Update user</Headline>
+             return <Container><FormContainer>
+                <Headline>Update user</Headline>
+             <Form onSubmit={this.onUpdateHandle}>   
+                  
                                   <Label>name:</Label> <input type="text" name="name" required placeholder={name}  onChange={this.handleChange}/>
                         <Label>lastname:</Label> <input type="text" name="lastname" required placeholder={lastname}  onChange={this.handleChange}/>
                         <Label>email:</Label> <input type="text" name="email" required placeholder={email}  onChange={this.handleChange}/>
@@ -257,7 +262,10 @@ renderEditForm() {
                         <Label>city:</Label> <input type="text" name="city" required placeholder={city} onChange={this.handleChange}/>
                         <Label>role:</Label> <input type="text" name="role" required placeholder={role} onChange={this.handleChange}/>
                          
-                <button type="submit">Update</button>      </FormContainer></Container>    }  
+                <ButtonWrap> 
+<RegisterButton type="submit">Update</RegisterButton>
+</ButtonWrap>      </Form>
+</FormContainer> </Container>    }  
 
 }
     
