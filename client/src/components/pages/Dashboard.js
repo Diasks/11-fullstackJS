@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Footer from '../layout/Footer';
-import {Container, FormContainer, Headline, Label, RegisterButton} from './Register';
+import {Container, FormContainer, Headline, Label} from './Register';
 
 const TheadTr = styled.tr`
 @media 
