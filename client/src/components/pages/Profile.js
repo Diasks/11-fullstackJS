@@ -4,8 +4,6 @@ import {Container, FormContainer, Form, Headline, Label, Input, Firstname, Lastn
 import Footer from '../layout/Footer';
 
 
-
-
 class Profile extends Component {
     state = { showing: false };
 
@@ -16,18 +14,20 @@ componentDidMount() {
 handleSubmit = async (e) => {
 e.preventDefault();
 const updatedUser = {
+    firstName: this.state.firstName,
+    lastName: this.state.lastName,
+    birthDate: this.state.birthDate,
+    email: this.state.email,
     telephone: this.state.telephone,
     address: this.state.address,
     zipcode: this.state.zipcode,
     city: this.state.city,
 };
-debugger;
 let _id = this.props.user._id;
 this.props.searchUser(updatedUser, _id);
 }
 
 handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({[e.target.name]: e.target.value});
 }
 
@@ -49,38 +49,38 @@ if (isLoggedIn)
                 <Form onSubmit={this.handleSubmit}> 
                 <Firstname> 
 <Label>Firstname</Label>
-<Input type="text" name="name" placeholder={name} required onChange={this.handleChange}/>
+<Input type="text" name="firstName" required placeholder={name}  onChange={this.handleChange}/>
 </Firstname>
 
 <Lastname> 
 <Label>Lastname</Label>
-<Input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
+<Input type="text" name="lastName"  required placeholder={lastname} onChange={this.handleChange}/>
 </Lastname>
 
 <Birthdate> 
 <Label>Birthdate</Label>
-<Input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/></Birthdate>
+<Input type="number" name="birthDate"  required placeholder={birthdate} onChange={this.handleChange}/></Birthdate>
 
 <Email> 
 <Label>Email</Label>
-<Input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
+<Input type="text" name="email" required placeholder={email}  onChange={this.handleChange}/>
 </Email>
 
 <Password> 
 <Label>Telephone</Label>
-<Input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/></Password>
+<Input type="number" name="telephone" required placeholder={telephone}  onChange={this.handleChange}/></Password>
 
 <Password> 
 <Label>Address</Label>
-<Input type="text" name="address" placeholder={address} required onChange={this.handleChange}/></Password>
+<Input type="text" name="address" required placeholder={address}  onChange={this.handleChange}/></Password>
 
 <Password> 
 <Label>Zipcode</Label>
-<Input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/></Password>
+<Input type="number" name="zipcode" required placeholder={zipcode}  onChange={this.handleChange}/></Password>
 
 <Password> 
 <Label>City</Label>
-<Input type="text" name="city" placeholder={city} required onChange={this.handleChange}/></Password>
+<Input type="text" name="city" required placeholder={city}  onChange={this.handleChange}/></Password>
 
 <ButtonWrap> 
 <RegisterButton type="submit">Update</RegisterButton>
@@ -96,8 +96,6 @@ if (isLoggedIn)
 debugger;
 return (
 order.map((el) =>{
-    debugger;
-    console.log(`hej jag är ${el.name}`);
     return      <div>  <li key={el.id}>{el.name}</li></div>
 }
 ))})}

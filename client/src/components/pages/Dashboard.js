@@ -172,8 +172,11 @@ if (user._id !== id) {
   
         const res = await axios.post(`/auth/register`, { user });
         this.setState({isCreated: true, create: false})
-        return res;
-   
+        const result = await axios.get('/user', config);
+        const users = result.data;
+            this.setState({
+                users, create: false
+            })
 } 
 
 
@@ -200,7 +203,11 @@ let _id =  this.state.user._id;
 
     const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
 this.setState({   isUpdated: true, edit: false  })
-return result;
+const res = await axios.get('/user', config);
+    const users = res.data;
+    this.setState({
+        users, edit: false
+    })
 
     } 
 
@@ -233,10 +240,10 @@ renderEditForm() {
         
              return <Container>  <FormContainer onSubmit={this.onUpdateHandle}>   
                                   <Headline>Update user</Headline>
-                                  <Label>name:</Label> <input type="text" name="firstname" placeholder={name} required onChange={this.handleChange}/>
-                        <Label>lastname:</Label> <input type="text" name="lastname" placeholder={lastname} required onChange={this.handleChange}/>
+                                  <Label>name:</Label> <input type="text" name="firstName" placeholder={name} required onChange={this.handleChange}/>
+                        <Label>lastname:</Label> <input type="text" name="lastName" placeholder={lastname} required onChange={this.handleChange}/>
                         <Label>email:</Label> <input type="text" name="email" placeholder={email} required onChange={this.handleChange}/>
-                        <Label>birthdate:</Label> <input type="number" name="birthdate" placeholder={birthdate} required onChange={this.handleChange}/>
+                        <Label>birthdate:</Label> <input type="number" name="birthDate" placeholder={birthdate} required onChange={this.handleChange}/>
                              <Label>telephone:</Label> <input type="number" name="telephone" placeholder={telephone} required onChange={this.handleChange}/>
                         <Label>address:</Label> <input type="text" name="address" placeholder={address} required onChange={this.handleChange}/>
                         <Label>zipcode:</Label> <input type="number" name="zipcode" placeholder={zipcode} required onChange={this.handleChange}/>

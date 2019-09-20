@@ -104,17 +104,14 @@ debugger;
 
 
 searchUser = async (updatedUser, _id) => {
-        debugger;
- 
           let token = localStorage.getItem("jwt");
 let config = {
   headers: {'x-access-token': token}
 }
-    const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
-debugger;
+const result = await axios.patch(`/user/${_id}`,{ updatedUser }, config);
+const {user} = this.state;
 this.setState({user: result.data});
 localStorage.setItem('user', JSON.stringify(result.data));
-debugger;
 } 
 
 
@@ -122,9 +119,7 @@ debugger;
 
 
 sendOrder = async (cart) => {
-debugger;
 
-debugger;
 let token = localStorage.getItem("jwt");
 let config = {
   headers: {'x-access-token': token}
@@ -136,122 +131,93 @@ name: data.name,
 image: data.image,
 price: data.price
 }));
-debugger;
+
     const result = await axios.patch(`/order/${user}`, {myObj}, config);
 
-    debugger;
 this.setState({success: true, orders: result.data.orders})
+this.changeSuccess();
     this.removeCartItems();
-    this.changeSuccess();
     this.getOrders();
   } 
 
 
 removeCartItems = async () => {
-
-debugger;
-
   let token = localStorage.getItem("jwt");
 let config = {
   headers: {'x-access-token': token}
 }
   let user = JSON.parse(localStorage.getItem('user'))._id;
   const result = await axios.patch(`/search/${user}`, config);
-  debugger;
   this.setState({cart: []});
-  debugger;
 return result;
 } 
 
 
 getCart = async () => {
-  debugger;
   let token = localStorage.getItem("jwt");
     debugger;
 let config = {
   headers: {'x-access-token': token}
 }
 if (token != null) { 
-  debugger;
   let user = JSON.parse(localStorage.getItem('user'))._id;
 const res = await axios.get(`/cart/${user}`, config);
-debugger;
 this.setState({cart: res.data.cart});
 }} 
 
 
 getOrders = async () => {
-  debugger;
   let token = localStorage.getItem('jwt');
   let config = {
     headers: {'x-access-token': token}
   }
 if (token != null) { 
-  debugger;
-
   let user = JSON.parse(localStorage.getItem('user'))._id;
 const res = await axios.get(`/cart/${user}`, config);
-debugger;
 this.setState({orders: res.data.orders});
 } } 
 
 
 
 deleteFromCart = async (id) => {
-  debugger;
   let token = localStorage.getItem('jwt');
     let user = JSON.parse(localStorage.getItem('user'))._id;
     let config = {
       headers: {'x-access-token': token}
     }
   let gameId = id;
-debugger;
 const res = await axios.patch(`/games/${user}`, {gameId}, config);
-debugger;
 this.setState({cart: res.data.cart});
 
 } 
 
-//refaktorisera till async funktion för att söka i databasen
-searchGames = async query => {
-  debugger;
 
+searchGames = async query => {
     const res = await axios.get(`/search/${query}`);
-  debugger;
   if (Object.keys(res.data.data).length === 0)
   {
-    debugger;
     this.setState({games: ''})
   }
   else {
-    debugger;
     this.setState({games: res.data.data })
   }
 } 
 
-//hämta specifikt spel från min databas baserat på vilken man tryckt på för att ser mer detaljerat
-getGame = async (slug) => {
 
-  debugger;
+getGame = async (slug) => {
 const res = await axios.get(`/games/${slug}`);
-debugger;
 this.setState({game: res.data});
 } 
 
 logoutUser = async () =>
 {
-  // eslint-disable-next-line no-unused-vars
   const {isAdmin} = this.state;
   const {isLoggedIn} = this.state
-
-  debugger;
 
   this.setState({isAdmin: false});
   this.setState({isLoggedIn: false});
   
-  
   localStorage.clear(); 
-  debugger;
 }
 
 
@@ -262,7 +228,7 @@ render() {
   const { games, game, user, cart, isLoggedIn, isAdmin, success, orders } = this.state;
 
   return (
-    <div> 
+    <Fragment> 
     <div>{this.state.offlineAlert &&
     "You are offline. Your changes will sync once you have an internet connection again."
     }</div>
@@ -297,7 +263,7 @@ render() {
     </Switch>
     </Router>
    
-    </div>
+    </Fragment>
   );
 }}
 

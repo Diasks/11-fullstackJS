@@ -17,18 +17,6 @@ const db = mongoose.connection;
     })
   });
   
-  
-  // router.get('/game', (req, res) => {
-  //   db.collection('games').find().toArray((err, results) =>{
-  //     if(err) throw err;
-  //     console.log(err);
-  //     console.log(results);
-  //     results.forEach((value)=>{
-  //       console.log(value);
-  //     })
-  //    return res.json(results);
-  //   })
-  // });
 
     router.patch("/:id", VerifyToken, function(req, res) { 
       const itemId = req.body.gameId;

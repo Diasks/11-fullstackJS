@@ -20,8 +20,7 @@ router.get("/:query", function(req, res) {
     });
     });
 
-    router.patch("/:id", VerifyToken, function(req, res) {
-      const itemId = req.body.gameId;
+    router.patch("/:id", VerifyToken, function(req, res) {;
       User.findByIdAndUpdate(   req.params.id, {
         $unset: {'cart': ''}
       }, {new: true},

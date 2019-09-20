@@ -7,7 +7,7 @@ const config = require("dotenv").config();
 router.use(bodyParser.urlencoded( { extended: false } ));
 router.use(bodyParser.json());
 const User = require('../models/User');
-const VerifyToken = require('../middleware/VerifyToken');
+
 
 
 router.post('/login', function(req, res) {
@@ -73,21 +73,5 @@ else {
 })
 });
 
-//     router.get('/me', VerifyToken, function(req, res) {
-//             User.findById(req.userId, { password: 0 }, function(error, user) {
-// if(error) {
-//     debugger;
-//     res.status(500).send('An error occured while trying to find the user')
-// }
-// if(!user) {
-//     debugger;
-//     res.status(404).send('User not found');
-// }
-//             });
-//             res.status(200).send({
-//                 authenticated: true,
-//                 user: user
-//             });
-//         });
 
     module.exports = router;
