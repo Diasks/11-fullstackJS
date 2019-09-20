@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Footer from '../layout/Footer';
-import {Container, FormContainer, Headline, Label, Form, RegisterButton, ButtonWrap, Input } from './Register';
+import {Container, FormContainer, Headline, Label, Form, RegisterButton, ButtonWrap, Input, Password } from './Register';
 
 const TheadTr = styled.tr`
 @media 
@@ -183,8 +183,15 @@ if (user._id !== id) {
             this.setState({
                 users, create: false, isCreated: true
             })
+            this.changeCreatedStatus();
 } 
 
+
+changeCreatedStatus = () => {
+    this.setState({
+      isCreated: false
+    })
+}
 
 
 onUpdateHandle = async (e) => {  
@@ -215,8 +222,15 @@ const res = await axios.get('/user', config);
     this.setState({
         users, edit: false, isUpdated: true
     })
-
+this.changeUpdatedStatus();
     } 
+
+    changeUpdatedStatus = () => {
+        this.setState({
+          isUpdated: false
+        })
+    }
+
 
                         renderCreateForm() {  
                            
@@ -224,18 +238,39 @@ const res = await axios.get('/user', config);
                            
                                                              return <Container><FormContainer>
                                      <Form onSubmit={this.onCreateHandle}>   
-                                                             <Headline>Create new user</Headline>
+                                                             <Headline>Create user</Headline>
+                                <Password> 
                                                             <Label>name:</Label>  <Input type="text" name="firstName" required placeholder="name"  onChange={this.handleChange}/>
-                                                                        <Label>lastname:</Label> <Input type="text" required name="lastName" placeholder="lastname"  onChange={this.handleChange}/>
-                                                                        <Label>email:</Label> <Input type="text" required name="email" placeholder="email"  onChange={this.handleChange}/>
-                                                                        <Label>birthdate:</Label> <Input type="number" required name="birthDate" placeholder="birthdate"  onChange={this.handleChange}/>
-                                                                             <Label>telephone:</Label> <Input type="number" required name="telephone" placeholder="phonenumber"  onChange={this.handleChange}/>
-                                                                             <Label>password:</Label> <Input type="text" required name="password" placeholder="password"  onChange={this.handleChange}/>
-                                                                        <Label>address:</Label> <Input type="text" required name="address" placeholder="address"  onChange={this.handleChange}/>
-                                                                        <Label>zipcode:</Label> <Input type="number" required name="zipcode" placeholder="zipcode"  onChange={this.handleChange}/>
-                                                                        <Label>city:</Label> <Input type="text" required name="city" placeholder="city" onChange={this.handleChange}/>
-                                                                        <Label>role:</Label> <Input type="text" required name="role" placeholder="role" onChange={this.handleChange}/>
-                                                                         
+                                        </Password>                              
+                                <Password> 
+                                  <Label>lastname:</Label> <Input type="text" required name="lastName" placeholder="lastname"  onChange={this.handleChange}/>
+                                </Password>    
+                                
+                                <Password> 
+                                                                    <Label>email:</Label> <Input type="text" required name="email" placeholder="email"  onChange={this.handleChange}/>
+                                                                  </Password>    
+                                <Password> 
+                                  <Label>birthdate:</Label> <Input type="number" required name="birthDate" placeholder="birthdate"  onChange={this.handleChange}/>
+                                </Password>               
+
+                                <Password> 
+                                                              <Label>telephone:</Label> <Input type="number" required name="telephone" placeholder="phonenumber"  onChange={this.handleChange}/>
+                                                          </Password>    
+                                <Password>               
+                                 <Label>password:</Label> <Input type="text" required name="password" placeholder="password"  onChange={this.handleChange}/>
+                                </Password>                        
+                                <Password> 
+                                                <Label>address:</Label> <Input type="text" required name="address" placeholder="address"  onChange={this.handleChange}/>
+                                </Password>                            
+                                <Password> 
+                                            <Label>zipcode:</Label> <Input type="number" required name="zipcode" placeholder="zipcode"  onChange={this.handleChange}/>
+                                </Password>                                     
+                                <Password> 
+                                   <Label>city:</Label> <Input type="text" required name="city" placeholder="city" onChange={this.handleChange}/>
+                                </Password>   
+                                <Password>                                 
+                                     <Label>role:</Label> <Input type="text" required name="role" placeholder="role" onChange={this.handleChange}/>
+                                         </Password>                                
                                                                    <ButtonWrap> 
 <RegisterButton type="submit">Create</RegisterButton>
 </ButtonWrap>       </Form> </FormContainer> </Container>   }  
@@ -251,17 +286,34 @@ renderEditForm() {
              return <Container><FormContainer>
                 <Headline>Update user</Headline>
              <Form onSubmit={this.onUpdateHandle}>   
-                  
+                      <Password> 
                                   <Label>name:</Label> <Input type="text" name="name" required placeholder={name}  onChange={this.handleChange}/>
-                        <Label>lastname:</Label> <Input type="text" name="lastname" required placeholder={lastname}  onChange={this.handleChange}/>
-                        <Label>email:</Label> <Input type="text" name="email" required placeholder={email}  onChange={this.handleChange}/>
-                        <Label>birthdate:</Label> <Input type="number" name="birthdate" required placeholder={birthdate}  onChange={this.handleChange}/>
-                             <Label>telephone:</Label> <Input type="number" name="telephone" required placeholder={telephone} onChange={this.handleChange}/>
-                        <Label>address:</Label> <Input type="text" name="address" required  placeholder={address} onChange={this.handleChange}/>
-                        <Label>zipcode:</Label> <Input type="number" name="zipcode" required placeholder={zipcode} onChange={this.handleChange}/>
-                        <Label>city:</Label> <Input type="text" name="city" required placeholder={city} onChange={this.handleChange}/>
-                        <Label>role:</Label> <Input type="text" name="role" required placeholder={role} onChange={this.handleChange}/>
-                         
+        </Password>          
+        <Password>       
+         <Label>lastname:</Label> <Input type="text" name="lastname" required placeholder={lastname}  onChange={this.handleChange}/>
+        </Password> 
+        <Password>                 
+        <Label>email:</Label> <Input type="text" name="email" required placeholder={email}  onChange={this.handleChange}/>
+        </Password>               
+        
+        <Password> 
+         <Label>birthdate:</Label> <Input type="number" name="birthdate" required placeholder={birthdate}  onChange={this.handleChange}/>
+        </Password>                    
+        <Password> 
+         <Label>telephone:</Label> <Input type="number" name="telephone" required placeholder={telephone} onChange={this.handleChange}/>
+        </Password>              
+        <Password> 
+          <Label>address:</Label> <Input type="text" name="address" required  placeholder={address} onChange={this.handleChange}/>
+        </Password>              
+        <Password> 
+          <Label>zipcode:</Label> <Input type="number" name="zipcode" required placeholder={zipcode} onChange={this.handleChange}/>
+        </Password>               
+        <Password>  
+        <Label>city:</Label> <Input type="text" name="city" required placeholder={city} onChange={this.handleChange}/>
+        </Password>               
+        <Password>  
+        <Label>role:</Label> <Input type="text" name="role" required placeholder={role} onChange={this.handleChange}/>
+        </Password>                 
                 <ButtonWrap> 
 <RegisterButton type="submit">Update</RegisterButton>
 </ButtonWrap>      </Form>
