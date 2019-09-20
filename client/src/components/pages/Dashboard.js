@@ -157,6 +157,7 @@ if (user._id !== id) {
 
     onCreateHandle = async (e) => {
         e.preventDefault();
+        console.log('jag är onCreateHandle o gör backend requests!');
         const user = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -180,7 +181,7 @@ if (user._id !== id) {
         const result = await axios.get('/user', config);
         const users = result.data;
             this.setState({
-                users, create: false
+                users, create: false, isCreated: true
             })
 } 
 
@@ -188,6 +189,7 @@ if (user._id !== id) {
 
 onUpdateHandle = async (e) => {  
     e.preventDefault(); 
+    console.log('jag är onUpdateHandle o gör backend requests!');
 let _id =  this.state.user._id;
     const token = localStorage.getItem("jwt");
             const config = {
@@ -211,7 +213,7 @@ this.setState({   isUpdated: true, edit: false  })
 const res = await axios.get('/user', config);
     const users = res.data;
     this.setState({
-        users, edit: false
+        users, edit: false, isUpdated: true
     })
 
     } 
@@ -233,7 +235,7 @@ const res = await axios.get('/user', config);
                                                                         <Label>city:</Label> <input type="text" name="city" placeholder="city" onChange={this.handleChange}/>
                                                                         <Label>role:</Label> <input type="text" name="role" placeholder="role" onChange={this.handleChange}/>
                                                                          
-                                                                <RegisterButton type="submit">Create</RegisterButton>      </FormContainer> </Container>   }  
+                                                                <button type="submit">Create</button>      </FormContainer> </Container>   }  
                                                                    
                         }
 
@@ -255,18 +257,20 @@ renderEditForm() {
                         <Label>city:</Label> <input type="text" name="city" placeholder={city} onChange={this.handleChange}/>
                         <Label>role:</Label> <input type="text" name="role" placeholder={role} onChange={this.handleChange}/>
                          
-                <RegisterButton type="submit">Update</RegisterButton>      </FormContainer></Container>    }  
+                <button type="submit">Update</button>      </FormContainer></Container>    }  
 
 }
     
 
 onEditHandle(e) { 
+    console.log('jag är onEditHandle!');
     this.setState({    
     edit: true,    user: arguments[0]  });
 }
 
 
 onCreate(e) { 
+    console.log('jag är onCreate!');
     this.setState({    
     create: true  });
 }
