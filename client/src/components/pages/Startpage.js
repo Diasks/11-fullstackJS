@@ -4,10 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGhost } from '@fortawesome/free-solid-svg-icons'
 
 
-const WrapContent = styled.div`
-height: 100%;
-`;
-
 
 const WrapGhost = styled.div`
 text-align: center;
@@ -36,7 +32,7 @@ font-weight: lighter;
 const Startpage = () =>  {
         return ( 
   
-            <WrapContent> 
+            <Fragment> 
              
                  <BigTitle>GAMEOVER</BigTitle>
                 <WrapGhost>  <FontAwesomeIcon icon={faGhost} size="5x"/> </WrapGhost>
@@ -46,7 +42,7 @@ const Startpage = () =>  {
 
   
 
-            </WrapContent>
+            </Fragment>
           
          );
     }
