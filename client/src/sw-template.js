@@ -25,28 +25,27 @@ workbox.routing.registerRoute(
    'http://localhost:3000',
     new workbox.strategies.NetworkFirst()
   );
+
+  workbox.routing.registerRoute(
+    'http://localhost:4000/search',
+     new workbox.strategies.NetworkFirst({
+       plugins: [bgSyncPlugin]
+     }),
+     'GET'
+   );
+
+   workbox.routing.registerRoute(
+    'http://localhost:4000/auth/register',
+     new workbox.strategies.NetworkOnly({
+       plugins: [bgSyncPlugin]
+     }),
+     'POST'
+   );
 } else {
   console.log('Workbox could not be loaded. No offline supports');
 }
 
-const queue = new workbox.backgroundSync.Queue('my-queue-name', {
-  onSync: async (queue) => {
-    let entry;
-    while (entry = await this.shiftRequest()) {
-      try {
-        await fetch(entry.request);
-        console.error('Replay successful for request', entry.request);
-      } catch (error) {
-        console.error('Replay failed for request', entry.request, error);
 
-        // Put the entry back in the queue and re-throw the error:
-        await this.unshiftRequest(entry);
-        throw error;
-      }
-    }
-    console.log('Replay complete!');
-  }
-});
   
 
 
