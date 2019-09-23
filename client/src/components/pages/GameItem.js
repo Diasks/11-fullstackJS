@@ -10,15 +10,12 @@ box-sizing: border-box;
 border-radius: 10px;
 box-shadow: 0px 10px 30px #555;
 display:flex;
-background-position: center;
-background-size: cover;
-background-repeat: no-repeat;
-
   `;
 
 const StyledLink = styled(Link)`
   align-self: flex-end;
   text-align: right;
+  text-shadow: 2px 2px 4px #000000;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -36,7 +33,7 @@ const StyledLink = styled(Link)`
 function GameItem({ game: { name, background_image, slug } }) {
   debugger;
   return (
-    <Box style={{ backgroundImage: `url(${background_image})` }}>
+    <Box style={{ backgroundImage: `url(${background_image})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
       <StyledLink to={`/game/${slug}`}>{name}</StyledLink>
     </Box>
   );
