@@ -13,7 +13,7 @@ export const GameWrapper = styled.div`
 `;
 
 const MyNewFooterWrap = styled(FooterWrap)`
-  margin-top: 28%;
+  margin-top: 30%;
   @media (min-width: 414px) {
     margin-top: 15%;
   }

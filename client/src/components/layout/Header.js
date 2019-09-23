@@ -64,7 +64,7 @@ const Header = ({ isLoggedIn, isAdmin, logoutUser }) => {
       {!isLoggedIn ? (
         <IconWrap>
           
-          <StyledLink to='/login'>Login</StyledLink>
+          <StyledLink to='/login'>Login</StyledLink> {' '}
           <StyledLink to='/register'>Register</StyledLink>
         </IconWrap>
       ) : null}
