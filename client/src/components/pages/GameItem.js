@@ -11,8 +11,9 @@ border-radius: 10px;
 box-shadow: 0px 10px 30px #555;
 display:flex;
 background-position: center;
-background-size: 150px 150px;
+background-size: cover;
 background-repeat: no-repeat;
+
   `;
 
 const StyledLink = styled(Link)`
