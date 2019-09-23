@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
 
 export const FooterWrap = styled.div`
@@ -21,13 +21,11 @@ export const Copyright = styled.span`
   font-size: 10px;
 `;
 
-
-const Footer =  () => {
-        return (
-            <FooterWrap> 
-                      <Copyright>© GAMEOVER 2019</Copyright>
-            </FooterWrap>
-        )
-    
-}
-    export default Footer;
+const Footer = () => {
+  return (
+    <FooterWrap>
+      <Copyright>© GAMEOVER 2019</Copyright>
+    </FooterWrap>
+  );
+};
+export default Footer;

@@ -1,12 +1,12 @@
-const createError = require("http-errors");
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const config = require("dotenv").config();
-const mongoose = require("mongoose");
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const config = require('dotenv').config();
+const mongoose = require('mongoose');
 const AuthController = require('./controllers/AuthController');
 const UserController = require('./controllers/UserController');
 const CartController = require('./controllers/CartController');
@@ -14,19 +14,19 @@ const GameController = require('./controllers/GameController');
 const SearchController = require('./controllers/SearchController');
 const OrderController = require('./controllers/OrderController');
 
-
 const app = express();
 app.use(cors());
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@gameover-uogeo.mongodb.net/test?retryWrites=true&w=majority`);
+mongoose.connect(
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@gameover-uogeo.mongodb.net/test?retryWrites=true&w=majority`
+);
 
 const db = mongoose.connection;
-console.log(db);
-db.on("error", function(error) {
-  console.error("Whoops, something went wrong!", error);
+db.on('error', function(error) {
+  console.error('Whoops, something went wrong!', error);
 });
-db.once("open", function() {
-  console.log("DB connection is up and running");
+db.once('open', function() {
+  console.log('DB connection is up and running');
 });
 
 app.use('/auth', AuthController);
@@ -37,19 +37,17 @@ app.use('/search', SearchController);
 app.use('/order', OrderController);
 
 // view engine setup
-app.set("view engine", "pug");
+app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-
-app.get("*", function(request, response) {
-  response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
 // catch 404 and forward to error handler
