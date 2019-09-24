@@ -1,4 +1,4 @@
-# 14-fullstackjs-idea-Diasks
+# 11-fullstackjs-idea-Diasks
 
 deployed site:
 https://gameover08.herokuapp.com/
