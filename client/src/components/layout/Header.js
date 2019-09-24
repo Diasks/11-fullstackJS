@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faShoppingCart, faHome, faUserCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUser,
+  faShoppingCart,
+  faHome,
+  faUserCog,
+  faSignOutAlt
+} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const NavWrap = styled.div`
@@ -12,37 +18,72 @@ box-shadow: 0px 10px 50px #555;
 `;
 
 const IconWrap = styled.div`
-padding: 6px;
-margin: 3px;
-color:#B0B0B0;
-:hover {
-    color: #F5F5F5;
+  padding: 6px;
+  margin: 3px;
+  color: #b0b0b0;
+  :hover {
+    color: #f5f5f5;
   }
 `;
 
 export const StyledLink = styled(Link)`
-color: #B0B0B0;
+  color: #b0b0b0;
+  text-decoration: none;
+  &:hover {
+    color: #f5f5f5;
+  }
+  &:focus,
+  &:visited,
+  &:link,
+  &:active {
     text-decoration: none;
-    &:hover {
-        color: #F5F5F5; 
-    }
-    &:focus, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
+  }
 `;
 
+const Header = ({ isLoggedIn, isAdmin, logoutUser }) => {
+  return (
+    <NavWrap>
+      <Link to='/'>
+        
+        <IconWrap>
+          <FontAwesomeIcon icon={faHome} size='lg' />
+        </IconWrap>
+      </Link>
+      <Link to='/profile'>
+        
+        <IconWrap>
+          <FontAwesomeIcon icon={faUser} size='lg' />
+        </IconWrap>
+      </Link>
+      <Link to='/cart'>
+        
+        <IconWrap>
+          <FontAwesomeIcon icon={faShoppingCart} size='lg' />
+        </IconWrap>
+      </Link>
+      {!isLoggedIn ? (
+        <IconWrap>
+          
+          <StyledLink to='/login'>Login</StyledLink> {' '}
+          <StyledLink to='/register'>Register</StyledLink>
+        </IconWrap>
+      ) : null}
+      {isAdmin ? (
+        <Link to='/dashboard'>
+          <IconWrap>
+            <FontAwesomeIcon icon={faUserCog} size='lg' />
+          </IconWrap>
+        </Link>
+      ) : null}
+      {isLoggedIn ? (
+        <Link to='/login' onClick={logoutUser}>
+          <IconWrap>
+            <FontAwesomeIcon icon={faSignOutAlt} size='lg' />
+          </IconWrap>
+        </Link>
+      ) : null}
+    </NavWrap>
+  );
+};
 
-const Header = ({isLoggedIn, isAdmin, logoutUser}) => {
-        return (
-            <NavWrap> 
-            <Link to="/"> <IconWrap><FontAwesomeIcon icon={faHome} size="lg"/></IconWrap> </Link>
-            <Link to="/profile"> <IconWrap><FontAwesomeIcon icon={faUser} size="lg"/></IconWrap> </Link>
-            <Link to="/cart">  <IconWrap><FontAwesomeIcon icon={faShoppingCart} size="lg" /></IconWrap>  </Link>
-            {!isLoggedIn ? <IconWrap> <StyledLink to="/login">Login</StyledLink>  <StyledLink to="/register">Register</StyledLink> </IconWrap> : null }
-            {isAdmin ?  <Link to="/dashboard"><IconWrap><FontAwesomeIcon icon={faUserCog} size="lg"/> </IconWrap> </Link>  : null }
-           {isLoggedIn ?    <Link to="/login" onClick={logoutUser}><IconWrap><FontAwesomeIcon icon={faSignOutAlt} size="lg"/></IconWrap></Link> : null}
-            </NavWrap>
-        )} 
-    
-  
-    export default Header;
+export default Header;
