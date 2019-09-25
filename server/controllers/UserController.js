@@ -23,7 +23,7 @@ router.patch('/:id', VerifyToken, function(req, res) {
       name: req.body.updatedUser.name,
       lastname: req.body.updatedUser.lastname,
       birthdate: req.body.updatedUser.birthdate,
-      city: req.body.updatedUser.city,
+      email: req.body.updatedUser.email,
       telephone: req.body.updatedUser.telephone,
       address: req.body.updatedUser.address,
       zipcode: req.body.updatedUser.zipcode,
